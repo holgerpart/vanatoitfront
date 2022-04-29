@@ -8,7 +8,7 @@
     <br>
     <button v-on:click="login">Sisene</button>
     <br>
-    <button>Registreeri kasutaja</button>
+    <button v-on:click="navigateToRegister">Registreeri kasutaja</button>
 
   </div>
 </template>
@@ -44,7 +44,7 @@ export default {
       })
     },
     navigateToRegister: function () {
-      this.$router.push({name: 'RegisterRoute'})
+      this.$router.push({name: 'registerRoute'})
     },
   }
 }

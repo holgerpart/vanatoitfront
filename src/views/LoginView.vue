@@ -7,6 +7,8 @@
     <br>
     <br>
     <button v-on:click="login">Sisene</button>
+    <br>
+    <button>Registreeri kasutaja</button>
 
   </div>
 </template>
@@ -40,7 +42,10 @@ export default {
       }).catch(error => {
         console.log(error)
       })
-    }
+    },
+    navigateToRegister: function () {
+      this.$router.push({name: 'RegisterRoute'})
+    },
   }
 }
 </script>

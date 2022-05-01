@@ -5,6 +5,8 @@
       <router-link to="/about">About</router-link> |
       <router-link to="/login">Login</router-link> |
       <router-link to="/register">Register</router-link> |
+      <router-link to="/shop">Shop</router-link> |
+      <router-link to="/user">User</router-link> |
     </nav>
     <router-view/>
   </div>

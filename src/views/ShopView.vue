@@ -18,6 +18,12 @@ export default {
     navigateToFoodInput: function () {
       this.$router.push({name: 'foodInputRoute'})
     },
+    navigateToStock: function () {
+      this.$router.push({name: 'stockRoute'})
+    },
+    navigateToOrders: function () {
+      this.$router.push({name: 'ordersRoute'})
+    },
   }
 }
 </script>

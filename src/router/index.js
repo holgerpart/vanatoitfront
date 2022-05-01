@@ -5,6 +5,9 @@ import LoginView from "@/views/LoginView";
 import RegisterView from "@/views/RegisterView";
 import ShopView from "@/views/ShopView";
 import UserView from "@/views/UserView";
+import FoodInputView from "@/views/FoodInputView";
+import StockView from "@/views/StockView";
+import OrdersView from "@/views/OrdersView";
 
 Vue.use(VueRouter)
 
@@ -33,6 +36,21 @@ const routes = [
     path: '/user',
     name: 'userRoute',
     component: UserView
+  },
+  {
+    path: '/food-input',
+    name: 'foodInputRoute',
+    component: FoodInputView
+  },
+  {
+    path: '/stock',
+    name: 'stockRoute',
+    component: StockView
+  },
+  {
+    path: '/orders',
+    name: 'ordersRoute',
+    component: OrdersView
   },
   {
     path: '/about',

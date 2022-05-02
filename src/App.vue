@@ -7,9 +7,7 @@
       <router-link to="/register">Register</router-link> |
       <router-link to="/shop">Pood</router-link> |
       <router-link to="/user">Kasutaja</router-link> |
-      <router-link to="/food-input">Kaubarea sisestus</router-link> |
-      <router-link to="/stock">Laoseis</router-link> |
-      <router-link to="/orders">Tellimused</router-link> |
+
     </nav>
     <router-view/>
   </div>

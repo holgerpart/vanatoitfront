@@ -5,9 +5,10 @@ import LoginView from "@/views/LoginView";
 import RegisterView from "@/views/RegisterView";
 import ShopView from "@/views/ShopView";
 import UserView from "@/views/UserView";
-import FoodInputView from "@/views/FoodInputView";
+import FoodInputView from "@/views/ShopFoodInputView";
 import StockView from "@/views/StockView";
 import OrdersView from "@/views/OrdersView";
+import ShopFoodInputView from "@/views/ShopFoodInputView";
 
 Vue.use(VueRouter)
 
@@ -38,9 +39,9 @@ const routes = [
     component: UserView
   },
   {
-    path: '/food-input',
-    name: 'foodInputRoute',
-    component: FoodInputView
+    path: '/shopfoodinput',
+    name: 'ShopFoodInputRoute',
+    component: ShopFoodInputView
   },
   {
     path: '/stock',

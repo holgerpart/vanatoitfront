@@ -9,19 +9,13 @@
       |
     </nav>
     <div>
-      <input type="text" placeholder="Eesnimi" v-model="firstName">
-      <br>
-      <br>
-      <input type="text" placeholder="Perekonnanimi" v-model="lastName">
-      <br>
-      <br>
-      <input type="text" placeholder="Kasutajanimi" v-model="name">
-      <br>
-      <br>
-      <input type="text" placeholder="Salasõna" v-model="password">
-      <br>
-      <br>
+      <h3>
+        Poe id: {{ shopId }}
+        <br>
+        Pood: {{ shopName }}
+      </h3>
     </div>
+
   </div>
 </template>
 <!--private Integer shopId;-->
@@ -32,7 +26,14 @@
 <!--private String unit;-->
 <script>
 export default {
-  name: "OrdersView"
+  name: "OrdersView",
+  data: function () {
+    return {
+      shopId: sessionStorage.getItem('shopId'),
+      userId: sessionStorage.getItem('userId'),
+      shopName: sessionStorage.getItem('shopName')
+    }
+  },
 }
 </script>
 

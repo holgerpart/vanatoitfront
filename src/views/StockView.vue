@@ -6,6 +6,13 @@
     <router-link to="/orders">Tellimused</router-link> |
   </nav>
   <div>
+    <h3>
+      Poe id: {{ shopId }}
+      <br>
+      Pood: {{ shopName }}
+    </h3>
+  </div>
+  <div>
     <table class="table table-hover">
       <thead>
       <tr>
@@ -33,8 +40,7 @@
         <td>{{ shopFood.dateTime }}</td>
         <td>{{ shopFood.expirationDate }}</td>
         <td>{{ shopFood.comments }}</td>
-        <td><button type="button" class="btn btn-outline-dark" v-on:click="navigateToAccountsInfo(customer.id)">Vaata kontosid</button></td>
-        <td><button type="button" class="btn btn-dark" v-on:click="navigateToAccountsInfo(customer.id)">Muuda</button></td>
+
       </tr>
 
       </tbody>
@@ -48,9 +54,11 @@ export default {
   name: "StockView",
   data: function () {
     return {
-    shopName: '',
     shopFoods: {},
-      shopId: sessionStorage.getItem('shopId')
+      shopId: sessionStorage.getItem('shopId'),
+      userId: sessionStorage.getItem('userId'),
+      shopName: sessionStorage.getItem('shopName')
+
     }
   },
   methods: {

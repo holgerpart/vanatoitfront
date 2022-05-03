@@ -9,7 +9,8 @@
         <h3>vali konto</h3>
         <ul class="list-group">
           <li class="list-group-item" v-for="shop in shops">
-            <input v-on:click="chooseShop" type="radio" v-model="shopId" :value="shop.shopId">{{ shop.shopName }}
+            <input v-on:change="selectName(shop.shopName)" type="radio" v-model="shopId"
+                   :value="shop.shopId">{{ shop.shopName }}
           </li>
         </ul>
       </section>
@@ -42,11 +43,15 @@ export default {
     return {
       userId: sessionStorage.getItem('userId'),
       shops: {},
-      shopId: null
+      shopId: null,
+      shopName: ''
 
     }
   },
   methods: {
+    selectName: function (name) {
+      this.shopName = name
+    },
     getAuthorizedShops: function () {
       this.$http.get("/food/shops", {
             params: {
@@ -56,27 +61,32 @@ export default {
       ).then(response => {
         this.shops = response.data
         this.shopId = response.data[0].shopId
+        this.shopName = response.data[0].shopName
         console.log(response.data)
       }).catch(error => {
         console.log(error)
       })
     },
 
-    chooseShop: function () {
-      sessionStorage.setItem('shopId', this.shopId)
-    },
 
     navigateToFoodInput: function () {
-      this.$router.push({name: 'foodInputRoute'})
+      sessionStorage.setItem('shopId', this.shopId)
+      sessionStorage.setItem('shopName', this.shopName)
+      this.$router.push({name: 'ShopFoodInputRoute'})
     },
     navigateToStock: function () {
+      sessionStorage.setItem('shopId', this.shopId)
+      sessionStorage.setItem('shopName', this.shopName)
       this.$router.push({name: 'stockRoute'})
+
     },
     navigateToOrders: function () {
+      sessionStorage.setItem('shopId', this.shopId)
+      sessionStorage.setItem('shopName', this.shopName)
       this.$router.push({name: 'ordersRoute'})
     },
   }
-  ,mounted() {
+  , mounted() {
     this.getAuthorizedShops()
   }
 }

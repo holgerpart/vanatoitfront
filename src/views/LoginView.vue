@@ -69,9 +69,10 @@ export default {
 
         if (this.userRoles.length === 1) {
           if (this.userRoles[0].roleId === 1) {
-            this.navigateToShop()
-          } else {
             this.navigateToUser()
+          } else {
+            sessionStorage.setItem('shopId', response.data.shopId)
+            this.navigateToShop()
           }
         }
 
@@ -87,12 +88,12 @@ export default {
     navigateToSelectedRole: function () {
       sessionStorage.setItem('roleId', this.roleId)
       if (this.roleId === 1) {
-        this.navigateToShop()
-      } else {
         this.navigateToUser()
+      } else {
+        this.navigateToShop()
       }
 
-      this.$router.push({name: 'registerRoute'})
+
     },
     navigateToShop: function () {
       this.$router.push({name: 'shopRoute'})

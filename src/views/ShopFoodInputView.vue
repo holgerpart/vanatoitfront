@@ -67,7 +67,9 @@ export default {
         // if using alternative then remove "this." from someDtoObject
         this.$http.post("/food", shopFoodRequest
         ).then(response => {
+
           console.log(response.data)
+          this.$router.push({name: 'stockRoute'})
         }).catch(error => {
           console.log(error)
         })

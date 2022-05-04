@@ -1,10 +1,5 @@
 <template>
 <div>
-  <nav>
-    <router-link to="/food-input">Kaubarea sisestus</router-link> |
-    <router-link to="/stock">Laoseis</router-link> |
-    <router-link to="/orders">Tellimused</router-link> |
-  </nav>
   <div>
     <h3>
       Poe id: {{ shopId }}
@@ -46,6 +41,11 @@
       </tbody>
     </table>
   </div>
+  <div>
+    <button v-on:click="navigateToFoodInput">Sisesta uus kaubarida
+    </button>
+    <button v-on:click="navigateToOrders">Vaata tellimusi</button>
+  </div>
 </div>
 </template>
 
@@ -76,6 +76,16 @@ export default {
           alert(error)
         })
       },
+    navigateToFoodInput: function () {
+      sessionStorage.setItem('shopId', this.shopId)
+      sessionStorage.setItem('shopName', this.shopName)
+      this.$router.push({name: 'ShopFoodInputRoute'})
+    },
+    navigateToOrders: function () {
+      sessionStorage.setItem('shopId', this.shopId)
+      sessionStorage.setItem('shopName', this.shopName)
+      this.$router.push({name: 'ordersRoute'})
+    },
     getStockById: function () {
         this.$http.get("/food/shopid", {
           params: {

@@ -1,10 +1,10 @@
 <template>
 <div>
-  <nav>
-    <router-link to="/food-input">Kaubarea sisestus</router-link> |
-    <router-link to="/stock">Laoseis</router-link> |
-    <router-link to="/orders">Tellimused</router-link> |
-  </nav>
+<!--  <nav>-->
+<!--    <router-link to="/food-input">Kaubarea sisestus</router-link> |-->
+<!--    <router-link to="/stock">Laoseis</router-link> |-->
+<!--    <router-link to="/orders">Tellimused</router-link> |-->
+<!--  </nav>-->
   <div>
     <h3>
       Poe id: {{ shopId }}
@@ -13,20 +13,28 @@
     </h3>
   </div>
   <div>
-    <input type=text placeholder="Poe Id" v-model="firstName">
-    <br>
-    <br>
-    <input type="text" placeholder="Toidu Id" v-model="lastName">
-    <br>
-    <br>
-    <input type="text" placeholder="Kogus" v-model="name">
-    <br>
-    <br>
-    <input type="text" placeholder="Kõlblik kuni" v-model="password">
-    <br>
-    <br>
-    <input type="text" placeholder="Kõlblik kuni" v-model="password">
 
+    <br>
+    <br>
+    <input type="text" placeholder="Toidu Id" v-model="foodId">
+    <br>
+    <br>
+    <input type="text" placeholder="Kogus" v-model="quantity">
+    <br>
+    <br>
+    <input type="text" placeholder="Kõlblik kuni" v-model="expirationDate">
+    <br>
+    <br>
+    <input type="text" placeholder="Kommentaarid" v-model="comments">
+    <br>
+    <br>
+    <input type="text" placeholder="Ühik" v-model="unit">
+
+  </div>
+  <div>
+    <button v-on:click="inputShopFood" >
+      Sisesta
+    </button>
   </div>
 </div>
 </template>
@@ -38,10 +46,36 @@ export default {
     return {
       shopId: sessionStorage.getItem('shopId'),
       userId: sessionStorage.getItem('userId'),
-      shopName: sessionStorage.getItem('shopName')
-
+      shopName: sessionStorage.getItem('shopName'),
+      foodId:null,
+      quantity:null,
+      expirationDate:null,
+      comments:null,
+      unit:null
     }
   },
+  methods:{
+    inputShopFood: function () {
+      let shopFoodRequest = {
+      shopId:this.shopId,
+      foodId:this.foodId,
+      quantity:this.quantity,
+      comments:this.comments,
+      unit:this.unit
+    }
+
+        // if using alternative then remove "this." from someDtoObject
+        this.$http.post("/food", shopFoodRequest
+        ).then(response => {
+          console.log(response.data)
+        }).catch(error => {
+          console.log(error)
+        })
+      }
+
+    },
+
+
 }
 </script>
 

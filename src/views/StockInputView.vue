@@ -65,7 +65,7 @@ export default {
     }
 
         // if using alternative then remove "this." from someDtoObject
-        this.$http.post("/food", shopFoodRequest
+        this.$http.post("/stock", shopFoodRequest
         ).then(response => {
 
           console.log(response.data)

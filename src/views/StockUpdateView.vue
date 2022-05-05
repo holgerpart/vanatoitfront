@@ -1,10 +1,5 @@
 <template>
   <div>
-    <!--  <nav>-->
-    <!--    <router-link to="/food-input">Kaubarea sisestus</router-link> |-->
-    <!--    <router-link to="/stock">Laoseis</router-link> |-->
-    <!--    <router-link to="/orders">Tellimused</router-link> |-->
-    <!--  </nav>-->
     <div>
       <h3>
         Poe id: {{ shopId }}
@@ -18,7 +13,7 @@
       </h3>
     </div>
     <div>
-        <div v-if="shopFoodIdExists">
+        <div>
         <br>
         <br>
         <input type="text" placeholder="Toidu Id" v-model="foodId">
@@ -29,17 +24,10 @@
 
       <br>
       <br>
-<!--      <input type="text" placeholder="Kõlblik kuni" v-model="expirationDate">-->
-<!--      <br>-->
-<!--      <br>-->
-<!--      <input type="text" placeholder="Kommentaarid" v-model="comments">-->
-<!--      <br>-->
-<!--      <br>-->
-<!--      <input type="text" placeholder="Ühik" v-model="unit">-->
 
     </div>
     <div>
-      <button v-on:click="updateShopFoodQuantity" >
+      <button v-on:click="updateStockQuantity" >
         Uuenda
       </button>
     </div>
@@ -60,21 +48,18 @@ export default {
       comments:null,
       unit:null,
       shopFoodId: sessionStorage.getItem('shopFoodId'),
-      shopFoodIdExists: this.shopFoodId === undefined,
-      shopFoodIdNotExists: this.shopFoodId !== undefined
-
     }
   },
   methods:{
-    updateShopFoodQuantity: function () {
-      let shopFoodRequest = {
+    updateStockQuantity: function () {
+      let stockRequest = {
         foodId: this.shopFoodId,
         quantity: this.quantity
       }
-      alert(shopFoodRequest.foodId)
-      alert(shopFoodRequest.quantity)
+      alert(stockRequest.foodId)
+      alert(stockRequest.quantity)
       // if using alternative then remove "this." from someDtoObject
-      this.$http.post("/food/shopfoodquantity", shopFoodRequest
+      this.$http.post("/stock/stock", stockRequest
       ).then(response => {
         console.log(response.data)
         this.$router.push({name: 'stockRoute'})
@@ -94,7 +79,7 @@ export default {
       }
 
       // if using alternative then remove "this." from someDtoObject
-      this.$http.post("/food", shopFoodRequest
+      this.$http.post("/stock", shopFoodRequest
       ).then(response => {
 
         console.log(response.data)

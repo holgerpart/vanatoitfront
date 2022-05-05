@@ -54,12 +54,7 @@
     </div>
   </div>
 </template>
-<!--private Integer shopId;-->
-<!--private Integer foodId;-->
-<!--private Integer quantity;-->
-<!--private LocalDate expirationDate;-->
-<!--private String comments;-->
-<!--private String unit;-->
+
 <script>
 export default {
   name: "OrdersView",
@@ -74,7 +69,7 @@ export default {
 
   methods: {
     getOrderList: function () {
-      this.$http.get("/food/bookfoods")
+      this.$http.get("/bookfoods")
 
           .then(response => {
             console.log(response.data)

@@ -53,7 +53,7 @@ export default {
       this.shopName = name
     },
     getAuthorizedShops: function () {
-      this.$http.get("/food/shops", {
+      this.$http.get("/stock/shops", {
             params: {
               userId: this.userId
             }

@@ -22,11 +22,7 @@
   <br>
 </div>
 </template>
-<!--"firstName": "string",-->
-<!--"lastName": "string",-->
-<!--"name": "string",-->
-<!--"password": "string",-->
-<!--"role": "string"-->
+
 <script>
 export default {
   name: "RegisterView",

@@ -11,7 +11,8 @@
         <h3>vali konto</h3>
         <ul class="list-group">
           <li class="list-group-item" v-for="role in userRoles">
-            <input v-on:click="navigateToSelectedRole" type="radio" v-model="roleId" :value="role.roleId">{{ role.roleName }}
+            <input v-on:click="navigateToSelectedRole" type="radio" v-model="roleId"
+                   :value="role.roleId">{{ role.roleName }}
           </li>
         </ul>
       </section>
@@ -27,10 +28,7 @@
     </div>
   </div>
 </template>
-<!--{-->
-<!--"userName": "string",-->
-<!--"password": "string"-->
-<!--}-->
+
 <script>
 export default {
   name: "LoginView",
@@ -56,13 +54,13 @@ export default {
       this.tableDivDisplay = false
     },
     login: function () {
-      let someDtoObject = {
+      let userInfo = {
         userName: this.userName,
         password: this.password
       }
 
       // if using alternative then remove "this." from someDtoObject
-      this.$http.post("/log-in", someDtoObject
+      this.$http.post("/log-in", userInfo
       ).then(response => {
         this.userRoles = response.data.userRoles
         sessionStorage.setItem('userId', response.data.userId)
@@ -70,9 +68,11 @@ export default {
         if (this.userRoles.length === 1) {
           if (this.userRoles[0].roleId === 1) {
             this.navigateToUser()
-          } else {
+          } else if (this.userRoles[0].roleId === 2) {
             sessionStorage.setItem('shopId', response.data.shopId)
             this.navigateToShop()
+          } else {
+            this.navigateToAdmin()
           }
         }
 
@@ -92,9 +92,12 @@ export default {
       } else {
         this.navigateToShop()
       }
-
-
     },
+    navigateToAdmin: function () {
+      this.$router.push({name: 'shopRoute'})
+    },
+
+
     navigateToShop: function () {
       this.$router.push({name: 'shopRoute'})
     },
@@ -106,6 +109,7 @@ export default {
     },
   }
 }
+
 </script>
 
 <style scoped>

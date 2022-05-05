@@ -1,14 +1,14 @@
 <template>
   <div id="app">
     <nav>
-      <router-link to="/">Home</router-link> |
+      <router-link to="/home">Home</router-link> |
       <router-link to="/about">About</router-link> |
-      <router-link to="/login">Login</router-link> |
+      <router-link to="/">Login</router-link> |
       <router-link to="/register">Register</router-link> |
       <router-link to="/shop">Pood</router-link> |
       <router-link to="/user">Kasutaja</router-link> |
-      <router-link to="/food-input">Kaubarea sisestus</router-link> |
-      <router-link to="/food-update">Kaubarea uuendamine</router-link> |
+      <router-link to="/stock-input">Kaubarea sisestus</router-link> |
+      <router-link to="/stock-update">Kaubarea uuendamine</router-link> |
       <router-link to="/stock">Laoseis</router-link> |
       <router-link to="/orders">Tellimused</router-link> |
     </nav>

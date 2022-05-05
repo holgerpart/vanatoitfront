@@ -5,22 +5,27 @@ import LoginView from "@/views/LoginView";
 import RegisterView from "@/views/RegisterView";
 import ShopView from "@/views/ShopView";
 import UserView from "@/views/UserView";
-import FoodInputView from "@/views/ShopFoodInputView";
+import FoodInputView from "@/views/StockInputView";
 import StockView from "@/views/StockView";
 import OrdersView from "@/views/OrdersView";
-import ShopFoodInputView from "@/views/ShopFoodInputView";
-import ShopFoodUpdateView from "@/views/ShopFoodUpdateView";
+import StockInputView from "@/views/StockInputView";
+import StockUpdateView from "@/views/StockUpdateView";
+import AdminView from "@/views/AdminView";
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/home',
     name: 'homeRoute',
     component: HomeView
+  },{
+    path: '/admin',
+    name: 'adminRoute',
+    component: AdminView
   },
   {
-    path: '/login',
+    path: '/',
     name: 'loginRoute',
     component: LoginView
   },
@@ -40,13 +45,13 @@ const routes = [
     component: UserView
   },
   {
-    path: '/shopfoodinput',
-    name: 'ShopFoodInputRoute',
-    component: ShopFoodInputView
+    path: '/stockinput',
+    name: 'StockInputRoute',
+    component: StockInputView
   },{
-    path: '/shopfoodupdate',
-    name: 'ShopFoodUpdateRoute',
-    component: ShopFoodUpdateView
+    path: '/stockupdate',
+    name: 'StockUpdateRoute',
+    component: StockUpdateView
   },
   {
     path: '/stock',

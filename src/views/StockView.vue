@@ -47,7 +47,7 @@
 
   </div>
   <div>
-    <button v-on:click="navigateToShopFoodInput">Sisesta uus kaubarida
+    <button v-on:click="navigateToStockInput">Sisesta uus kaubarida
     </button>
     <button v-on:click="navigateToOrders">Vaata tellimusi</button>
 <!--    <div v-if="shopFoodSelection">-->
@@ -77,12 +77,12 @@ export default {
       this.shopFoodId = id
       // this.shopFoodSelection = true
       sessionStorage.setItem('shopFoodId', this.shopFoodId)
-      this.$router.push({name: 'ShopFoodUpdateRoute'})
+      this.$router.push({name: 'StockUpdateRoute'})
 
     },
 
     getStock: function () {
-        this.$http.get("/food/all", {
+        this.$http.get("/stock/all", {
           params: {
             shopName: this.shopName
           }
@@ -95,16 +95,16 @@ export default {
           alert(error)
         })
       },
-    navigateToShopFoodInput: function () {
+    navigateToStockInput: function () {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
-      this.$router.push({name: 'ShopFoodInputRoute'})
+      this.$router.push({name: 'StockInputRoute'})
     },
-    navigateToShopFoodUpdate: function () {
+    navigateToStockUpdate: function () {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
       sessionStorage.setItem('shopFoodId', this.shopFoodId)
-      this.$router.push({name: 'ShopFoodUpdateRoute'})
+      this.$router.push({name: 'StockUpdateRoute'})
     },
     navigateToOrders: function () {
       sessionStorage.setItem('shopId', this.shopId)
@@ -112,7 +112,7 @@ export default {
       this.$router.push({name: 'ordersRoute'})
     },
     getStockById: function () {
-        this.$http.get("/food/shopid", {
+        this.$http.get("/stock/shopid", {
           params: {
             shopId: this.shopId
           }

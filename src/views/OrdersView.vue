@@ -34,6 +34,7 @@
           <th>Toiduartikkel</th>
           <th>Kogus</th>
           <th>Staatus</th>
+          <th scope="col">Valik</th>
         </tr>
         </thead>
         <tbody>
@@ -45,6 +46,8 @@
           <td>{{order.foodName}}</td>
           <td>{{order.quantity}}</td>
           <td>{{order.status}}</td>
+          <td><button v-on:click="selectOrder(order.id)" >{{ order.id }}</button></td>
+
         </tr>
         </tbody>
       </table>
@@ -79,6 +82,9 @@ export default {
           }).catch(error => {
         console.log(error)
       })
+    },
+    selectOrder: function () {
+      
     }
   },
   mounted() {

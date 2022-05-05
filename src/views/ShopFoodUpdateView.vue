@@ -39,7 +39,7 @@
 
     </div>
     <div>
-      <button v-on:click="inputShopFood" >
+      <button v-on:click="updateShopFoodQuantity" >
         Uuenda
       </button>
     </div>
@@ -66,6 +66,22 @@ export default {
     }
   },
   methods:{
+    updateShopFoodQuantity: function () {
+      let shopFoodRequest = {
+        foodId: this.shopFoodId,
+        quantity: this.quantity
+      }
+      alert(shopFoodRequest.foodId)
+      alert(shopFoodRequest.quantity)
+      // if using alternative then remove "this." from someDtoObject
+      this.$http.post("/food/shopfoodquantity", shopFoodRequest
+      ).then(response => {
+        console.log(response.data)
+        this.$router.push({name: 'stockRoute'})
+      }).catch(error => {
+        console.log(error)
+      })
+    },
 
 
     inputShopFood: function () {

@@ -9,6 +9,7 @@ import FoodInputView from "@/views/ShopFoodInputView";
 import StockView from "@/views/StockView";
 import OrdersView from "@/views/OrdersView";
 import ShopFoodInputView from "@/views/ShopFoodInputView";
+import ShopFoodUpdateView from "@/views/ShopFoodUpdateView";
 
 Vue.use(VueRouter)
 
@@ -42,6 +43,10 @@ const routes = [
     path: '/shopfoodinput',
     name: 'ShopFoodInputRoute',
     component: ShopFoodInputView
+  },{
+    path: '/shopfoodupdate',
+    name: 'ShopFoodUpdateRoute',
+    component: ShopFoodUpdateView
   },
   {
     path: '/stock',

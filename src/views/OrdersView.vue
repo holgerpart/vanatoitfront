@@ -14,8 +14,41 @@
         <br>
         Pood: {{ shopName }}
       </h3>
+<!--      <div>-->
+<!--        <select class="custom-select" id="inputGroupSelect01" v-model="accountId">-->
+<!--          <option selected v-for="order in orders" :value="order.id">{{-->
+<!--              order.-->
+<!--            }}-->
+<!--          </option>-->
+<!--        </select>-->
+<!--      </div>-->
     </div>
-
+    <div>
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Eesnimi</th>
+          <th>Perekonnanimi</th>
+          <th>Pood</th>
+          <th>Toiduartikkel</th>
+          <th>Kogus</th>
+          <th>Staatus</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="order in orders">
+          <td>{{order.id}}</td>
+          <td>{{order.firstName}}</td>
+          <td>{{order.lastName}}</td>
+          <td>{{order.shopName}}</td>
+          <td>{{order.foodName}}</td>
+          <td>{{order.quantity}}</td>
+          <td>{{order.status}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 <!--private Integer shopId;-->
@@ -31,9 +64,26 @@ export default {
     return {
       shopId: sessionStorage.getItem('shopId'),
       userId: sessionStorage.getItem('userId'),
-      shopName: sessionStorage.getItem('shopName')
+      shopName: sessionStorage.getItem('shopName'),
+      orders:{}
     }
   },
+
+  methods: {
+    getOrderList: function () {
+      this.$http.get("/food/bookfoods")
+
+          .then(response => {
+            console.log(response.data)
+            this.orders = response.data
+          }).catch(error => {
+        console.log(error)
+      })
+    }
+  },
+  mounted() {
+    this.getOrderList()
+  }
 }
 </script>
 

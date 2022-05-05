@@ -8,6 +8,7 @@
     </h3>
   </div>
   <div>
+
     <table class="table table-hover">
       <thead>
       <tr>
@@ -21,10 +22,12 @@
         <th scope="col">Kuupäev</th>
         <th scope="col">Kehtivus</th>
         <th scope="col">Kommentaarid</th>
+        <th scope="col">Valik</th>
       </tr>
       </thead>
       <tbody>
       <tr v-for="shopFood in shopFoods">
+
         <th scope="row">{{ shopFood.id }}</th>
         <td>{{ shopFood.shopId }}</td>
         <td>{{ shopFood.foodId }}</td>
@@ -35,16 +38,21 @@
         <td>{{ shopFood.dateTime }}</td>
         <td>{{ shopFood.expirationDate }}</td>
         <td>{{ shopFood.comments }}</td>
-
+        <td><button v-on:click="selectFoodId(shopFood.id)" >{{ shopFood.id }}</button></td>
+<!--        v-model="shopFoodId"-->
       </tr>
 
       </tbody>
     </table>
+
   </div>
   <div>
-    <button v-on:click="navigateToFoodInput">Sisesta uus kaubarida
+    <button v-on:click="navigateToShopFoodInput">Sisesta uus kaubarida
     </button>
     <button v-on:click="navigateToOrders">Vaata tellimusi</button>
+<!--    <div v-if="shopFoodSelection">-->
+<!--      <button v-on:click="navigateToShopFoodUpdate">Muuda kaubarida</button>-->
+<!--    </div>-->
   </div>
 </div>
 </template>
@@ -57,11 +65,22 @@ export default {
     shopFoods: {},
       shopId: sessionStorage.getItem('shopId'),
       userId: sessionStorage.getItem('userId'),
-      shopName: sessionStorage.getItem('shopName')
+      shopName: sessionStorage.getItem('shopName'),
+      shopFoodId: null,
+      shopFoodSelection: false
+
 
     }
   },
   methods: {
+    selectFoodId: function (id) {
+      this.shopFoodId = id
+      // this.shopFoodSelection = true
+      sessionStorage.setItem('shopFoodId', this.shopFoodId)
+      this.$router.push({name: 'ShopFoodUpdateRoute'})
+
+    },
+
     getStock: function () {
         this.$http.get("/food/all", {
           params: {
@@ -76,10 +95,16 @@ export default {
           alert(error)
         })
       },
-    navigateToFoodInput: function () {
+    navigateToShopFoodInput: function () {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
       this.$router.push({name: 'ShopFoodInputRoute'})
+    },
+    navigateToShopFoodUpdate: function () {
+      sessionStorage.setItem('shopId', this.shopId)
+      sessionStorage.setItem('shopName', this.shopName)
+      sessionStorage.setItem('shopFoodId', this.shopFoodId)
+      this.$router.push({name: 'ShopFoodUpdateRoute'})
     },
     navigateToOrders: function () {
       sessionStorage.setItem('shopId', this.shopId)

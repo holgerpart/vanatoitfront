@@ -5,13 +5,11 @@ import LoginView from "@/views/LoginView";
 import RegisterView from "@/views/RegisterView";
 import ShopView from "@/views/ShopView";
 import UserView from "@/views/UserView";
-import FoodInputView from "@/views/StockInputView";
 import StockView from "@/views/StockView";
 import OrdersView from "@/views/OrdersView";
 import StockInputView from "@/views/StockInputView";
 import StockUpdateView from "@/views/StockUpdateView";
 import AdminView from "@/views/AdminView";
-import OrderUpdateView from "@/views/OrderUpdateView";
 
 Vue.use(VueRouter)
 
@@ -63,11 +61,6 @@ const routes = [
     path: '/orders',
     name: 'ordersRoute',
     component: OrdersView
-  },
-  {
-    path: '/orderupdate',
-    name: 'orderUpdateRoute',
-    component: OrderUpdateView
   },
   {
     path: '/about',

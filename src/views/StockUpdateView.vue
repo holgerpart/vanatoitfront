@@ -13,18 +13,11 @@
       </h3>
     </div>
     <div>
-        <div>
-        <br>
-        <br>
-        <input type="text" placeholder="Toidu Id" v-model="foodId">
-        </div>
         <br>
         <br>
         <input type="text" placeholder="Kogus" v-model="quantity">
-
       <br>
       <br>
-
     </div>
     <div>
       <button v-on:click="updateStockQuantity" >

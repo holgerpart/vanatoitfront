@@ -38,18 +38,18 @@
         <td>{{ shopFood.dateTime }}</td>
         <td>{{ shopFood.expirationDate }}</td>
         <td>{{ shopFood.comments }}</td>
-        <td><button v-on:click="selectFoodId(shopFood.id)" >{{ shopFood.id }}</button></td>
-<!--        v-model="shopFoodId"-->
-      </tr>
+        <td><button v-on:click="selectFoodId(shopFood.id)" >Muuda kogust</button></td>
 
+      </tr>
       </tbody>
     </table>
-
   </div>
   <div>
     <button v-on:click="navigateToStockInput">Sisesta uus kaubarida
     </button>
     <button v-on:click="navigateToOrders">Vaata tellimusi</button>
+    <input v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">
+    <button v-if="displayUpdate" v-on:click="confirmUpdate">Kinnita</button>
 <!--    <div v-if="shopFoodSelection">-->
 <!--      <button v-on:click="navigateToShopFoodUpdate">Muuda kaubarida</button>-->
 <!--    </div>-->
@@ -67,7 +67,9 @@ export default {
       userId: sessionStorage.getItem('userId'),
       shopName: sessionStorage.getItem('shopName'),
       shopFoodId: null,
-      shopFoodSelection: false
+      shopFoodSelection: false,
+      newQuantity: null,
+      displayUpdate: false
 
 
     }
@@ -77,7 +79,8 @@ export default {
       this.shopFoodId = id
       // this.shopFoodSelection = true
       sessionStorage.setItem('shopFoodId', this.shopFoodId)
-      this.$router.push({name: 'StockUpdateRoute'})
+
+        this.displayUpdate = true;
 
     },
 
@@ -110,6 +113,21 @@ export default {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
       this.$router.push({name: 'ordersRoute'})
+    },
+    confirmUpdate: function () {
+      let stockRequest = {
+        foodId: this.shopFoodId,
+        quantity: this.newQuantity
+      }
+      // if using alternative then remove "this." from someDtoObject
+      this.$http.post("/stock/stock", stockRequest
+      ).then(response => {
+        console.log(response.data)
+        this.getStockById()
+        this.displayUpdate = false
+      }).catch(error => {
+        console.log(error)
+      })
     },
     getStockById: function () {
         this.$http.get("/stock/shopid", {

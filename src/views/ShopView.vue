@@ -17,14 +17,7 @@
     </div>
 
 
-<!--    <nav>-->
-<!--      <router-link to="/food-input">Kaubarea sisestus</router-link>-->
-<!--      |-->
-<!--      <router-link to="/stock">Laoseis</router-link>-->
-<!--      |-->
-<!--      <router-link to="/orders">Tellimused</router-link>-->
-<!--      |-->
-<!--    </nav>-->
+
     <button v-on:click="navigateToFoodInput">Sisesta uus kaubarida
     </button>
     <br>
@@ -72,7 +65,7 @@ export default {
     navigateToFoodInput: function () {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
-      this.$router.push({name: 'ShopFoodInputRoute'})
+      this.$router.push({name: 'StockInputRoute'})
     },
     navigateToStock: function () {
       sessionStorage.setItem('shopId', this.shopId)

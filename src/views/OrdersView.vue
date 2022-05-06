@@ -46,11 +46,21 @@
           <td>{{order.foodName}}</td>
           <td>{{order.quantity}}</td>
           <td>{{order.status}}</td>
-          <td><button @click="selectOrder(order.id)" >Muuda</button></td>
+          <td><button v-on:click ="selectOrder(order.id)" >Muuda</button></td>
 
         </tr>
         </tbody>
       </table>
+      <input v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">
+      <button v-if="displayUpdate" v-on:click="confirmUpdate">Kinnita</button>
+
+      <select v-if="displayUpdate" v-model="statusName">
+        <option disabled value="">Valige roll</option>
+        <option>Completed</option>
+        <option>Cancelled</option>
+        <option>Open</option>
+      </select>
+      <button v-if="displayUpdate" v-on:click="confirmStatus">Kinnita</button>
     </div>
   </div>
 </template>
@@ -64,7 +74,11 @@ export default {
       userId: sessionStorage.getItem('userId'),
       shopName: sessionStorage.getItem('shopName'),
       orders:{},
-      orderId: null
+      orderId: null,
+      displayUpdate: false,
+      newQuantity: null,
+      newComment: null,
+      statusName:null
     }
   },
 
@@ -85,7 +99,36 @@ export default {
     selectOrder: function (id) {
       this.orderId = id
       sessionStorage.setItem('orderId', this.orderId)
-      this.$router.push({name: 'OrderUpdateRoute'})
+      this.displayUpdate = true
+
+    },
+    confirmUpdate: function () {
+      let orderRequest = {
+        orderId: this.orderId,
+        quantity: this.newQuantity
+      }
+      this.$http.post("/order/updateorder", orderRequest
+      ).then(response => {
+        console.log(response.data)
+        this.getOrderList()
+        this.displayUpdate = false
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+    confirmStatus: function () {
+      let orderRequest = {
+        orderId: this.orderId,
+        statusName: this.statusName
+      }
+      this.$http.post("/order/status", orderRequest
+      ).then(response => {
+        console.log(response.data)
+        this.getOrderList()
+        this.displayUpdate = false
+      }).catch(error => {
+        console.log(error)
+      })
     }
   },
   mounted() {

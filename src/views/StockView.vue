@@ -9,15 +9,12 @@
   </div>
   <div>
 
-    <table class="table table-hover">
+    <v-data-table class="table table-hover">
       <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Poe Id</th>
-        <th scope="col">Toidu Id</th>
         <th scope="col">Toit</th>
         <th scope="col">Kogus</th>
-        <th scope="col">Ühiku Id</th>
         <th scope="col">Ühik</th>
         <th scope="col">Kuupäev</th>
         <th scope="col">Kehtivus</th>
@@ -29,11 +26,8 @@
       <tr v-for="shopFood in shopFoods">
 
         <th scope="row">{{ shopFood.id }}</th>
-        <td>{{ shopFood.shopId }}</td>
-        <td>{{ shopFood.foodId }}</td>
         <td>{{ shopFood.foodName }}</td>
         <td>{{ shopFood.quantity }}</td>
-        <td>{{ shopFood.unitId }}</td>
         <td>{{ shopFood.unitName }}</td>
         <td>{{ shopFood.dateTime }}</td>
         <td>{{ shopFood.expirationDate }}</td>
@@ -42,7 +36,7 @@
 
       </tr>
       </tbody>
-    </table>
+    </v-data-table>
   </div>
   <div>
     <button v-on:click="navigateToStockInput">Sisesta uus kaubarida

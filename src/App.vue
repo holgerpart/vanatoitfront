@@ -8,7 +8,6 @@
       <router-link to="/shop">Pood</router-link> |
       <router-link to="/user">Kasutaja</router-link> |
       <router-link to="/stock-input">Kaubarea sisestus</router-link> |
-      <router-link to="/stock-update">Kaubarea uuendamine</router-link> |
       <router-link to="/stock">Laoseis</router-link> |
       <router-link to="/orders">Tellimused</router-link> |
       <router-link to="/orderUpdate">Tellimuse muutmine</router-link> |

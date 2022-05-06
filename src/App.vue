@@ -11,6 +11,7 @@
       <router-link to="/stock-update">Kaubarea uuendamine</router-link> |
       <router-link to="/stock">Laoseis</router-link> |
       <router-link to="/orders">Tellimused</router-link> |
+      <router-link to="/orderUpdate">Tellimuse muutmine</router-link> |
     </nav>
     <router-view/>
   </div>

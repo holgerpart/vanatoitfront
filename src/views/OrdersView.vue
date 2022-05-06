@@ -46,7 +46,7 @@
           <td>{{order.foodName}}</td>
           <td>{{order.quantity}}</td>
           <td>{{order.status}}</td>
-          <td><button v-on:click="selectOrder(order.id)" >{{ order.id }}</button></td>
+          <td><button @click="selectOrder(order.id)" >Muuda</button></td>
 
         </tr>
         </tbody>
@@ -63,14 +63,18 @@ export default {
       shopId: sessionStorage.getItem('shopId'),
       userId: sessionStorage.getItem('userId'),
       shopName: sessionStorage.getItem('shopName'),
-      orders:{}
+      orders:{},
+      orderId: null
     }
   },
 
   methods: {
     getOrderList: function () {
-      this.$http.get("/bookfoods")
-
+      this.$http.get("/order/foods", {
+        params: {
+          shopId: this.shopId
+        }
+      })
           .then(response => {
             console.log(response.data)
             this.orders = response.data
@@ -78,8 +82,10 @@ export default {
         console.log(error)
       })
     },
-    selectOrder: function () {
-      
+    selectOrder: function (id) {
+      this.orderId = id
+      sessionStorage.setItem('orderId', this.orderId)
+      this.$router.push({name: 'OrderUpdateRoute'})
     }
   },
   mounted() {

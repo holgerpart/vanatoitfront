@@ -11,6 +11,7 @@ import OrdersView from "@/views/OrdersView";
 import StockInputView from "@/views/StockInputView";
 import StockUpdateView from "@/views/StockUpdateView";
 import AdminView from "@/views/AdminView";
+import OrderUpdateView from "@/views/OrderUpdateView";
 
 Vue.use(VueRouter)
 
@@ -62,6 +63,11 @@ const routes = [
     path: '/orders',
     name: 'ordersRoute',
     component: OrdersView
+  },
+  {
+    path: '/orderupdate',
+    name: 'orderUpdateRoute',
+    component: OrderUpdateView
   },
   {
     path: '/about',

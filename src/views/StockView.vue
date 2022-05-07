@@ -9,7 +9,7 @@
   </div>
   <div>
 
-    <v-data-table class="table table-hover">
+    <table class="table table-hover">
       <thead>
       <tr>
         <th scope="col">#</th>
@@ -17,7 +17,6 @@
         <th scope="col">Kogus</th>
         <th scope="col">Ühik</th>
         <th scope="col">Kuupäev</th>
-        <th scope="col">Kehtivus</th>
         <th scope="col">Kommentaarid</th>
         <th scope="col">Valik</th>
       </tr>
@@ -30,13 +29,12 @@
         <td>{{ shopFood.quantity }}</td>
         <td>{{ shopFood.unitName }}</td>
         <td>{{ shopFood.dateTime }}</td>
-        <td>{{ shopFood.expirationDate }}</td>
-        <td>{{ shopFood.comments }}</td>
+          <td>{{ shopFood.comments }}</td>
         <td><button v-on:click="selectFoodId(shopFood.id)" >Muuda kogust</button></td>
 
       </tr>
       </tbody>
-    </v-data-table>
+    </table>
   </div>
   <div>
     <button v-on:click="navigateToStockInput">Sisesta uus kaubarida
@@ -71,11 +69,8 @@ export default {
   methods: {
     selectFoodId: function (id) {
       this.shopFoodId = id
-      // this.shopFoodSelection = true
       sessionStorage.setItem('shopFoodId', this.shopFoodId)
-
         this.displayUpdate = true;
-
     },
 
     getStock: function () {

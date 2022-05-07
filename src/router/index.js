@@ -8,7 +8,6 @@ import UserView from "@/views/UserView";
 import StockView from "@/views/StockView";
 import OrdersView from "@/views/OrdersView";
 import StockInputView from "@/views/StockInputView";
-import StockUpdateView from "@/views/StockUpdateView";
 import AdminView from "@/views/AdminView";
 
 Vue.use(VueRouter)
@@ -47,10 +46,6 @@ const routes = [
     path: '/stockinput',
     name: 'StockInputRoute',
     component: StockInputView
-  },{
-    path: '/stockupdate',
-    name: 'StockUpdateRoute',
-    component: StockUpdateView
   },
   {
     path: '/stock',

@@ -89,12 +89,14 @@ export default {
       sessionStorage.setItem('roleId', this.roleId)
       if (this.roleId === 1) {
         this.navigateToUser()
-      } else {
+      } else if (this.roleId === 2) {
         this.navigateToShop()
+      } else {
+        this.navigateToAdmin()
       }
     },
     navigateToAdmin: function () {
-      this.$router.push({name: 'shopRoute'})
+      this.$router.push({name: 'adminRoute'})
     },
 
 

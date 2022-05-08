@@ -1,30 +1,14 @@
 <template>
   <div>
-<!--    <nav>-->
-<!--      <router-link to="/food-input">Kaubarea sisestus</router-link>-->
-<!--      |-->
-<!--      <router-link to="/stock">Laoseis</router-link>-->
-<!--      |-->
-<!--      <router-link to="/orders">Tellimused</router-link>-->
-<!--      |-->
-<!--    </nav>-->
     <div>
       <h3>
         Poe id: {{ shopId }}
         <br>
         Pood: {{ shopName }}
       </h3>
-<!--      <div>-->
-<!--        <select class="custom-select" id="inputGroupSelect01" v-model="accountId">-->
-<!--          <option selected v-for="order in orders" :value="order.id">{{-->
-<!--              order.-->
-<!--            }}-->
-<!--          </option>-->
-<!--        </select>-->
-<!--      </div>-->
     </div>
     <div>
-      <table class="table table-hover">
+      <table style="width:100%">
         <thead>
         <tr>
           <th>#</th>
@@ -39,14 +23,24 @@
         </thead>
         <tbody>
         <tr v-for="order in orders">
-          <td>{{order.id}}</td>
-          <td>{{order.firstName}}</td>
-          <td>{{order.lastName}}</td>
-          <td>{{order.shopName}}</td>
-          <td>{{order.foodName}}</td>
-          <td>{{order.quantity}}</td>
-          <td>{{order.status}}</td>
-          <td><button v-on:click ="selectOrder(order.id)" >Muuda</button></td>
+          <td>{{ order.id }}</td>
+          <td>{{ order.firstName }}</td>
+          <td>{{ order.lastName }}</td>
+          <td>{{ order.shopName }}</td>
+          <td>{{ order.foodName }}</td>
+          <td>{{ order.quantity }}</td>
+          <td>{{ order.status }}</td>
+          <td>
+            <button v-if="displayUpdate === false" v-on:click="selectOrder(order.id)">Muuda</button>
+            <input v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">
+            <select v-if="displayUpdate" v-model="statusName">
+              <option disabled value="">Valige roll</option>
+              <option>Completed</option>
+              <option>Cancelled</option>
+              <option>Open</option>
+            </select>
+            <button v-if="displayUpdate" v-on:click="confirmUpdate">Kinnita</button>
+          </td>
 
         </tr>
         </tbody>
@@ -73,12 +67,12 @@ export default {
       shopId: sessionStorage.getItem('shopId'),
       userId: sessionStorage.getItem('userId'),
       shopName: sessionStorage.getItem('shopName'),
-      orders:{},
+      orders: {},
       orderId: null,
       displayUpdate: false,
       newQuantity: null,
       newComment: null,
-      statusName:null
+      statusName: null
     }
   },
 
@@ -138,5 +132,22 @@ export default {
 </script>
 
 <style scoped>
-
+table, th, td {
+  /*border: 1px solid black;*/
+  border-collapse: collapse;
+  /*background-color: beige;*/
+  /*border-radius: 10px;*/
+  border-bottom-style: ridge;
+  padding: 15px;
+  /*border-spacing: 30px;*/
+}
+tr:hover {
+  background-color: bisque;
+}
+/*caption {*/
+/*  font:;*/
+/*}*/
+input {
+  text-align: center;
+}
 </style>

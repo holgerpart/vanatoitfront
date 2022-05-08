@@ -9,7 +9,7 @@
   </div>
   <div>
 
-    <table class="table table-hover">
+    <table style="width:100%">
       <thead>
       <tr>
         <th scope="col">#</th>
@@ -24,13 +24,16 @@
       <tbody>
       <tr v-for="shopFood in shopFoods">
 
-        <th scope="row">{{ shopFood.id }}</th>
+        <th scope="row" >{{ shopFood.id }}</th>
         <td>{{ shopFood.foodName }}</td>
         <td>{{ shopFood.quantity }}</td>
         <td>{{ shopFood.unitName }}</td>
         <td>{{ shopFood.dateTime }}</td>
           <td>{{ shopFood.comments }}</td>
-        <td><button v-on:click="selectFoodId(shopFood.id)" >Muuda kogust</button></td>
+        <td><button v-if= "displayUpdate === false" v-on:click="selectFoodId(shopFood.id)" >Muuda kogust</button>
+          <input v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">
+          <button v-if="displayUpdate" v-on:click="confirmUpdate">Kinnita</button>
+        </td>
 
       </tr>
       </tbody>
@@ -139,5 +142,22 @@ export default {
 </script>
 
 <style scoped>
-
+table, th, td {
+  /*border: 1px solid black;*/
+  border-collapse: collapse;
+  /*background-color: beige;*/
+  /*border-radius: 10px;*/
+  border-bottom-style: ridge;
+  padding: 15px;
+  /*border-spacing: 30px;*/
+}
+tr:hover {
+  background-color: bisque;
+}
+/*caption {*/
+/*  font:;*/
+/*}*/
+input {
+  text-align: center;
+}
 </style>

@@ -1,9 +1,11 @@
 <template>
   <div>
-
     <h2>
       Vali pood
     </h2>
+    <div>
+      <button @click="navigateToUser">Mine üle Kliendi rollile</button>
+    </div>
     <div v-if="true">
       <section>
         <h3>vali konto</h3>
@@ -42,6 +44,9 @@ export default {
     }
   },
   methods: {
+    navigateToUser: function () {
+      this.$router.push({name: 'userRoute'})
+    },
     selectName: function (name) {
       this.shopName = name
     },

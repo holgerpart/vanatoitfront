@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
+    "tabulator-tables": "^5.2.3",
     "vue": "^2.6.14",
     "vue-axios": "^3.4.1",
     "vue-router": "^3.5.1"

@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>AdminView</h1>
-    <div >
+    <div v-if="displayUpdate === false" class="input">
       <input type="text" placeholder="Poe nimi" v-model="shopName">
       <br>
       <br>
@@ -17,15 +17,17 @@
       <br>
       <input type="text" placeholder="Linn" v-model="cityName">
       <br>
+      <div>
+        <button @click="inputShop">Sisesta</button>
+      </div>
     </div>
 
+
     <div>
-      <button @click="inputShop">Sisesta</button>
-    </div>
-    <div>
-      <h2>Poodide nimekiri</h2>
       <br>
-      <table class="table table-hover">
+      <div id="example-table">
+      <table style="width:100%">
+        <caption>Poodide nimekiri</caption>
         <thead>
         <tr>
           <th scope="col">#</th>
@@ -33,6 +35,7 @@
           <th scope="col">Aadress</th>
           <th scope="col">Telefoninumber</th>
           <th scope="col">Linn</th>
+          <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
@@ -50,6 +53,7 @@
         </tr>
         </tbody>
       </table>
+      </div>
     </div>
     <div v-if="displayUpdate">
       <input  type="text" placeholder="Uus poe nimi" v-model="shopName">
@@ -57,11 +61,15 @@
       <input  type="text" placeholder="Uus telefoninumber" v-model="telNumber">
       <input  type="text" placeholder="Uus linn" v-model="cityName">
       <button v-on:click="updateShop">Kinnita</button>
+      <button v-on:click="cancelUpdate">Tühista</button>
     </div>
+
   </div>
 </template>
 
 <script>
+import {Tabulator} from "tabulator-tables";
+
 export default {
   name: "AdminView",
   data: function () {
@@ -73,10 +81,14 @@ export default {
       latitude: null,
       cityName: null,
       shops: {},
-      displayUpdate: false
+      displayUpdate: false,
+      table: new Tabulator("#example-table", {})
     }
   },
   methods: {
+    cancelUpdate: function (id) {
+      this.displayUpdate = false;
+    },
     selectShopId: function (id) {
       this.shopId = id
       sessionStorage.setItem('shopId', this.shopId)
@@ -131,9 +143,28 @@ export default {
 
 
 }
+
 </script>
 
 
 <style scoped>
+table, th, td {
+  /*border: 1px solid black;*/
+  border-collapse: collapse;
+  /*background-color: beige;*/
+  /*border-radius: 10px;*/
+  border-bottom-style: ridge;
+  padding: 15px;
+  /*border-spacing: 30px;*/
+}
+tr:hover {
+  background-color: bisque;
+}
+/*caption {*/
+/*  font:;*/
+/*}*/
+input {
+  text-align: center;
+}
 
 </style>

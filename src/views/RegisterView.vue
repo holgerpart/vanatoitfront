@@ -52,7 +52,6 @@ export default {
         } else {
           this.$router.push({name: 'shopRoute'})
         }
-        ;
           }).catch(error => {
             alert("Error")
       })

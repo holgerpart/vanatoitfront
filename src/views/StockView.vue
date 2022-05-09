@@ -1,14 +1,20 @@
 <template>
 <div>
-  <div>
-    <h3>
+  <div class="row">
+    <div class="side">
       Poe id: {{ shopId }}
       <br>
       Pood: {{ shopName }}
-    </h3>
+
+    </div>
   </div>
   <div>
+    <h3>
 
+    </h3>
+  </div>
+
+  <div class="main">
     <table style="width:100%">
       <thead>
       <tr>
@@ -23,7 +29,6 @@
       </thead>
       <tbody>
       <tr v-for="shopFood in shopFoods">
-
         <th scope="row" >{{ shopFood.id }}</th>
         <td>{{ shopFood.foodName }}</td>
         <td>{{ shopFood.quantity }}</td>
@@ -76,30 +81,10 @@ export default {
         this.displayUpdate = true;
     },
 
-    getStock: function () {
-        this.$http.get("/stock/all", {
-          params: {
-            shopName: this.shopName
-          }
-        })
-            .then(response => {
-              console.log(response.data)
-              alert('Success')
-              this.shopFoods = response.data
-            }).catch(error => {
-          alert(error)
-        })
-      },
     navigateToStockInput: function () {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
       this.$router.push({name: 'StockInputRoute'})
-    },
-    navigateToStockUpdate: function () {
-      sessionStorage.setItem('shopId', this.shopId)
-      sessionStorage.setItem('shopName', this.shopName)
-      sessionStorage.setItem('shopFoodId', this.shopFoodId)
-      this.$router.push({name: 'StockUpdateRoute'})
     },
     navigateToOrders: function () {
       sessionStorage.setItem('shopId', this.shopId)
@@ -129,6 +114,7 @@ export default {
         })
             .then(response => {
               console.log(response.data)
+
               this.shopFoods = response.data
             }).catch(error => {
           alert(error)
@@ -142,6 +128,26 @@ export default {
 </script>
 
 <style scoped>
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+.side {
+  flex: 30%;
+  background-color: beige;
+  padding: 20px;
+}
+
+.main {
+  flex: 70%;
+  background-color: white;
+  padding: 20px;
+}
+
+.navbar {
+  display: flex;
+  background-color: grey;
+}
 table, th, td {
   /*border: 1px solid black;*/
   border-collapse: collapse;

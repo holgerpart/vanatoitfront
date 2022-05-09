@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex-container">
     <div>
       <h3>
         Poe id: {{ shopId }}
@@ -77,9 +77,9 @@ export default {
   },
 
   methods: {
-    // checkRow: function () {
-    // if ()
-    // },
+    checkRow: function () {
+    return false
+    },
 
     getOrderList: function () {
       this.$http.get("/order/foods", {
@@ -136,6 +136,10 @@ export default {
 </script>
 
 <style scoped>
+.flex-container {
+  display: flex;
+  flex-direction: column;
+}
 table, th, td {
   /*border: 1px solid black;*/
   border-collapse: collapse;

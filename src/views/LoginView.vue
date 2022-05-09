@@ -40,6 +40,7 @@ export default {
   },
 
   methods: {
+
     displayTableDiv: function () {
       this.tableDivDisplay = true
     },

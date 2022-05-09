@@ -1,55 +1,61 @@
 <template>
   <div>
     <div>
-      <h3>Kaupade otsing</h3>
-      <input type="text" placeholder="Tootenimetus" v-model="foodName">
-      <button v-on:click="getByName">Otsi</button>
-      <br>
-      <br>
-      <input type="text" placeholder="Tootegrupp" v-model="foodType">
-      <button v-on:click="getByFoodType">Otsi</button>
-      <br>
-      <br>
-      <input type="text" placeholder="Pood" v-model="shop">
-      <button v-on:click="getByShop">Otsi</button>
-      <br>
-      <br>
-      <input type="text" placeholder="Linn" v-model="city">
-      <button v-on:click="getByCity">Otsi</button>
+      <div>
+        <h3>Kaupade otsing</h3>
+        <input type="text" placeholder="Tootenimetus" v-model="foodName">
+        <button v-on:click="getByName">Otsi</button>
+        <br>
+        <br>
+        <input type="text" placeholder="Tootegrupp" v-model="foodType">
+        <button v-on:click="getByFoodType">Otsi</button>
+        <br>
+        <br>
+        <input type="text" placeholder="Pood" v-model="shop">
+        <button v-on:click="getByShop">Otsi</button>
+        <br>
+        <br>
+        <input type="text" placeholder="Linn" v-model="city">
+        <button v-on:click="getByCity">Otsi</button>
+      </div>
+
+      <div v-if="tableDisplay">
+        <!--      v-if="tableDisplay"-->
+        <table style="width:100%">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Pood</th>
+            <th scope="col">Toit</th>
+            <th scope="col">Kogus</th>
+            <th scope="col">Ühik</th>
+            <th scope="col">Kuupäev</th>
+            <th scope="col">Kommentaarid</th>
+            <th scope="col">Valik</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="shopFood in shopFoods">
+            <th scope="row">{{ shopFood.id }}</th>
+            <th scope="row">{{ shopFood.shopName }}</th>
+            <td>{{ shopFood.foodName }}</td>
+            <td>{{ shopFood.quantity }}</td>
+            <td>{{ shopFood.unitName }}</td>
+            <td>{{ shopFood.dateTime }}</td>
+            <td>{{ shopFood.comments }}</td>
+            <td>
+              <button v-if="displayUpdate === false" v-on:click="selectFoodId(shopFood.id)">Broneeri</button>
+              <input v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="quantity">
+              <button v-if="displayUpdate" v-on:click="newBooking">Kinnita</button>
+              <button v-if="displayUpdate" v-on:click="newBooking">Tühista</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <div v-if="tableDisplay">
-<!--      v-if="tableDisplay"-->
-      <table style="width:100%">
-        <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Pood</th>
-          <th scope="col">Toit</th>
-          <th scope="col">Kogus</th>
-          <th scope="col">Ühik</th>
-          <th scope="col">Kuupäev</th>
-          <th scope="col">Kommentaarid</th>
-          <th scope="col">Valik</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="shopFood in shopFoods">
-          <th scope="row">{{ shopFood.id }}</th>
-          <th scope="row">{{ shopFood.shopName }}</th>
-          <td>{{ shopFood.foodName }}</td>
-          <td>{{ shopFood.quantity }}</td>
-          <td>{{ shopFood.unitName }}</td>
-          <td>{{ shopFood.dateTime }}</td>
-          <td>{{ shopFood.comments }}</td>
-          <td>
-            <button v-if="displayUpdate === false" v-on:click="selectFoodId(shopFood.id)">Broneeri</button>
-            <input v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="quantity">
-            <button v-if="displayUpdate" v-on:click="newBooking">Kinnita</button>
-            <button v-if="displayUpdate" v-on:click="newBooking">Tühista</button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+    <div>
+
     </div>
   </div>
 </template>
@@ -89,6 +95,7 @@ export default {
       })
     },
     getByFoodType: function () {
+      this.tableDisplay = true
       this.$http.get("/stock/typename", {
             params: {
               type: this.foodType
@@ -104,6 +111,7 @@ export default {
       })
     },
     getByShop: function () {
+      this.tableDisplay = true
       this.$http.get("/stock/all", {
             params: {
               shop: this.shop
@@ -118,6 +126,7 @@ export default {
       })
     },
     getByCity: function () {
+      this.tableDisplay = true
       this.$http.get("/stock/cityname", {
             params: {
               city: this.city
@@ -169,6 +178,7 @@ table, th, td {
   padding: 15px;
   /*border-spacing: 30px;*/
 }
+
 tr:hover {
   background-color: bisque;
 }

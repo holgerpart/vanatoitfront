@@ -11,7 +11,7 @@
         <h3>vali konto</h3>
         <ul class="list-group">
           <li class="list-group-item" v-for="role in userRoles">
-            <input v-on:click="navigateToSelectedRole(role.roleId)" type="radio" v-model="roleId" :value="role.roleId">{{ role.roleName }} {{role.roleId}}
+            <input v-on:click="navigateToSelectedRole(role.roleId)" type="radio" v-model="roleId" :value="role.roleId">{{ role.roleName }}
           </li>
         </ul>
       </section>

@@ -1,5 +1,12 @@
 <template>
   <div>
+    <div class="navbar">
+      <button @click="navigateToShop">Poe vaade</button>
+      <button @click="navigateToUser">Kliendivaade</button>
+      <button @click="navigateToStockInput">Kaubarea sisestus</button>
+      <button @click="navigateToStock">Laoseis</button>
+      <button @click="navigateToOrders">Tellimused</button>
+    </div>
     <div>
       <div>
         <h3>Kaupade otsing</h3>
@@ -55,7 +62,50 @@
       </div>
     </div>
     <div>
+      <div>
+      <button v-on:click="showOrders">Näita tellimusi </button>
+    </div>
+      <div>
+        <table style="width:100%">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Eesnimi</th>
+            <th>Perekonnanimi</th>
+            <th>Pood</th>
+            <th>Toiduartikkel</th>
+            <th>Kogus</th>
+            <th>Staatus</th>
+            <th scope="col">Valik</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="order in orders">
+            <td>{{ order.id }}</td>
+            <td>{{ order.firstName }}</td>
+            <td>{{ order.lastName }}</td>
+            <td>{{ order.shopName }}</td>
+            <td>{{ order.foodName }}</td>
+            <td>{{ order.quantity }}</td>
+            <td>{{ order.status }}</td>
+            <td>
+              <button v-if="displayUpdate === false" v-on:click="selectOrder(order.id)">Muuda</button>
+              <input v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">
+              <select v-if="displayUpdate" v-model="statusName">
+                <option disabled value="">Valige roll</option>
+                <option>Completed</option>
+                <option>Cancelled</option>
+                <option>Open</option>
+              </select>
+              <button v-if="displayUpdate" v-on:click="confirmUpdate">Kinnita</button>
+            </td>
 
+          </tr>
+          </tbody>
+        </table>
+
+
+      </div>
     </div>
   </div>
 </template>
@@ -65,6 +115,9 @@ export default {
   name: "UserView",
   data: function () {
     return {
+      shopId: sessionStorage.getItem('shopId'),
+      userId: sessionStorage.getItem('userId'),
+      shopName: sessionStorage.getItem('shopName'),
       foodName: '',
       foodType: '',
       shop: '',
@@ -72,7 +125,6 @@ export default {
       shopFoods: {},
       displayUpdate: false,
       tableDisplay: false,
-      userId: sessionStorage.getItem('userId'),
       shopFoodId: null,
       quantity: null,
       usedMethod: this.getByName
@@ -163,7 +215,32 @@ export default {
       }).catch(error => {
         console.log(error)
       })
-    }
+    },
+    navigateToStockInput: function () {
+      sessionStorage.setItem('shopId', this.shopId)
+      sessionStorage.setItem('shopName', this.shopName)
+      this.$router.push({name: 'StockInputRoute'})
+    },
+    navigateToOrders: function () {
+      sessionStorage.setItem('shopId', this.shopId)
+      sessionStorage.setItem('shopName', this.shopName)
+      this.$router.push({name: 'ordersRoute'})
+    },
+    navigateToUser: function () {
+      this.$router.push({name: 'userRoute'})
+    },
+    navigateToStock: function () {
+      sessionStorage.setItem('shopId', this.shopId)
+      sessionStorage.setItem('shopName', this.shopName)
+      this.$router.push({name: 'stockRoute'})
+
+    },
+    navigateToShop: function () {
+      sessionStorage.setItem('shopId', this.shopId)
+      sessionStorage.setItem('shopName', this.shopName)
+      this.$router.push({name: 'shopRoute'})
+
+    },
   }
 }
 </script>
@@ -182,5 +259,40 @@ table, th, td {
 tr:hover {
   background-color: bisque;
 }
+.navbar {
+  width: 100%;
+  background-color: #555;
+  overflow: auto;
+}
 
+/* Navigation links */
+.navbar button {
+  float: left;
+  padding: 12px;
+  color: black;
+  text-decoration: none;
+  font-size: 17px;
+  width: 20%; /* Four equal-width links. If you have two links, use 50%, and 33.33% for three links, etc.. */
+  text-align: center; /* If you want the text to be centered */
+}
+
+/* Add a background color on mouse-over */
+.navbar button:hover {
+  background-color: #000;
+}
+
+/* Style the current/active link */
+.navbar button.active {
+  background-color: #04AA6D;
+}
+
+/* Add responsiveness - on screens less than 500px, make the navigation links appear on top of each other, instead of next to each other */
+@media screen and (max-width: 500px) {
+  .navbar button {
+    float: none;
+    display: block;
+    width: 100%;
+    text-align: left; /* If you want the text to be left-aligned on small screens */
+  }
+}
 </style>

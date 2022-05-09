@@ -17,7 +17,7 @@
     <input type="text" placeholder="Kogus" v-model="quantity">
     <br>
     <br>
-    <input type="text" placeholder="Kõlblik kuni" v-model="expirationDate">
+    <input type="date" placeholder="Kõlblik kuni" v-model="expirationDate">Kõlblik kuni</input>
     <br>
     <br>
     <input type="text" placeholder="Kommentaarid" v-model="comments">

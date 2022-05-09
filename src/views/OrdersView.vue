@@ -77,6 +77,10 @@ export default {
   },
 
   methods: {
+    // checkRow: function () {
+    // if ()
+    // },
+
     getOrderList: function () {
       this.$http.get("/order/foods", {
         params: {

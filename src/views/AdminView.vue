@@ -68,7 +68,6 @@
 </template>
 
 <script>
-import {Tabulator} from "tabulator-tables";
 
 export default {
   name: "AdminView",
@@ -82,7 +81,7 @@ export default {
       cityName: null,
       shops: {},
       displayUpdate: false,
-      table: new Tabulator("#example-table", {})
+
     }
   },
   methods: {

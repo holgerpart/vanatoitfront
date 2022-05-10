@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="navbar">
-      <button @click="navigateToShop">Poe vaade</button>
-      <button @click="navigateToUser">Kliendivaade</button>
-      <button @click="navigateToStockInput">Kaubarea sisestus</button>
-      <button @click="navigateToStock">Laoseis</button>
-      <button @click="navigateToOrders">Tellimused</button>
-    </div>
+<!--    <div class="navbar">-->
+<!--      <button @click="navigateToShop">Poe vaade</button>-->
+<!--      <button class="active" @click="navigateToUser">Kliendivaade</button>-->
+<!--      <button @click="navigateToStockInput">Kaubarea sisestus</button>-->
+<!--      <button @click="navigateToStock">Laoseis</button>-->
+<!--      <button @click="navigateToOrders">Tellimused</button>-->
+<!--    </div>-->
     <div>
       <div>
         <h3>Kaupade otsing</h3>
@@ -351,8 +351,8 @@ export default {
       this.displayUpdate = !this.displayUpdate
     },
     reverseOrderDisplay: function () {
-      this.orderDisplayUpdate = !this.orderDisplayUpdate
-      this.orderDisplay = !this.orderDisplay
+      this.orderDisplayUpdate =  false
+      this.orderDisplay = true
     },
     navigateToStockInput: function () {
       sessionStorage.setItem('shopId', this.shopId)
@@ -418,6 +418,8 @@ tr:hover {
 /* Add a background color on mouse-over */
 .navbar button:hover {
   background-color: #000;
+  color: white;
+
 }
 
 /* Style the current/active link */

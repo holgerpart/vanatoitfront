@@ -238,6 +238,8 @@ input {
 /* Add a background color on mouse-over */
 .navbar button:hover {
   background-color: #000;
+  color: white;
+
 }
 
 /* Style the current/active link */

@@ -205,7 +205,6 @@ export default {
   }
 }
 </script>
-
 <style scoped>
 .flex-container {
   display: flex;

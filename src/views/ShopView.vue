@@ -7,15 +7,9 @@
       <button @click="navigateToStock">Laoseis</button>
       <button @click="navigateToOrders">Tellimused</button>
     </div>
-    <h2>
-      Vali pood
-    </h2>
-    <div>
-      <button @click="navigateToUser">Mine üle Kliendi rollile</button>
-    </div>
     <div v-if="true">
       <section>
-        <h3>vali konto</h3>
+        <h3>Vali pood</h3>
         <ul class="list-group">
           <li class="list-group-item" v-for="shop in shops">
             <input v-on:change="selectName(shop.shopName)" type="radio" v-model="shopId"

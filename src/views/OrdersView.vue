@@ -66,7 +66,7 @@
         </thead>
         <tbody>
         <tr>
-          <td>{{ id }}</td>
+          <td>{{ orderId }}</td>
           <td>{{ firstName }}</td>
           <td>{{ lastName }}</td>
           <td>{{ shopName }}</td>
@@ -110,7 +110,8 @@ export default {
       lastName: '',
       foodName: '',
       quantity: '',
-      status: ''
+      status: '',
+      stockId: null
     }
   },
 
@@ -139,6 +140,9 @@ export default {
       this.foodName = id.foodName
       this.quantity = id.quantity
       this.status = id.status
+      this.stockId = id.shopFoodId
+
+
       sessionStorage.setItem('orderId', this.orderId)
       this.displayUpdate = true
 
@@ -155,6 +159,8 @@ export default {
         this.displayUpdate = false
       }).catch(error => {
         console.log(error)
+        alert(error.response.data.detail)
+
       })
     },
     confirmStatus: function () {

@@ -77,7 +77,7 @@
           </tr>
           </tbody>
         </table>
-        <input v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="quantity">
+        <input v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">
         <button v-if="displayUpdate" v-on:click="newBooking">Kinnita</button>
         <button v-if="displayUpdate" v-on:click="reverseDisplay">Tühista</button>
       </div>
@@ -264,7 +264,7 @@ export default {
       let request = {
         userId: this.userId,
         shopFoodId: this.shopFoodId,
-        quantity: this.quantity
+        quantity: this.newQuantity
       }
 
       this.$http.post("/order/bookfood", request
@@ -274,6 +274,7 @@ export default {
         this.displayUpdate = false
       }).catch(error => {
         console.log(error)
+        alert(error.response.data.detail)
       })
     },
     showOrders: function () {
@@ -317,6 +318,7 @@ export default {
         this.orderDisplay = true
       }).catch(error => {
         console.log(error)
+        alert(error)
       })
     },
     confirmStatus: function () {

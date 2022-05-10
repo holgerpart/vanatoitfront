@@ -27,7 +27,6 @@
       </div>
 
       <div v-if="tableDisplay">
-        <!--      v-if="tableDisplay"-->
         <table style="width:100%">
           <thead>
           <tr>
@@ -51,7 +50,7 @@
             <td>{{ shopFood.dateTime }}</td>
             <td>{{ shopFood.comments }}</td>
             <td>
-              <button v-if="displayUpdate === false" v-on:click="selectFoodId(shopFood.id)">Broneeri</button>
+              <button v-if="displayUpdate === false" v-on:click="selectFoodId(shopFood)">Broneeri</button>
               <input v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="quantity">
               <button v-if="displayUpdate" v-on:click="newBooking">Kinnita</button>
               <button v-if="displayUpdate" v-on:click="newBooking">Tühista</button>
@@ -65,7 +64,7 @@
       <div>
       <button v-on:click="showOrders">Näita tellimusi </button>
     </div>
-      <div>
+      <div v-if="tableDisplay">
         <table style="width:100%">
           <thead>
           <tr>
@@ -89,7 +88,7 @@
             <td>{{ order.quantity }}</td>
             <td>{{ order.status }}</td>
             <td>
-              <button v-if="displayUpdate === false" v-on:click="selectOrder(order.id)">Muuda</button>
+              <button v-if="displayUpdate === false" v-on:click="selectOrder(order)">Muuda</button>
               <input v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">
               <select v-if="displayUpdate" v-model="statusName">
                 <option disabled value="">Valige roll</option>
@@ -123,11 +122,14 @@ export default {
       shop: '',
       city: '',
       shopFoods: {},
+      newQuantity: null,
+      statusName: '',
       displayUpdate: false,
       tableDisplay: false,
       shopFoodId: null,
       quantity: null,
-      usedMethod: this.getByName
+      usedMethod: this.getByName,
+      orders:{}
     }
   },
   methods: {
@@ -194,7 +196,7 @@ export default {
       })
     },
     selectFoodId: function (id) {
-      this.shopFoodId = id
+      this.shopFoodId = id.id
       sessionStorage.setItem('shopFoodId', this.shopFoodId)
       this.displayUpdate = true;
     },
@@ -216,6 +218,47 @@ export default {
         console.log(error)
       })
     },
+  showOrders: function(){
+    this.tableDisplay = true
+    this.$http.get(" order/customerfoods", {
+          params: {
+            userId: this.userId
+          }
+        }
+    ).then(response =>{
+      this.orders = response.data
+      console.log(response.data)
+    }).catch(error =>{
+      console.log(error)
+    })
+
+  },
+    selectOrder: function (id) {
+      this.orderId = id.id
+      this.firstName = id.firstName
+      this.lastName = id.lastName
+      this.foodName = id.foodName
+      this.quantity = id.quantity
+      this.status = id.status
+      sessionStorage.setItem('orderId', this.orderId)
+      this.displayUpdate = true
+
+    },
+    confirmUpdate: function () {
+      let orderRequest = {
+        orderId: this.orderId,
+        quantity: this.newQuantity
+      }
+      this.$http.post("/order/updateorder", orderRequest
+      ).then(response => {
+        console.log(response.data)
+        this.getOrderList()
+        this.displayUpdate = false
+      }).catch(error => {
+        console.log(error)
+      })
+    }
+    ,
     navigateToStockInput: function () {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)

@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/home">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/">Login</router-link> |
-      <router-link to="/register">Register</router-link> |
-      <router-link to="/shop">Pood</router-link> |
-      <router-link to="/user">Kasutaja</router-link> |
-      <router-link to="/stock-input">Kaubarea sisestus</router-link> |
-      <router-link to="/stock">Laoseis</router-link> |
-      <router-link to="/orders">Tellimused</router-link> |
-    </nav>
+<!--    <nav>-->
+<!--      <router-link to="/home">Home</router-link> |-->
+<!--      <router-link to="/about">About</router-link> |-->
+<!--      <router-link to="/">Login</router-link> |-->
+<!--      <router-link to="/register">Register</router-link> |-->
+<!--      <router-link to="/shop">Pood</router-link> |-->
+<!--      <router-link to="/user">Kasutaja</router-link> |-->
+<!--      <router-link to="/stock-input">Kaubarea sisestus</router-link> |-->
+<!--      <router-link to="/stock">Laoseis</router-link> |-->
+<!--      <router-link to="/orders">Tellimused</router-link> |-->
+<!--    </nav>-->
     <router-view/>
   </div>
 </template>

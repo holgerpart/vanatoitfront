@@ -8,11 +8,9 @@
     <button @click="navigateToOrders">Tellimused</button>
   </div>
   <div class="row">
-    <div class="side">
-      Poe id: {{ shopId }}
-      <br>
-      Pood: {{ shopName }}
+    <div class="navbar">
 
+        Pood: {{ shopName }}
     </div>
   </div>
   <div>

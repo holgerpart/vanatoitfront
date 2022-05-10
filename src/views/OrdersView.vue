@@ -8,9 +8,7 @@
       <button class="active" @click="navigateToOrders">Tellimused</button>
     </div>
     <div>
-      <h3>
-        Poe id: {{ shopId }}
-        <br>
+      <h3 class="header">
         Pood: {{ shopName }}
       </h3>
     </div>
@@ -209,6 +207,7 @@ export default {
   mounted() {
     this.getOrderList()
   }
+
 }
 </script>
 <style scoped>
@@ -217,7 +216,12 @@ export default {
   flex-direction: column;
 }
 
+
+
 table, th, td {
+  position: relative;
+  left: 300px;
+
   /*border: 1px solid black;*/
   border-collapse: collapse;
   /*background-color: beige;*/
@@ -238,25 +242,43 @@ input {
   text-align: center;
 }
 .navbar {
-  width: 100%;
-  background-color: #555;
-  overflow: auto;
+  position: fixed;
+  min-width: 290px;
+  top: 200px;
+  left: 0px;
+  width: 300px;
+  height: 100%;
+  border-right: solid;
+  border-color: rgba(0, 22, 22, 0.4);
+  /*width: 100%;*/
+  /*background-color: #555;*/
+  /*overflow: auto;*/
 }
 
 /* Navigation links */
 .navbar button {
-  float: left;
-  padding: 12px;
-  color: black;
+  display: block;
+  padding: 10px 30px;
+  color: #4d4e53;
   text-decoration: none;
-  font-size: 17px;
-  width: 20%; /* Four equal-width links. If you have two links, use 50%, and 33.33% for three links, etc.. */
-  text-align: center; /* If you want the text to be centered */
+  cursor: pointer;
+  border-top: 1px solid;
+  list-style: none;
+  position: relative;
+  width: 100%;
+  /*float: left;*/
+  /*padding: 12px;*/
+  /*color: black;*/
+  /*text-decoration: none;*/
+  /*font-size: 17px;*/
+  /*width: 20%; !* Four equal-width links. If you have two links, use 50%, and 33.33% for three links, etc.. *!*/
+  /*text-align: center; !* If you want the text to be centered *!*/
 }
 
 /* Add a background color on mouse-over */
 .navbar button:hover {
   background-color: #000;
+  color: white;
 }
 
 /* Style the current/active link */

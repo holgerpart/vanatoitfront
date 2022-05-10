@@ -78,9 +78,6 @@
     <button v-if="displayUpdate" v-on:click="confirmUpdate">Kinnita</button>
     <button v-if="displayUpdate" v-on:click="reverseDisplay">Tühista</button>
 
-    <!--    <div v-if="shopFoodSelection">-->
-<!--      <button v-on:click="navigateToShopFoodUpdate">Muuda kaubarida</button>-->
-<!--    </div>-->
   </div>
 </div>
 </template>

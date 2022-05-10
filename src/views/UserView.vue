@@ -26,8 +26,38 @@
         <button v-on:click="getByCity">Otsi</button>
       </div>
 
-      <div v-if="tableDisplay">
-        <table style="width:100%">
+      <div>
+        <div v-if="tableDisplay">
+          <table v-if="displayUpdate === false" style="width:100%">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Pood</th>
+              <th scope="col">Toit</th>
+              <th scope="col">Kogus</th>
+              <th scope="col">Ühik</th>
+              <th scope="col">Kuupäev</th>
+              <th scope="col">Kommentaarid</th>
+              <th scope="col">Valik</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="shopFood in shopFoods">
+              <th scope="row">{{ shopFood.id }}</th>
+              <th scope="row">{{ shopFood.shopName }}</th>
+              <td>{{ shopFood.foodName }}</td>
+              <td>{{ shopFood.quantity }}</td>
+              <td>{{ shopFood.unitName }}</td>
+              <td>{{ shopFood.dateTime }}</td>
+              <td>{{ shopFood.comments }}</td>
+              <td>
+                <button v-if="displayUpdate === false" v-on:click="selectFoodId(shopFood)">Broneeri</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <table v-if="displayUpdate" style="width:100%">
           <thead>
           <tr>
             <th scope="col">#</th>
@@ -35,36 +65,28 @@
             <th scope="col">Toit</th>
             <th scope="col">Kogus</th>
             <th scope="col">Ühik</th>
-            <th scope="col">Kuupäev</th>
-            <th scope="col">Kommentaarid</th>
-            <th scope="col">Valik</th>
           </tr>
           </thead>
           <tbody>
-          <tr v-for="shopFood in shopFoods">
-            <th scope="row">{{ shopFood.id }}</th>
-            <th scope="row">{{ shopFood.shopName }}</th>
-            <td>{{ shopFood.foodName }}</td>
-            <td>{{ shopFood.quantity }}</td>
-            <td>{{ shopFood.unitName }}</td>
-            <td>{{ shopFood.dateTime }}</td>
-            <td>{{ shopFood.comments }}</td>
-            <td>
-              <button v-if="displayUpdate === false" v-on:click="selectFoodId(shopFood)">Broneeri</button>
-              <input v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="quantity">
-              <button v-if="displayUpdate" v-on:click="newBooking">Kinnita</button>
-              <button v-if="displayUpdate" v-on:click="newBooking">Tühista</button>
-            </td>
+          <tr>
+            <th scope="row">{{ shopFoodId }}</th>
+            <th scope="row">{{ shopName }}</th>
+            <td>{{ foodName }}</td>
+            <td>{{ quantity }}</td>
+            <td>{{ unitName }}</td>
           </tr>
           </tbody>
         </table>
+        <input v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="quantity">
+        <button v-if="displayUpdate" v-on:click="newBooking">Kinnita</button>
+        <button v-if="displayUpdate" v-on:click="reverseDisplay">Tühista</button>
       </div>
     </div>
     <div>
       <div>
-      <button v-on:click="showOrders">Näita tellimusi </button>
-    </div>
-      <div v-if="tableDisplay">
+        <button v-on:click="showOrders">Näita tellimusi</button>
+      </div>
+      <div v-if="orderDisplay">
         <table style="width:100%">
           <thead>
           <tr>
@@ -89,21 +111,47 @@
             <td>{{ order.status }}</td>
             <td>
               <button v-if="displayUpdate === false" v-on:click="selectOrder(order)">Muuda</button>
-              <input v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">
-              <select v-if="displayUpdate" v-model="statusName">
-                <option disabled value="">Valige roll</option>
-                <option>Completed</option>
-                <option>Cancelled</option>
-                <option>Open</option>
-              </select>
-              <button v-if="displayUpdate" v-on:click="confirmUpdate">Kinnita</button>
             </td>
-
           </tr>
           </tbody>
         </table>
+      </div>
+      <div v-if="orderDisplayUpdate">
+      <table style="width:100%">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Eesnimi</th>
+          <th>Perekonnanimi</th>
+          <th>Pood</th>
+          <th>Toiduartikkel</th>
+          <th>Kogus</th>
+          <th>Staatus</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>{{ id }}</td>
+          <td>{{ firstName }}</td>
+          <td>{{ lastName }}</td>
+          <td>{{ shopName }}</td>
+          <td>{{ foodName }}</td>
+          <td>{{ quantity }}</td>
+          <td>{{ status }}</td>
+        </tr>
+        </tbody>
+      </table>
+      <input type="text" placeholder="Uus kogus" v-model="newQuantity">
+      <button v-on:click="confirmUpdate">Kinnita</button>
 
-
+        <select v-model="statusName">
+          <option disabled value="">Valige roll</option>
+          <option>Completed</option>
+          <option>Cancelled</option>
+          <option>Open</option>
+        </select>
+        <button v-on:click="confirmStatus">Kinnita</button>
+        <button v-on:click="reverseOrderDisplay">Tühista</button>
       </div>
     </div>
   </div>
@@ -124,12 +172,19 @@ export default {
       shopFoods: {},
       newQuantity: null,
       statusName: '',
+      status: '',
       displayUpdate: false,
       tableDisplay: false,
       shopFoodId: null,
       quantity: null,
       usedMethod: this.getByName,
-      orders:{}
+      orders: {},
+      unitName: '',
+      orderDisplay: false,
+      orderDisplayUpdate: false,
+      firstName: '',
+      lastName: '',
+      id: ''
     }
   },
   methods: {
@@ -197,6 +252,9 @@ export default {
     },
     selectFoodId: function (id) {
       this.shopFoodId = id.id
+      this.articleName = id.foodName
+      this.quantity = id.quantity
+      this.unitName = id.unitName
       sessionStorage.setItem('shopFoodId', this.shopFoodId)
       this.displayUpdate = true;
     },
@@ -218,30 +276,32 @@ export default {
         console.log(error)
       })
     },
-  showOrders: function(){
-    this.tableDisplay = true
-    this.$http.get(" order/customerfoods", {
-          params: {
-            userId: this.userId
+    showOrders: function () {
+      this.orderDisplay = true
+      this.$http.get(" order/customerfoods", {
+            params: {
+              userId: this.userId
+            }
           }
-        }
-    ).then(response =>{
-      this.orders = response.data
-      console.log(response.data)
-    }).catch(error =>{
-      console.log(error)
-    })
+      ).then(response => {
+        this.orders = response.data
+        console.log(response.data)
+      }).catch(error => {
+        console.log(error)
+      })
 
-  },
+    },
     selectOrder: function (id) {
-      this.orderId = id.id
+      this.id = id.id
       this.firstName = id.firstName
       this.lastName = id.lastName
       this.foodName = id.foodName
       this.quantity = id.quantity
       this.status = id.status
       sessionStorage.setItem('orderId', this.orderId)
-      this.displayUpdate = true
+      this.orderDisplayUpdate = true
+      this.orderDisplay = false
+
 
     },
     confirmUpdate: function () {
@@ -252,13 +312,48 @@ export default {
       this.$http.post("/order/updateorder", orderRequest
       ).then(response => {
         console.log(response.data)
-        this.getOrderList()
+        this.showOrders()
+        this.displayUpdate = false
+        this.orderDisplay = true
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+    confirmStatus: function () {
+      let orderRequest = {
+        orderId: this.id,
+        statusName: this.statusName
+      }
+      this.$http.post("/order/status", orderRequest
+      ).then(response => {
+        console.log(response.data)
+        this.showOrders()
+        this.reverseOrderDisplay()
         this.displayUpdate = false
       }).catch(error => {
         console.log(error)
       })
-    }
-    ,
+    },
+    getOrderList: function () {
+      this.$http.get("/order/foods", {
+        params: {
+          shopId: this.shopId
+        }
+      })
+          .then(response => {
+            console.log(response.data)
+            this.orders = response.data
+          }).catch(error => {
+        console.log(error)
+      })
+    },
+    reverseDisplay: function () {
+      this.displayUpdate = !this.displayUpdate
+    },
+    reverseOrderDisplay: function () {
+      this.orderDisplayUpdate = !this.orderDisplayUpdate
+      this.orderDisplay = !this.orderDisplay
+    },
     navigateToStockInput: function () {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
@@ -302,6 +397,7 @@ table, th, td {
 tr:hover {
   background-color: bisque;
 }
+
 .navbar {
   width: 100%;
   background-color: #555;

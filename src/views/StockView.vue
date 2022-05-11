@@ -14,11 +14,6 @@
         </h3>
       </div>
     </div>
-    <div>
-      <h3>
-
-      </h3>
-    </div>
 
     <div v-if="displayUpdate === false" class="main">
       <table style="width:100%">
@@ -98,8 +93,6 @@ export default {
       articleName: '',
       quantity: null,
       unit: ''
-
-
     }
   },
   methods: {
@@ -183,7 +176,6 @@ export default {
   display: flex;
   flex-wrap: wrap;
 }
-
 .side {
   flex: 30%;
   background-color: beige;
@@ -209,18 +201,15 @@ table, th, td {
   padding: 15px;
   /*border-spacing: 30px;*/
 }
-
 tr:hover {
   background-color: bisque;
 }
-
 /*caption {*/
 /*  font:;*/
 /*}*/
 input {
   text-align: center;
 }
-
 .navbar {
   display: flex;
   width: 100%;

@@ -9,7 +9,6 @@
   </div>
   <div>
     <h3>
-      Poe id: {{ shopId }}
       <br>
       Pood: {{ shopName }}
     </h3>

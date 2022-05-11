@@ -46,7 +46,6 @@ export default {
       }
       this.$http.post("/log-in/user", registryRequest
       ).then(response => {
-        alert("Success")
         if (this.role === 'user') {
           this.$router.push({name: 'userRoute'});
         } else {

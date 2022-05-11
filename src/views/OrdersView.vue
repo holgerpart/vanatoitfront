@@ -12,8 +12,8 @@
         Pood: {{ shopName }}
       </h3>
     </div>
-    <div class="table">
-      <table v-if="displayUpdate === false" style="width: 100%;">
+    <div>
+      <table v-if="displayUpdate === false" style="width:100%">
         <thead>
         <tr>
           <th>#</th>
@@ -40,7 +40,7 @@
         </tr>
         </tbody>
       </table>
-      <table v-if="displayUpdate">
+      <table v-if="displayUpdate" style="width:100%">
         <thead>
         <tr>
           <th>#</th>
@@ -54,7 +54,7 @@
         </thead>
         <tbody>
         <tr>
-          <td>{{ orderId }}</td>
+          <td>{{ id }}</td>
           <td>{{ firstName }}</td>
           <td>{{ lastName }}</td>
           <td>{{ shopName }}</td>
@@ -98,8 +98,7 @@ export default {
       lastName: '',
       foodName: '',
       quantity: '',
-      status: '',
-      stockId: null
+      status: ''
     }
   },
 
@@ -199,13 +198,11 @@ export default {
   }
 }
 </script>
-
 <style scoped>
 
 
 
 table, th, td {
-
   /*border: 1px solid black;*/
   border-collapse: collapse;
   /*background-color: beige;*/
@@ -214,7 +211,6 @@ table, th, td {
   padding: 15px;
   /*border-spacing: 30px;*/
 }
-
 
 tr:hover {
   background-color: bisque;
@@ -252,7 +248,6 @@ input {
 /* Style the current/active link */
 .navbar button.active {
   background-color: #04AA6D;
-
 }
 
 /* Add responsiveness - on screens less than 500px, make the navigation links appear on top of each other, instead of next to each other */

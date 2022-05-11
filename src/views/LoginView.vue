@@ -1,18 +1,20 @@
 <template>
   <div>
     <div v-if="loginInputDivDisplay">
-    <input type="text" placeholder="Kasutajanimi" v-model="userName">
-    <br>
-    <br>
-    <input type="text" placeholder="Salasõna" v-model="password">
-    <br>
+      <input type="text" placeholder="Kasutajanimi" v-model="userName">
+      <br>
+      <br>
+      <input type="text" placeholder="Salasõna" v-model="password">
+      <br>
     </div>
     <div v-if="valiKontoDivDisplay">
       <section>
         <h3>vali konto</h3>
         <ul class="list-group">
           <li class="list-group-item" v-for="role in userRoles">
-            <input v-on:click="navigateToSelectedRole(role.roleId)" type="radio" v-model="roleId" :value="role.roleId">{{ role.roleName }}
+            <input v-on:click="navigateToSelectedRole(role.roleId)" type="radio" v-model="roleId" :value="role.roleId">{{
+              role.roleName
+            }}
           </li>
         </ul>
       </section>
@@ -43,6 +45,7 @@ export default {
   },
 
   methods: {
+
     displayTableDiv: function () {
       this.tableDivDisplay = true
     },
@@ -65,7 +68,6 @@ export default {
           if (this.userRoles[0].roleId === 1) {
             this.navigateToUser()
           } else if (this.userRoles[0].roleId === 2) {
-            sessionStorage.setItem('shopId', response.data.shopId)
             this.navigateToShop()
           } else {
             this.navigateToAdmin()

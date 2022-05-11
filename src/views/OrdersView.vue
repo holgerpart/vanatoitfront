@@ -12,11 +12,11 @@
         Pood: {{ shopName }}
       </h3>
     </div>
-    <div>
-      <table v-if="displayUpdate === false" style="width:100%">
+    <div class="table">
+      <table v-if="displayUpdate === false" >
         <thead>
         <tr>
-          <th>#</th>
+          <th style="width:1%">#</th>
           <th>Eesnimi</th>
           <th>Perekonnanimi</th>
           <th>Pood</th>
@@ -28,19 +28,29 @@
         </thead>
         <tbody>
         <tr v-for="order in orders">
-          <td>{{order.id}}</td>
-          <td>{{order.firstName}}</td>
-          <td>{{order.lastName}}</td>
-          <td>{{order.shopName}}</td>
-          <td>{{order.foodName}}</td>
-          <td>{{order.quantity}}</td>
-          <td>{{order.status}}</td>
-          <td><button @click="selectOrder(order)" >Muuda</button></td>
+          <td>{{ order.id }}</td>
+          <td>{{ order.firstName }}</td>
+          <td>{{ order.lastName }}</td>
+          <td>{{ order.shopName }}</td>
+          <td>{{ order.foodName }}</td>
+          <td>{{ order.quantity }}</td>
+          <td>{{ order.status }}</td>
+          <td>
+            <button v-on:click="selectOrder(order)">Muuda</button>
+            <!--            <input v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">-->
+            <!--            <select v-if="displayUpdate" v-model="statusName">-->
+            <!--              <option disabled value="">Valige roll</option>-->
+            <!--              <option>Completed</option>-->
+            <!--              <option>Cancelled</option>-->
+            <!--              <option>Open</option>-->
+            <!--            </select>-->
+            <!--            <button v-if="displayUpdate" v-on:click="confirmUpdate">Kinnita</button>-->
+          </td>
 
         </tr>
         </tbody>
       </table>
-      <table v-if="displayUpdate" style="width:100%">
+      <table v-if="displayUpdate">
         <thead>
         <tr>
           <th>#</th>
@@ -54,7 +64,7 @@
         </thead>
         <tbody>
         <tr>
-          <td>{{ id }}</td>
+          <td>{{ orderId }}</td>
           <td>{{ firstName }}</td>
           <td>{{ lastName }}</td>
           <td>{{ shopName }}</td>
@@ -98,7 +108,8 @@ export default {
       lastName: '',
       foodName: '',
       quantity: '',
-      status: ''
+      status: '',
+      stockId: null
     }
   },
 
@@ -196,67 +207,10 @@ export default {
   mounted() {
     this.getOrderList()
   }
+
 }
 </script>
 <style scoped>
 
 
-
-table, th, td {
-  /*border: 1px solid black;*/
-  border-collapse: collapse;
-  /*background-color: beige;*/
-  /*border-radius: 10px;*/
-  border-bottom-style: ridge;
-  padding: 15px;
-  /*border-spacing: 30px;*/
-}
-
-tr:hover {
-  background-color: bisque;
-}
-
-/*caption {*/
-/*  font:;*/
-/*}*/
-input {
-  text-align: center;
-}
-.navbar {
-  width: 100%;
-  background-color: #555;
-  overflow: auto;
-}
-
-/* Navigation links */
-.navbar button {
-  float: left;
-  padding: 12px;
-  color: black;
-  text-decoration: none;
-  font-size: 17px;
-  width: 20%; /* Four equal-width links. If you have two links, use 50%, and 33.33% for three links, etc.. */
-  text-align: center; /* If you want the text to be centered */
-}
-
-/* Add a background color on mouse-over */
-.navbar button:hover {
-  background-color: #000;
-  color: white;
-}
-
-/* Style the current/active link */
-.navbar button.active {
-  background-color: #04AA6D;
-}
-
-/* Add responsiveness - on screens less than 500px, make the navigation links appear on top of each other, instead of next to each other */
-@media screen and (max-width: 500px) {
-  .navbar button {
-    float: none;
-    display: block;
-    width: 100%;
-    text-align: left; /* If you want the text to be left-aligned on small screens */
-  }
-}
 </style>

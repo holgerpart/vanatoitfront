@@ -7,8 +7,8 @@
       <button @click="navigateToStock">Laoseis</button>
       <button class="active" @click="navigateToOrders">Tellimused</button>
     </div>
-    <div>
-      <h3 class="header">
+    <div class="shop">
+      <h3>
         Pood: {{ shopName }}
       </h3>
     </div>
@@ -36,7 +36,7 @@
           <td>{{ order.quantity }}</td>
           <td>{{ order.status }}</td>
           <td>
-            <button v-on:click="selectOrder(order)">Muuda</button>
+            <button class="small-button" v-on:click="selectOrder(order)">Muuda</button>
             <!--            <input v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">-->
             <!--            <select v-if="displayUpdate" v-model="statusName">-->
             <!--              <option disabled value="">Valige roll</option>-->
@@ -50,10 +50,11 @@
         </tr>
         </tbody>
       </table>
+      <div class="table">
       <table v-if="displayUpdate">
         <thead>
         <tr>
-          <th>#</th>
+          <th style="width:1%">#</th>
           <th>Eesnimi</th>
           <th>Perekonnanimi</th>
           <th>Pood</th>
@@ -74,17 +75,18 @@
         </tr>
         </tbody>
       </table>
-      <input v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">
-      <button v-if="displayUpdate" v-on:click="confirmUpdate">Kinnita</button>
+        </div>
+      <input class="select" v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">
+      <button class="small-button" v-if="displayUpdate" v-on:click="confirmUpdate">Kinnita</button>
 
-      <select v-if="displayUpdate" v-model="statusName">
+      <select class="select" v-if="displayUpdate" v-model="statusName">
         <option disabled value="">Valige roll</option>
         <option>Completed</option>
         <option>Cancelled</option>
         <option>Open</option>
       </select>
-      <button v-if="displayUpdate" v-on:click="confirmStatus">Kinnita</button>
-      <button v-if="displayUpdate" v-on:click="reverseDisplay">Tühista</button>
+      <button class="small-button"  v-if="displayUpdate" v-on:click="confirmStatus">Kinnita</button>
+      <button class="small-button"  v-if="displayUpdate" v-on:click="reverseDisplay">Tühista</button>
     </div>
   </div>
 </template>

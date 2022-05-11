@@ -1,10 +1,10 @@
 <template>
   <div>
     <div v-if="loginInputDivDisplay">
-      <input type="text" placeholder="Kasutajanimi" v-model="userName">
+      <input class="select" type="text" placeholder="Kasutajanimi" v-model="userName">
       <br>
       <br>
-      <input type="text" placeholder="Salasõna" v-model="password">
+      <input class="select" type="text" placeholder="Salasõna" v-model="password">
       <br>
     </div>
     <div v-if="valiKontoDivDisplay">
@@ -12,7 +12,7 @@
         <h3>vali konto</h3>
         <ul class="list-group">
           <li class="list-group-item" v-for="role in userRoles">
-            <input v-on:click="navigateToSelectedRole(role.roleId)" type="radio" v-model="roleId" :value="role.roleId">{{
+            <input  class="select" v-on:click="navigateToSelectedRole(role.roleId)" type="radio" v-model="roleId" :value="role.roleId">{{
               role.roleName
             }}
           </li>
@@ -20,9 +20,9 @@
       </section>
     </div>
     <br>
-    <button v-on:click="login">Sisene</button>
+    <button class="small-button" v-on:click="login">Sisene</button>
     <br>
-    <button v-on:click="navigateToRegister">Registreeri kasutaja</button>
+    <button class="small-button" v-on:click="navigateToRegister">Registreeri kasutaja</button>
   </div>
 </template>
 

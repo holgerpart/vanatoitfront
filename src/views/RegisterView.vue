@@ -1,25 +1,34 @@
 <template>
 <div>
-  <input type="text" placeholder="Eesnimi" v-model="firstName">
+  <div class="navbar">
+    <button>Poe vaade</button>
+    <button>Kliendivaade</button>
+    <button>Kaubarea sisestus</button>
+    <button>Laoseis</button>
+    <button>Tellimused</button>
+  </div>
+  <div>
+  <input class="select" type="text" placeholder="Eesnimi" v-model="firstName">
   <br>
   <br>
-  <input type="text" placeholder="Perekonnanimi" v-model="lastName">
+  <input class="select" type="text" placeholder="Perekonnanimi" v-model="lastName">
   <br>
   <br>
-  <input type="text" placeholder="Kasutajanimi" v-model="name">
+  <input class="select" type="text" placeholder="Kasutajanimi" v-model="name">
   <br>
   <br>
-  <input type="text" placeholder="Salasõna" v-model="password">
+  <input class="select" type="text" placeholder="Salasõna" v-model="password">
   <br>
   <br>
-  <select v-model="role">
+  <select class="select" v-model="role">
     <option disabled value="">Valige roll</option>
     <option>user</option>
     <option>shop</option>
   </select>
-  <button v-on:click="register">Salvesta andmed</button>
+  <button class="small-button" v-on:click="register">Salvesta andmed</button>
   <br>
   <br>
+  </div>
 </div>
 </template>
 

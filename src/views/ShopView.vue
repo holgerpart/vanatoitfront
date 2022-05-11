@@ -7,12 +7,15 @@
       <button @click="navigateToStock">Laoseis</button>
       <button @click="navigateToOrders">Tellimused</button>
     </div>
+    <div class="shop">
+      <h3>Vali pood</h3>
+    </div>
     <div v-if="true">
       <section>
-        <h3>Vali pood</h3>
-        <ul class="list-group">
-          <li class="list-group-item" v-for="shop in shops">
-            <input v-on:change="selectName(shop.shopName)" type="radio" v-model="shopId"
+
+        <ul >
+          <li v-for="shop in shops">
+            <input class="select" v-on:change="selectName(shop.shopName)" type="radio" v-model="shopId"
                    :value="shop.shopId">{{ shop.shopName }}
           </li>
         </ul>
@@ -20,14 +23,14 @@
     </div>
 
 
-    <button v-on:click="navigateToFoodInput">Sisesta uus kaubarida
+    <button class="small-button" v-on:click="navigateToFoodInput">Sisesta uus kaubarida
     </button>
     <br>
     <br>
-    <button v-on:click="navigateToStock">Vaata laoseisu</button>
+    <button class="small-button" v-on:click="navigateToStock">Vaata laoseisu</button>
     <br>
     <br>
-    <button v-on:click="navigateToOrders">Vaata tellimusi</button>
+    <button class="small-button" v-on:click="navigateToOrders">Vaata tellimusi</button>
   </div>
 </template>
 

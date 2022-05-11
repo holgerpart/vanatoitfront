@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="navbar">
-      <button class="active">Poe vaade</button>
+      <button class="active">Admin</button>
       <button @click="navigateToShop">Poe vaade</button>
       <button @click="navigateToUser">Kliendivaade</button>
       <button @click="navigateToFoodInput">Kaubarea sisestus</button>
@@ -182,6 +182,27 @@ export default {
 
 
 <style scoped>
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.side {
+  flex: 30%;
+  background-color: beige;
+  padding: 20px;
+}
+
+.main {
+  flex: 70%;
+  background-color: white;
+  padding: 20px;
+}
+
+/*.navbar {*/
+/*  display: flex;*/
+/*  background-color: grey;*/
+/*}*/
 table, th, td {
   /*border: 1px solid black;*/
   border-collapse: collapse;
@@ -191,9 +212,11 @@ table, th, td {
   padding: 15px;
   /*border-spacing: 30px;*/
 }
+
 tr:hover {
   background-color: bisque;
 }
+
 /*caption {*/
 /*  font:;*/
 /*}*/
@@ -201,4 +224,43 @@ input {
   text-align: center;
 }
 
+.navbar {
+  display: flex;
+  width: 100%;
+  background-color: #231818;
+  overflow: auto;
+}
+
+/* Navigation links */
+.navbar button {
+  float: left;
+  padding: 12px;
+  color: black;
+  text-decoration: none;
+  font-size: 17px;
+  width: 20%; /* Four equal-width links. If you have two links, use 50%, and 33.33% for three links, etc.. */
+  text-align: center; /* If you want the text to be centered */
+}
+
+/* Add a background color on mouse-over */
+.navbar button:hover {
+  background-color: #000;
+  color: white;
+
+}
+
+/* Style the current/active link */
+.navbar button.active {
+  background-color: #4b5860;
+}
+
+/* Add responsiveness - on screens less than 500px, make the navigation links appear on top of each other, instead of next to each other */
+@media screen and (max-width: 500px) {
+  .navbar button {
+    float: none;
+    display: block;
+    width: 100%;
+    text-align: left; /* If you want the text to be left-aligned on small screens */
+  }
+}
 </style>

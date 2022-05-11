@@ -4,27 +4,23 @@
       <button class="active" @click="navigateToUser">Kliendivaade</button>
     </div>
     <div>
-      <div>
+      <div class="input">
         <h3>Kaupade otsing</h3>
         <select v-model="foodName">
           <option value="0" disabled selected>Vali toode</option>
           <option v-for="article in articles" :value="article.name">{{article.name}}</option>
         </select>
         <button v-on:click="getByName">Otsi</button>
-        <br>
-        <br>
+
         <select v-model="foodType">
           <option value="0" disabled selected>Vali tootegrupp</option>
           <option v-for="type in types" :value="type.name">{{type.name}}</option>
         </select>
-        <input type="text" placeholder="Tootegrupp" v-model="foodType">
         <button v-on:click="getByFoodType">Otsi</button>
-        <br>
-        <br>
+
         <input type="text" placeholder="Pood" v-model="shop">
         <button v-on:click="getByShop">Otsi</button>
-        <br>
-        <br>
+
         <input type="text" placeholder="Linn" v-model="city">
         <button v-on:click="getByCity">Otsi</button>
       </div>
@@ -188,7 +184,8 @@ export default {
       firstName: '',
       lastName: '',
       id: '',
-      articles:{}
+      articles:{},
+      types:{}
     }
   },
   methods: {
@@ -197,6 +194,15 @@ export default {
           .then(response => {
             this.articles = response.data
             console.log(response.data)
+          }).catch(error => {
+        console.log(error)
+      })
+    },
+    getTypes: function () {
+      this.$http.get("/stock/types")
+          .then(response => {
+            console.log(response.data)
+            this.types = response.data
           }).catch(error => {
         console.log(error)
       })
@@ -396,7 +402,8 @@ export default {
     },
   },
   mounted() {
-    this.getArticles()
+    this.getArticles();
+    this.getTypes()
   }
 }
 </script>
@@ -437,12 +444,16 @@ tr:hover {
 .navbar button:hover {
   background-color: #000;
   color: white;
-
 }
 
 /* Style the current/active link */
 .navbar button.active {
   background-color: #04AA6D;
+}
+
+.input {
+  display: inline-block;
+  margin: 50px;
 }
 
 /* Add responsiveness - on screens less than 500px, make the navigation links appear on top of each other, instead of next to each other */

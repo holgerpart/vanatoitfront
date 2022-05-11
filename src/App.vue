@@ -32,7 +32,7 @@
 #header {
   padding: 60px;
   text-align: center;
-  background: antiquewhite;
+
   color: #2c3e50;
   font-size: 1.8em;
 

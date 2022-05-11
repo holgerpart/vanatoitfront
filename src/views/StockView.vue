@@ -1,83 +1,85 @@
 <template>
-<div>
-  <div class="navbar">
-    <button @click="navigateToShop">Poe vaade</button>
-    <button @click="navigateToUser">Kliendivaade</button>
-    <button @click="navigateToStockInput">Kaubarea sisestus</button>
-    <button class="active" @click="navigateToStock">Laoseis</button>
-    <button @click="navigateToOrders">Tellimused</button>
-  </div>
-  <div class="row">
+  <div>
     <div class="navbar">
+      <button @click="navigateToShop">Poe vaade</button>
+      <button @click="navigateToUser">Kliendivaade</button>
+      <button @click="navigateToStockInput">Kaubarea sisestus</button>
+      <button class="active" @click="navigateToStock">Laoseis</button>
+      <button @click="navigateToOrders">Tellimused</button>
+    </div>
+    <div class="row">
+      <div>
+        <h3>
+          Pood: {{ shopName }}
+        </h3>
+      </div>
+    </div>
+    <div>
+      <h3>
 
-        Pood: {{ shopName }}
+      </h3>
+    </div>
+
+    <div v-if="displayUpdate === false" class="main">
+      <table style="width:100%">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Toit</th>
+          <th scope="col">Kogus</th>
+          <th scope="col">Ühik</th>
+          <th scope="col">Kuupäev</th>
+          <th scope="col">Kommentaarid</th>
+          <th scope="col">Valik</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="shopFood in shopFoods">
+          <th scope="row">{{ shopFood.id }}</th>
+          <td>{{ shopFood.foodName }}</td>
+          <td>{{ shopFood.quantity }}</td>
+          <td>{{ shopFood.unitName }}</td>
+          <td>{{ shopFood.dateTime }}</td>
+          <td>{{ shopFood.comments }}</td>
+          <td>
+            <button v-if="displayUpdate === false" v-on:click="selectFoodId(shopFood)">Muuda kogust</button>
+            <!--          <input v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">-->
+            <!--          <button v-if="displayUpdate" v-on:click="confirmUpdate">Kinnita</button>-->
+          </td>
+
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <button v-on:click="navigateToStockInput">Sisesta uus kaubarida
+      </button>
+      <button v-on:click="navigateToOrders">Vaata tellimusi</button>
+      <table v-if="displayUpdate" style="width:100%">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Toit</th>
+          <th scope="col">Kogus</th>
+          <th scope="col">Ühik</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th scope="row">{{ shopFoodId }}</th>
+          <td>{{ articleName }}</td>
+          <td>{{ quantity }}</td>
+          <td>{{ unit }}</td>
+
+        </tr>
+        </tbody>
+      </table>
+      <input v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">
+      <button v-if="displayUpdate" v-on:click="confirmUpdate">Kinnita</button>
+      <button v-if="displayUpdate" v-on:click="reverseDisplay">Tühista</button>
+
     </div>
   </div>
-  <div>
-    <h3>
-
-    </h3>
-  </div>
-
-  <div v-if="displayUpdate === false" class="main">
-    <table style="width:100%">
-      <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Toit</th>
-        <th scope="col">Kogus</th>
-        <th scope="col">Ühik</th>
-        <th scope="col">Kuupäev</th>
-        <th scope="col">Kommentaarid</th>
-        <th scope="col">Valik</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr v-for="shopFood in shopFoods">
-        <th scope="row" >{{ shopFood.id }}</th>
-        <td>{{ shopFood.foodName }}</td>
-        <td>{{ shopFood.quantity }}</td>
-        <td>{{ shopFood.unitName }}</td>
-        <td>{{ shopFood.dateTime }}</td>
-          <td>{{ shopFood.comments }}</td>
-        <td><button v-if= "displayUpdate === false" v-on:click="selectFoodId(shopFood)" >Muuda kogust</button>
-<!--          <input v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">-->
-<!--          <button v-if="displayUpdate" v-on:click="confirmUpdate">Kinnita</button>-->
-        </td>
-
-      </tr>
-      </tbody>
-    </table>
-  </div>
-  <div>
-    <button v-on:click="navigateToStockInput">Sisesta uus kaubarida
-    </button>
-    <button v-on:click="navigateToOrders">Vaata tellimusi</button>
-    <table v-if="displayUpdate" style="width:100%">
-      <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Toit</th>
-        <th scope="col">Kogus</th>
-        <th scope="col">Ühik</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <th scope="row" >{{ shopFoodId }}</th>
-        <td>{{ articleName }}</td>
-        <td>{{ quantity }}</td>
-        <td>{{ unit }}</td>
-
-      </tr>
-      </tbody>
-    </table>
-    <input v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">
-    <button v-if="displayUpdate" v-on:click="confirmUpdate">Kinnita</button>
-    <button v-if="displayUpdate" v-on:click="reverseDisplay">Tühista</button>
-
-  </div>
-</div>
 </template>
 
 <script>
@@ -85,7 +87,7 @@ export default {
   name: "StockView",
   data: function () {
     return {
-    shopFoods: {},
+      shopFoods: {},
       shopId: sessionStorage.getItem('shopId'),
       userId: sessionStorage.getItem('userId'),
       shopName: sessionStorage.getItem('shopName'),
@@ -98,7 +100,6 @@ export default {
       unit: ''
 
 
-
     }
   },
   methods: {
@@ -106,9 +107,9 @@ export default {
       this.shopFoodId = id.id
       this.articleName = id.foodName
       this.quantity = id.quantity
-      this.unit= id.unit
+      this.unit = id.unit
       sessionStorage.setItem('shopFoodId', this.shopFoodId)
-        this.displayUpdate = true;
+      this.displayUpdate = true;
     },
     confirmUpdate: function () {
       let stockRequest = {
@@ -127,30 +128,30 @@ export default {
       })
     },
     getStockById: function () {
-        this.$http.get("/stock/shopid", {
-          params: {
-            shopId: this.shopId
-          }
-        })
-            .then(response => {
-              console.log(response.data)
+      this.$http.get("/stock/shopid", {
+        params: {
+          shopId: this.shopId
+        }
+      })
+          .then(response => {
+            console.log(response.data)
 
-              this.shopFoods = response.data
-            }).catch(error => {
-          alert(error)
-        })
-      },
+            this.shopFoods = response.data
+          }).catch(error => {
+        alert(error)
+      })
+    },
 
-  navigateToStockInput: function () {
-    sessionStorage.setItem('shopId', this.shopId)
-    sessionStorage.setItem('shopName', this.shopName)
-    this.$router.push({name: 'StockInputRoute'})
-  },
-  navigateToOrders: function () {
-    sessionStorage.setItem('shopId', this.shopId)
-    sessionStorage.setItem('shopName', this.shopName)
-    this.$router.push({name: 'ordersRoute'})
-  },
+    navigateToStockInput: function () {
+      sessionStorage.setItem('shopId', this.shopId)
+      sessionStorage.setItem('shopName', this.shopName)
+      this.$router.push({name: 'StockInputRoute'})
+    },
+    navigateToOrders: function () {
+      sessionStorage.setItem('shopId', this.shopId)
+      sessionStorage.setItem('shopName', this.shopName)
+      this.$router.push({name: 'ordersRoute'})
+    },
     reverseDisplay: function () {
       this.displayUpdate = !this.displayUpdate
     },
@@ -170,7 +171,7 @@ export default {
 
     },
 
-    },
+  },
   mounted() {
     this.getStockById()
   }
@@ -182,6 +183,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
 }
+
 .side {
   flex: 30%;
   background-color: beige;
@@ -207,15 +209,18 @@ table, th, td {
   padding: 15px;
   /*border-spacing: 30px;*/
 }
+
 tr:hover {
   background-color: bisque;
 }
+
 /*caption {*/
 /*  font:;*/
 /*}*/
 input {
   text-align: center;
 }
+
 .navbar {
   display: flex;
   width: 100%;

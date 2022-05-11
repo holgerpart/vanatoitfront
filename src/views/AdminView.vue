@@ -1,5 +1,13 @@
 <template>
   <div>
+    <div class="navbar">
+      <button class="active">Poe vaade</button>
+      <button @click="navigateToShop">Poe vaade</button>
+      <button @click="navigateToUser">Kliendivaade</button>
+      <button @click="navigateToFoodInput">Kaubarea sisestus</button>
+      <button @click="navigateToStock">Laoseis</button>
+      <button @click="navigateToOrders">Tellimused</button>
+    </div>
     <h1>AdminView</h1>
     <div v-if="displayUpdate === false" class="input">
       <input type="text" placeholder="Poe nimi" v-model="shopName">
@@ -81,6 +89,7 @@ export default {
       cityName: null,
       shops: {},
       displayUpdate: false,
+      userId: sessionStorage.getItem('userId')
 
     }
   },
@@ -134,7 +143,33 @@ export default {
           }).catch(error => {
         console.log(error)
       })
-    }
+    },
+    navigateToFoodInput: function () {
+      sessionStorage.setItem('shopId', this.shopId)
+      sessionStorage.setItem('shopName', this.shopName)
+      this.$router.push({name: 'StockInputRoute'})
+    },
+    navigateToStock: function () {
+      sessionStorage.setItem('shopId', this.shopId)
+      sessionStorage.setItem('shopName', this.shopName)
+      this.$router.push({name: 'stockRoute'})
+
+    },
+    navigateToOrders: function () {
+      sessionStorage.setItem('shopId', this.shopId)
+      sessionStorage.setItem('shopName', this.shopName)
+      this.$router.push({name: 'ordersRoute'})
+    },
+    navigateToShop: function () {
+      sessionStorage.setItem('shopId', this.shopId)
+      sessionStorage.setItem('shopName', this.shopName)
+      this.$router.push({name: 'shopRoute'})
+    },
+      navigateToUser: function () {
+        sessionStorage.setItem('shopId', this.shopId)
+        sessionStorage.setItem('userId', this.userId)
+        this.$router.push({name: 'userRoute'})
+      },
   },
   mounted() {
     this.getShops()

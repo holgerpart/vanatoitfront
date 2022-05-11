@@ -1,19 +1,22 @@
 <template>
   <div>
-<!--    <div class="navbar">-->
-<!--      <button @click="navigateToShop">Poe vaade</button>-->
-<!--      <button class="active" @click="navigateToUser">Kliendivaade</button>-->
-<!--      <button @click="navigateToStockInput">Kaubarea sisestus</button>-->
-<!--      <button @click="navigateToStock">Laoseis</button>-->
-<!--      <button @click="navigateToOrders">Tellimused</button>-->
-<!--    </div>-->
+    <div class="navbar">
+      <button class="active" @click="navigateToUser">Kliendivaade</button>
+    </div>
     <div>
       <div>
         <h3>Kaupade otsing</h3>
-        <input type="text" placeholder="Tootenimetus" v-model="foodName">
+        <select v-model="foodName">
+          <option value="0" disabled selected>Vali toode</option>
+          <option v-for="article in articles" :value="article.name">{{article.name}}</option>
+        </select>
         <button v-on:click="getByName">Otsi</button>
         <br>
         <br>
+        <select v-model="foodType">
+          <option value="0" disabled selected>Vali tootegrupp</option>
+          <option v-for="type in types" :value="type.name">{{type.name}}</option>
+        </select>
         <input type="text" placeholder="Tootegrupp" v-model="foodType">
         <button v-on:click="getByFoodType">Otsi</button>
         <br>
@@ -184,10 +187,20 @@ export default {
       orderDisplayUpdate: false,
       firstName: '',
       lastName: '',
-      id: ''
+      id: '',
+      articles:{}
     }
   },
   methods: {
+    getArticles: function () {
+      this.$http.get("/stock/articles")
+          .then(response => {
+            this.articles = response.data
+            console.log(response.data)
+          }).catch(error => {
+        console.log(error)
+      })
+    },
     getByName: function () {
       this.tableDisplay = true
       this.$http.get("/stock/articlename", {
@@ -381,6 +394,9 @@ export default {
       this.$router.push({name: 'shopRoute'})
 
     },
+  },
+  mounted() {
+    this.getArticles()
   }
 }
 </script>

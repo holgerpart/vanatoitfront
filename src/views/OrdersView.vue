@@ -12,11 +12,11 @@
         Pood: {{ shopName }}
       </h3>
     </div>
-    <div>
-      <table v-if="displayUpdate === false" style="width:100%">
+    <div class="table">
+      <table v-if="displayUpdate === false" >
         <thead>
         <tr>
-          <th>#</th>
+          <th style="width:1%">#</th>
           <th>Eesnimi</th>
           <th>Perekonnanimi</th>
           <th>Pood</th>
@@ -36,7 +36,7 @@
           <td>{{ order.quantity }}</td>
           <td>{{ order.status }}</td>
           <td>
-            <button v-if="displayUpdate === false" v-on:click="selectOrder(order)">Muuda</button>
+            <button v-on:click="selectOrder(order)">Muuda</button>
             <!--            <input v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">-->
             <!--            <select v-if="displayUpdate" v-model="statusName">-->
             <!--              <option disabled value="">Valige roll</option>-->
@@ -50,7 +50,7 @@
         </tr>
         </tbody>
       </table>
-      <table v-if="displayUpdate" style="width:100%">
+      <table v-if="displayUpdate">
         <thead>
         <tr>
           <th>#</th>
@@ -211,17 +211,16 @@ export default {
 }
 </script>
 <style scoped>
-.flex-container {
-  display: flex;
-  flex-direction: column;
-}
 
-
-
-table, th, td {
+.table {
   position: relative;
   left: 300px;
+  top: 100px;
 
+}
+
+table, th, td {
+  width: 80%;
   /*border: 1px solid black;*/
   border-collapse: collapse;
   /*background-color: beige;*/
@@ -230,6 +229,7 @@ table, th, td {
   padding: 15px;
   /*border-spacing: 30px;*/
 }
+
 
 tr:hover {
   background-color: bisque;

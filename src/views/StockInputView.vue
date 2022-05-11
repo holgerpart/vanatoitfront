@@ -92,6 +92,7 @@ export default {
           this.$router.push({name: 'stockRoute'})
         }).catch(error => {
           console.log(error)
+          alert(error.response.data.detail)
         })
       },
     navigateToStockInput: function () {

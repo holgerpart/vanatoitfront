@@ -1,5 +1,10 @@
 <template>
+
+
   <div id="app">
+    <div id="header">
+      Vali VanaToit
+    </div>
 <!--    <nav>-->
 <!--      <router-link to="/home">Home</router-link> |-->
 <!--      <router-link to="/about">About</router-link> |-->
@@ -22,6 +27,15 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+#header {
+  padding: 60px;
+  text-align: center;
+  background: antiquewhite;
+  color: #2c3e50;
+  font-size: 1.8em;
+
 }
 
 nav {

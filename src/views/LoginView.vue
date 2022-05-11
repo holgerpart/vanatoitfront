@@ -11,8 +11,7 @@
         <h3>vali konto</h3>
         <ul class="list-group">
           <li class="list-group-item" v-for="role in userRoles">
-            <input v-on:click="navigateToSelectedRole" type="radio" v-model="roleId"
-                   :value="role.roleId">{{ role.roleName }}
+            <input v-on:click="navigateToSelectedRole(role.roleId)" type="radio" v-model="roleId" :value="role.roleId">{{ role.roleName }}
           </li>
         </ul>
       </section>
@@ -21,11 +20,6 @@
     <button v-on:click="login">Sisene</button>
     <br>
     <button v-on:click="navigateToRegister">Registreeri kasutaja</button>
-    <div v-if="tableDivDisplay">
-
-      <button v-on:click="displayTableDiv" type="button" class="btn btn-success">Näita</button>
-      <button v-on:click="hideTableDiv" type="button" class="btn btn-danger">Peida</button>
-    </div>
   </div>
 </template>
 
@@ -64,7 +58,6 @@ export default {
       ).then(response => {
         this.userRoles = response.data.userRoles
         sessionStorage.setItem('userId', response.data.userId)
-
         if (this.userRoles.length === 1) {
           if (this.userRoles[0].roleId === 1) {
             this.navigateToUser()
@@ -85,18 +78,20 @@ export default {
         console.log(error)
       })
     },
-    navigateToSelectedRole: function () {
-      sessionStorage.setItem('roleId', this.roleId)
-      if (this.roleId === 1) {
+    navigateToSelectedRole: function (id) {
+
+      sessionStorage.setItem('roleId', id)
+      if (id === 1) {
         this.navigateToUser()
-      } else {
+      } else if (id === 2) {
         this.navigateToShop()
+      } else {
+        this.navigateToAdmin()
       }
     },
     navigateToAdmin: function () {
-      this.$router.push({name: 'shopRoute'})
+      this.$router.push({name: 'adminRoute'})
     },
-
 
     navigateToShop: function () {
       this.$router.push({name: 'shopRoute'})

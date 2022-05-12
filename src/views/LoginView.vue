@@ -84,6 +84,14 @@ export default {
         console.log(error)
       })
     },
+    clearSessionStorage: function () {
+      sessionStorage.setItem('userId', null)
+      sessionStorage.setItem('shopId', null)
+      sessionStorage.setItem('roleId', null)
+      sessionStorage.setItem('shopName', '')
+
+    },
+
     navigateToSelectedRole: function (id) {
 
       sessionStorage.setItem('roleId', id)
@@ -108,6 +116,9 @@ export default {
     navigateToRegister: function () {
       this.$router.push({name: 'registerRoute'})
     },
+  },
+  mounted() {
+    this.clearSessionStorage();
   }
 }
 

@@ -47,15 +47,24 @@
 
     }
     .radio {
-        justify-content: center;
-        background-color: white;
-        padding: 15px 32px;
-        border: dodgerblue;
-        border-radius: 4px;
-        font-size: 17px;
-        width: 200px;
-        position: relative;
+        border-bottom-style: ridge;
+        width: 50%;
+        background-color: #efefef;
+        padding: 10px;
+        font-size: 20px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
     }
+    /*.radio {*/
+    /*    background-color: white;*/
+    /*    padding: 15px 32px;*/
+    /*    border: dodgerblue;*/
+    /*    border-radius: 4px;*/
+    /*    font-size: 17px;*/
+    /*    width: 200px;*/
+    /*    !*position: relative;*!*/
+    /*    !*left: 775px;*!*/
+    /*}*/
 
     .select {
         background-color: white;
@@ -66,19 +75,21 @@
     }
     tr:hover {
         background-color: bisque;
+
     }
 
     /*caption {*/
     /*  font:;*/
     /*}*/
-    input {
-        position: center;
-        text-align: center;
-        width: 200px;
-    }
+    /*input {*/
+    /*    position: center;*/
+    /*    text-align: center;*/
+    /*    width: 200px;*/
+    /*}*/
 
     ul {
         list-style-type: none;
+
     }
     .small-button {
         background-color: dodgerblue;
@@ -86,36 +97,35 @@
         border: dodgerblue;
         border-radius: 4px;
         font-size: 17px;
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        /*box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);*/
 
     }
-
     .small-button:hover {
         background-color: #4b5860;
         color: white;
         animation: flare 1000ms ease-out forwards;
     }
-    .small-button::before {
-         content: '';
-         position: absolute;
-         left: 40px;
-         width: 100px;
-         height: 40px;
-         background: rgba(255, 230, 110, 1);
-         border-radius: 100%;
-         animation: flare 1000ms ease-out forwards;
-     }
+    /*.small-button::before {*/
+    /*     content: '';*/
+    /*     position: absolute;*/
+    /*     left: 40px;*/
+    /*     width: 100px;*/
+    /*     height: 40px;*/
+    /*     background: rgba(255, 230, 110, 1);*/
+    /*     border-radius: 100%;*/
+    /*     animation: flare 1000ms ease-out forwards;*/
+    /* }*/
 
-    .small-button::after {
-         content: '';
-         position: absolute;
-         right: 40px;
-         width: 100px;
-         height: 40px;
-         background: rgba(255, 230, 110, 1);
-         border-radius: 100%;
-         animation: flare 1000ms ease-out forwards;
-     }
+    /*.small-button::after {*/
+    /*     content: '';*/
+    /*     position: absolute;*/
+    /*     right: 40px;*/
+    /*     width: 100px;*/
+    /*     height: 40px;*/
+    /*     background: rgba(255, 230, 110, 1);*/
+    /*     border-radius: 100%;*/
+    /*     animation: flare 1000ms ease-out forwards;*/
+    /* }*/
 
     @keyframes flare {
         100% {
@@ -125,24 +135,24 @@
         }
     }
 
-    @keyframes burn {
-        0% {
-            color: rgba(255, 130, 110, 1);
-            background: rgba(255, 230, 110, 1);
-            box-shadow:
-                    0 0 5px 0 rgba(200, 0, 10, 1),
-                    0 0 5px 0 rgba(230, 30, 10, 0.8),
-                    0 0 5px 0 rgba(230, 230, 10, 0.6);
-        }
+    /*@keyframes burn {*/
+    /*    0% {*/
+    /*        color: rgba(255, 130, 110, 1);*/
+    /*        background: rgba(255, 230, 110, 1);*/
+    /*        box-shadow:*/
+    /*                0 0 5px 0 rgba(200, 0, 10, 1),*/
+    /*                0 0 5px 0 rgba(230, 30, 10, 0.8),*/
+    /*                0 0 5px 0 rgba(230, 230, 10, 0.6);*/
+    /*    }*/
 
-        100% {
-            color: rgba(0, 0, 0, 1);
-            background: rgba(255, 255, 255, 1);
-            box-shadow:
-                    0 -35px 40px 30px rgba(255, 130, 10, 0),
-                    0 -30px 30px 10px rgba(230, 30, 10, 0),
-                    0 -20px 10px 0 rgba(255, 255, 10, 0);
-        }}
+    /*    100% {*/
+    /*        color: rgba(0, 0, 0, 1);*/
+    /*        background: rgba(255, 255, 255, 1);*/
+    /*        box-shadow:*/
+    /*                0 -35px 40px 30px rgba(255, 130, 10, 0),*/
+    /*                0 -30px 30px 10px rgba(230, 30, 10, 0),*/
+    /*                0 -20px 10px 0 rgba(255, 255, 10, 0);*/
+    /*    }}*/
     .navbar {
         width: 100%;
         background-color: #231818;
@@ -155,7 +165,7 @@
     .navbar button {
         float: left;
         color: black;
-        padding: 18px;
+        padding: 30px;
         text-decoration: none;
         font-size: 17px;
         width: 20%; /* Four equal-width links. If you have two links, use 50%, and 33.33% for three links, etc.. */

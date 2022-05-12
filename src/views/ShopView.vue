@@ -11,15 +11,12 @@
       <h3>Vali pood</h3>
     </div>
     <div v-if="true">
-      <section>
-
-        <ul >
-          <li class="radio" v-for="shop in shops">
+        <ul>
+          <li  class="radio" v-for="shop in shops">
             <input v-on:change="selectName(shop.shopName)" type="radio" v-model="shopId"
                    :value="shop.shopId">{{ shop.shopName }}
           </li>
         </ul>
-      </section>
     </div>
 
 

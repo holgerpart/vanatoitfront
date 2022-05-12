@@ -10,6 +10,7 @@
     <div>
       <div class="shop">
         <h3>Kaupade otsing</h3>
+        <h3>{{ shopId }}</h3>
       </div>
 
       <div>
@@ -383,7 +384,7 @@ export default {
       this.orderDisplay = true
     },
     navigateToStockInput: function () {
-      if (this.shopId != null) {
+      if (this.shopId === null) {
         sessionStorage.setItem('shopId', this.shopId);
         sessionStorage.setItem('shopName', this.shopName)
         this.$router.push({name: 'StockInputRoute'})
@@ -391,7 +392,7 @@ export default {
 
     },
     navigateToOrders: function () {
-      if (this.shopId != null) {
+      if (this.shopId === null) {
         sessionStorage.setItem('shopId', this.shopId)
         sessionStorage.setItem('shopName', this.shopName)
         this.$router.push({name: 'ordersRoute'})
@@ -401,14 +402,14 @@ export default {
       this.$router.push({name: 'userRoute'})
     },
     navigateToStock: function () {
-      if (this.shopId != null) {
+      if (this.shopId !== null) {
         sessionStorage.setItem('shopId', this.shopId)
         sessionStorage.setItem('shopName', this.shopName)
         this.$router.push({name: 'stockRoute'})
       }
     },
     navigateToShop: function () {
-      if (this.shopId != null) {
+      if (this.shopId !== null) {
         sessionStorage.setItem('shopId', this.shopId)
         sessionStorage.setItem('shopName', this.shopName)
         this.$router.push({name: 'shopRoute'})

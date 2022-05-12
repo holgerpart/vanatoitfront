@@ -13,26 +13,13 @@
     </h3>
   </div>
   <div>
-
-    <br>
-    <br>
-<!--    <input type="text" placeholder="Toidu Id" v-model="foodId">-->
     <select class="select" v-model="foodId">
       <option value="0" disabled selected>Vali toiduaine</option>
       <option v-for="article in articles" :value="article.id">{{ article.name }}</option>
     </select>
-    <br>
-    <br>
     <input class="select" type="text" placeholder="Kogus" v-model="quantity">
-    <br>
-    <br>
     <input class="select" type="date" placeholder="Kõlblik kuni" v-model="expirationDate">Kõlblik kuni
-    <br>
-    <br>
     <input class="select" type="text" placeholder="Kommentaarid" v-model="comments">
-    <br>
-    <br>
-<!--    <input type="text" placeholder="Ühik" v-model="unit">-->
     <select class="select" v-model="unit">
       <option value="0" disabled selected>Vali ühik</option>
       <option value="kg">kg</option>

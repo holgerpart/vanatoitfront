@@ -11,7 +11,8 @@
       <div class="shop">
         <h3>Kaupade otsing</h3>
       </div>
-      <div class="input">
+
+      <div>
         <select class="select" v-model="foodName">
           <option value="0" disabled selected>Vali toode</option>
           <option v-for="article in articles" :value="article.name">{{ article.name }}</option>

@@ -14,8 +14,8 @@
       <section>
 
         <ul >
-          <li v-for="shop in shops">
-            <input class="select" v-on:change="selectName(shop.shopName)" type="radio" v-model="shopId"
+          <li class="radio" v-for="shop in shops">
+            <input v-on:change="selectName(shop.shopName)" type="radio" v-model="shopId"
                    :value="shop.shopId">{{ shop.shopName }}
           </li>
         </ul>

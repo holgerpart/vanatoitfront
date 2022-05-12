@@ -26,7 +26,7 @@
       <input type="text" placeholder="Linn" v-model="cityName">
       <br>
       <div>
-        <button @click="inputShop">Sisesta</button>
+        <button class="small-button" @click="inputShop">Sisesta</button>
       </div>
     </div>
 
@@ -55,7 +55,7 @@
           <td>{{ shop.telNumber }}</td>
           <td>{{ shop.cityName }}</td>
           <td>
-            <button v-on:click="selectShopId(shop.id)">Muuda poe andmeid</button>
+            <button class="small-button" v-on:click="selectShopId(shop.id)">Muuda poe andmeid</button>
           </td>
 
         </tr>
@@ -68,8 +68,8 @@
       <input  type="text" placeholder="Uus aadress" v-model="aadress">
       <input  type="text" placeholder="Uus telefoninumber" v-model="telNumber">
       <input  type="text" placeholder="Uus linn" v-model="cityName">
-      <button v-on:click="updateShop">Kinnita</button>
-      <button v-on:click="cancelUpdate">Tühista</button>
+      <button class="small-button" v-on:click="updateShop">Kinnita</button>
+      <button class="small-button" v-on:click="cancelUpdate">Tühista</button>
     </div>
 
   </div>

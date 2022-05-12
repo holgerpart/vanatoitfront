@@ -57,7 +57,7 @@
               <td>{{ shopFood.dateTime }}</td>
               <td>{{ shopFood.comments }}</td>
               <td>
-                <button v-if="displayUpdate === false" v-on:click="selectFoodId(shopFood)">Broneeri</button>
+                <button class="small-button" v-if="displayUpdate === false" v-on:click="selectFoodId(shopFood)">Broneeri</button>
               </td>
             </tr>
             </tbody>
@@ -84,8 +84,8 @@
           </tbody>
         </table>
         <input v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">
-        <button v-if="displayUpdate" v-on:click="newBooking">Kinnita</button>
-        <button v-if="displayUpdate" v-on:click="reverseDisplay">Tühista</button>
+        <button class="small-button" v-if="displayUpdate" v-on:click="newBooking">Kinnita</button>
+        <button class="small-button" v-if="displayUpdate" v-on:click="reverseDisplay">Tühista</button>
       </div>
     </div>
     <div>

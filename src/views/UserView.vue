@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="navbar">
-      <button @click="navigateToShop">Poe vaade</button>
-      <button class="active" @click="navigateToUser">Kliendivaade</button>
-      <button @click="navigateToStockInput">Kaubarea sisestus</button>
-      <button @click="navigateToStock">Laoseis</button>
-      <button @click="navigateToOrders">Tellimused</button>
+    <div>
+      <button class="small-button" @click="navigateToShop">Poe vaade</button>
+      <button class="small-button active" @click="navigateToUser">Kliendivaade</button>
+<!--      <button @click="navigateToStockInput">Kaubarea sisestus</button>-->
+<!--      <button @click="navigateToStock">Laoseis</button>-->
+<!--      <button @click="navigateToOrders">Tellimused</button>-->
     </div>
     <div>
       <div class="shop">

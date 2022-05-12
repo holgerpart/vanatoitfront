@@ -84,6 +84,7 @@ export default {
         console.log(response.data)
       }).catch(error => {
         console.log(error)
+        alert(error.response.data.detail)
       })
     },
     clearSessionStorage: function () {
@@ -120,7 +121,7 @@ export default {
     },
   },
   mounted() {
-    this.clearSessionStorage();
+    sessionStorage.clear()
   }
 }
 

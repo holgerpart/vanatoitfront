@@ -64,6 +64,8 @@ export default {
       ).then(response => {
         this.userRoles = response.data.userRoles
         sessionStorage.setItem('userId', response.data.userId)
+        sessionStorage.setItem('userRolesAmount', this.userRoles.length)
+        sessionStorage.setItem('userRoles', this.userRoles)
         if (this.userRoles.length === 1) {
           if (this.userRoles[0].roleId === 1) {
             this.navigateToUser()

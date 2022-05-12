@@ -409,7 +409,7 @@ export default {
       }
     },
     navigateToShop: function () {
-      if (this.shopId !== null) {
+      if (this.shopId == null) {
         sessionStorage.setItem('shopId', this.shopId)
         sessionStorage.setItem('shopName', this.shopName)
         this.$router.push({name: 'shopRoute'})

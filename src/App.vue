@@ -4,22 +4,100 @@
   <div id="app">
     <div id="header">
       Vali VanaToit
+      {{roleId}}
     </div>
-<!--    <nav>-->
-<!--      <router-link to="/home">Home</router-link> |-->
-<!--      <router-link to="/about">About</router-link> |-->
-<!--      <router-link to="/">Login</router-link> |-->
-<!--      <router-link to="/register">Register</router-link> |-->
-<!--      <router-link to="/shop">Pood</router-link> |-->
-<!--      <router-link to="/user">Kasutaja</router-link> |-->
-<!--      <router-link to="/stock-input">Kaubarea sisestus</router-link> |-->
-<!--      <router-link to="/stock">Laoseis</router-link> |-->
-<!--      <router-link to="/orders">Tellimused</router-link> |-->
-<!--    </nav>-->
+    <nav>
+      <button class="small-button" @click="navigateToLogin">Login</button>
+      <button class="small-button" v-if="getRoleId() > 1" @click="navigateToRegister">Register</button>
+      <button class="small-button" v-if="getRoleId() > 1" @click="navigateToShop">Pood</button>
+      <button class="small-button" v-if="getRoleId() > 0" @click="navigateToUser">Kasutaja</button>
+      <button class="small-button" v-if="getRoleId() > 1" @click="navigateToStockInput">Kaubarea sisestus</button>
+      <button class="small-button" v-if="getRoleId() > 1" @click="navigateToStock">Laoseis</button>
+      <button class="small-button" v-if="getRoleId() > 1 " @click="navigateToLogin">Tellimused</button>
+      <button class="small-button" v-if="getRoleId() === 3 " @click="navigateToAdmin">Admin</button>
+<!--      <button class="small-button" v-if="getRolesAmount() > 1" @click="showChoice">Vali roll</button>-->
+<!--      <ul class="list-group" v-if="roleChoice">-->
+<!--        <li class="list-group-item" v-for="role in userRoles">-->
+<!--          <input  class="select" v-on:click="navigateToSelectedRole(role.roleId)" type="radio" v-model="roleId" :value="role.roleId">{{-->
+<!--            role.roleName-->
+<!--          }}-->
+<!--        </li>-->
+<!--      </ul>-->
+    </nav>
     <router-view/>
   </div>
 </template>
+<script>
+export default {
+  data: function () {
+    return {
+      userName: '',
+      password: '',
+      role: {},
+      roles: {},
+      userRoles: sessionStorage.getItem('userRoles'),
+      roleId: sessionStorage.getItem('roleId'),
+      userId: sessionStorage.getItem('userId'),
+      shopId: sessionStorage.getItem('shopId'),
+      shopName: sessionStorage.getItem('shopName'),
+      // userRolesAmount: sessionStorage.getItem(),
+      roleChoice: false
+    }
+  },
+  methods: {
+    navigateToLogin: function () {
+      this.$router.push({name: 'loginRoute'})
+    },
+    navigateToRegister: function () {
+      this.$router.push({name: 'registerRoute'})
+    },
+    navigateToUser: function () {
+      this.$router.push({name: 'userRoute'})
+    },
+    navigateToStockInput: function () {
+        sessionStorage.setItem('shopId', this.shopId);
+        sessionStorage.setItem('shopName', this.shopName)
+        this.$router.push({name: 'StockInputRoute'})
 
+    },
+    navigateToStock: function () {
+        sessionStorage.setItem('shopId', this.shopId)
+        sessionStorage.setItem('shopName', this.shopName)
+        this.$router.push({name: 'stockRoute'})
+    },
+    getRoleId: function () {
+      return Number(sessionStorage.getItem('roleId'));
+    }
+    ,
+    navigateToAdmin: function () {
+      sessionStorage.setItem('shopId', this.shopId);
+      sessionStorage.setItem('shopName', this.shopName)
+      this.$router.push({name: 'adminRoute'})
+    },
+
+    getRolesAmount: function () {
+      return sessionStorage.getItem('userRolesAmount')
+    },
+    navigateToSelectedRole: function (id) {
+
+      sessionStorage.setItem('roleId', id)
+      if (id === 1) {
+        this.navigateToUser()
+      } else if (id === 2) {
+        this.navigateToShop()
+      } else {
+        this.navigateToAdmin()
+      }
+    },
+    navigateToShop: function () {
+      sessionStorage.setItem('shopId', this.shopId)
+      sessionStorage.setItem('shopName', this.shopName)
+      this.$router.push({name: 'shopRoute'})
+    },
+  }
+
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

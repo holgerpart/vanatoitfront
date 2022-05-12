@@ -1,6 +1,6 @@
 <template>
   <div class="flex-container">
-    <div class="navbar">
+      <div class="navbar">
       <button @click="navigateToShop">Poe vaade</button>
       <button @click="navigateToUser">Kliendivaade</button>
       <button @click="navigateToStockInput">Kaubarea sisestus</button>

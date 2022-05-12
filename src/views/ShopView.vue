@@ -12,7 +12,7 @@
     </div>
     <div v-if="true">
         <ul>
-          <li  class="radio" v-for="shop in shops">
+          <li class="radio" v-for="shop in shops">
             <input v-on:change="selectName(shop.shopName)" type="radio" v-model="shopId"
                    :value="shop.shopId">{{ shop.shopName }}
           </li>

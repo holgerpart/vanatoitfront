@@ -1,28 +1,35 @@
 <template>
   <div>
     <div class="navbar">
+      <button @click="navigateToShop">Poe vaade</button>
       <button class="active" @click="navigateToUser">Kliendivaade</button>
+      <button @click="navigateToStockInput">Kaubarea sisestus</button>
+      <button @click="navigateToStock">Laoseis</button>
+      <button @click="navigateToOrders">Tellimused</button>
     </div>
     <div>
-      <div class="input">
+      <div class="shop">
         <h3>Kaupade otsing</h3>
-        <select v-model="foodName">
+      </div>
+
+      <div>
+        <select class="select" v-model="foodName">
           <option value="0" disabled selected>Vali toode</option>
-          <option v-for="article in articles" :value="article.name">{{article.name}}</option>
+          <option v-for="article in articles" :value="article.name">{{ article.name }}</option>
         </select>
-        <button v-on:click="getByName">Otsi</button>
+        <button class="small-button" v-on:click="getByName">Otsi</button>
 
-        <select v-model="foodType">
+        <select class="select" v-model="foodType">
           <option value="0" disabled selected>Vali tootegrupp</option>
-          <option v-for="type in types" :value="type.name">{{type.name}}</option>
+          <option v-for="type in types" :value="type.name">{{ type.name }}</option>
         </select>
-        <button v-on:click="getByFoodType">Otsi</button>
+        <button class="small-button" v-on:click="getByFoodType">Otsi</button>
 
-        <input type="text" placeholder="Pood" v-model="shop">
-        <button v-on:click="getByShop">Otsi</button>
+        <input class="select" type="text" placeholder="Pood" v-model="shop">
+        <button class="small-button" v-on:click="getByShop">Otsi</button>
 
-        <input type="text" placeholder="Linn" v-model="city">
-        <button v-on:click="getByCity">Otsi</button>
+        <input class="select" type="text" placeholder="Linn" v-model="city">
+        <button class="small-button" v-on:click="getByCity">Otsi</button>
       </div>
 
       <div>
@@ -50,7 +57,7 @@
               <td>{{ shopFood.dateTime }}</td>
               <td>{{ shopFood.comments }}</td>
               <td>
-                <button v-if="displayUpdate === false" v-on:click="selectFoodId(shopFood)">Broneeri</button>
+                <button class="small-button" v-if="displayUpdate === false" v-on:click="selectFoodId(shopFood)">Broneeri</button>
               </td>
             </tr>
             </tbody>
@@ -77,13 +84,13 @@
           </tbody>
         </table>
         <input v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">
-        <button v-if="displayUpdate" v-on:click="newBooking">Kinnita</button>
-        <button v-if="displayUpdate" v-on:click="reverseDisplay">Tühista</button>
+        <button class="small-button" v-if="displayUpdate" v-on:click="newBooking">Kinnita</button>
+        <button class="small-button" v-if="displayUpdate" v-on:click="reverseDisplay">Tühista</button>
       </div>
     </div>
     <div>
       <div>
-        <button v-on:click="showOrders">Näita tellimusi</button>
+        <button class="small-button" v-on:click="showOrders">Näita tellimusi</button>
       </div>
       <div v-if="orderDisplay">
         <table style="width:100%">
@@ -109,48 +116,48 @@
             <td>{{ order.quantity }}</td>
             <td>{{ order.status }}</td>
             <td>
-              <button v-if="displayUpdate === false" v-on:click="selectOrder(order)">Muuda</button>
+              <button class="small-button" v-if="displayUpdate === false" v-on:click="selectOrder(order)">Muuda</button>
             </td>
           </tr>
           </tbody>
         </table>
       </div>
       <div v-if="orderDisplayUpdate">
-      <table style="width:100%">
-        <thead>
-        <tr>
-          <th>#</th>
-          <th>Eesnimi</th>
-          <th>Perekonnanimi</th>
-          <th>Pood</th>
-          <th>Toiduartikkel</th>
-          <th>Kogus</th>
-          <th>Staatus</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td>{{ id }}</td>
-          <td>{{ firstName }}</td>
-          <td>{{ lastName }}</td>
-          <td>{{ shopName }}</td>
-          <td>{{ foodName }}</td>
-          <td>{{ quantity }}</td>
-          <td>{{ status }}</td>
-        </tr>
-        </tbody>
-      </table>
-      <input type="text" placeholder="Uus kogus" v-model="newQuantity">
-      <button v-on:click="confirmUpdate">Kinnita</button>
+        <table style="width:100%">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Eesnimi</th>
+            <th>Perekonnanimi</th>
+            <th>Pood</th>
+            <th>Toiduartikkel</th>
+            <th>Kogus</th>
+            <th>Staatus</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>{{ id }}</td>
+            <td>{{ firstName }}</td>
+            <td>{{ lastName }}</td>
+            <td>{{ shopName }}</td>
+            <td>{{ foodName }}</td>
+            <td>{{ quantity }}</td>
+            <td>{{ status }}</td>
+          </tr>
+          </tbody>
+        </table>
+        <input type="text" placeholder="Uus kogus" v-model="newQuantity">
+        <button class="small-button" v-on:click="confirmUpdate">Kinnita</button>
 
-        <select v-model="statusName">
+        <select class="select" v-model="statusName">
           <option disabled value="">Valige roll</option>
           <option>Completed</option>
           <option>Cancelled</option>
           <option>Open</option>
         </select>
-        <button v-on:click="confirmStatus">Kinnita</button>
-        <button v-on:click="reverseOrderDisplay">Tühista</button>
+        <button class="small-button" v-on:click="confirmStatus">Kinnita</button>
+        <button class="small-button" v-on:click="reverseOrderDisplay">Tühista</button>
       </div>
     </div>
   </div>
@@ -184,8 +191,8 @@ export default {
       firstName: '',
       lastName: '',
       id: '',
-      articles:{},
-      types:{}
+      articles: {},
+      types: {}
     }
   },
   methods: {
@@ -372,32 +379,40 @@ export default {
       this.displayUpdate = !this.displayUpdate
     },
     reverseOrderDisplay: function () {
-      this.orderDisplayUpdate =  false
+      this.orderDisplayUpdate = false
       this.orderDisplay = true
     },
     navigateToStockInput: function () {
-      sessionStorage.setItem('shopId', this.shopId)
-      sessionStorage.setItem('shopName', this.shopName)
-      this.$router.push({name: 'StockInputRoute'})
+      if (this.shopId != null) {
+        sessionStorage.setItem('shopId', this.shopId);
+        sessionStorage.setItem('shopName', this.shopName)
+        this.$router.push({name: 'StockInputRoute'})
+      }
+
     },
     navigateToOrders: function () {
-      sessionStorage.setItem('shopId', this.shopId)
-      sessionStorage.setItem('shopName', this.shopName)
-      this.$router.push({name: 'ordersRoute'})
+      if (this.shopId != null) {
+        sessionStorage.setItem('shopId', this.shopId)
+        sessionStorage.setItem('shopName', this.shopName)
+        this.$router.push({name: 'ordersRoute'})
+      }
     },
     navigateToUser: function () {
       this.$router.push({name: 'userRoute'})
     },
     navigateToStock: function () {
-      sessionStorage.setItem('shopId', this.shopId)
-      sessionStorage.setItem('shopName', this.shopName)
-      this.$router.push({name: 'stockRoute'})
-
+      if (this.shopId != null) {
+        sessionStorage.setItem('shopId', this.shopId)
+        sessionStorage.setItem('shopName', this.shopName)
+        this.$router.push({name: 'stockRoute'})
+      }
     },
     navigateToShop: function () {
-      sessionStorage.setItem('shopId', this.shopId)
-      sessionStorage.setItem('shopName', this.shopName)
-      this.$router.push({name: 'shopRoute'})
+      if (this.shopId != null) {
+        sessionStorage.setItem('shopId', this.shopId)
+        sessionStorage.setItem('shopName', this.shopName)
+        this.$router.push({name: 'shopRoute'})
+      }
 
     },
   },

@@ -7,20 +7,20 @@
       <button class="active" @click="navigateToStock">Laoseis</button>
       <button @click="navigateToOrders">Tellimused</button>
     </div>
-    <div class="row">
-      <div>
+
+      <div class="shop">
         <h3>
           Pood: {{ shopName }}
         </h3>
       </div>
-    </div>
+
     <div>
       <h3>
 
       </h3>
     </div>
 
-    <div v-if="displayUpdate === false" class="main">
+    <div v-if="displayUpdate === false">
       <table style="width:100%">
         <thead>
         <tr>
@@ -72,9 +72,9 @@
         </tr>
         </tbody>
       </table>
-      <input v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">
-      <button v-if="displayUpdate" v-on:click="confirmUpdate">Kinnita</button>
-      <button v-if="displayUpdate" v-on:click="reverseDisplay">Tühista</button>
+      <input class="select" v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">
+      <button class="small-button" v-if="displayUpdate" v-on:click="confirmUpdate">Kinnita</button>
+      <button class="small-button" v-if="displayUpdate" v-on:click="reverseDisplay">Tühista</button>
 
     </div>
   </div>
@@ -154,6 +154,8 @@ export default {
       this.displayUpdate = !this.displayUpdate
     },
     navigateToUser: function () {
+      sessionStorage.setItem('shopId', this.shopId)
+      sessionStorage.setItem('shopName', this.shopName)
       this.$router.push({name: 'userRoute'})
     },
     navigateToStock: function () {

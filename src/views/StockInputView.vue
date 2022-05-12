@@ -1,11 +1,11 @@
 <template>
 <div>
-  <div class="navbar">
-    <button  href="#">Koduleht</button>
-    <button @click="navigateToUser">Kliendivaade</button>
-    <button class="active" @click="navigateToStockInput">Kaubarea sisestus</button>
-    <button @click="navigateToStock">Laoseis</button>
-    <button  @click="navigateToOrders">Tellimused</button>
+  <div>
+    <button class="nav-button" >Koduleht</button>
+    <button class="nav-button" @click="navigateToUser">Kliendivaade</button>
+    <button class="nav-button active" @click="navigateToStockInput">Kaubarea sisestus</button>
+    <button class="nav-button" @click="navigateToStock">Laoseis</button>
+    <button class="nav-button"  @click="navigateToOrders">Tellimused</button>
   </div>
   <div class="shop">
     <h3>
@@ -14,7 +14,7 @@
   </div>
   <div>
     <select class="select" v-model="foodId">
-      <option value="0" disabled selected>Vali toiduaine</option>
+      <option  value="0" disabled selected>Vali toiduaine</option>
       <option v-for="article in articles" :value="article.id">{{ article.name }}</option>
     </select>
     <input class="select" type="text" placeholder="Kogus" v-model="quantity">

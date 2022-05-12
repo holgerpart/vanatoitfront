@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="navbar">
-      <button class="active">Poe vaade</button>
-      <button @click="navigateToUser">Kliendivaade</button>
-      <button @click="navigateToFoodInput">Kaubarea sisestus</button>
-      <button @click="navigateToStock">Laoseis</button>
-      <button @click="navigateToOrders">Tellimused</button>
+    <div>
+      <button class="nav-button active">Poe vaade</button>
+      <button class="nav-button" @click="navigateToUser">Kliendivaade</button>
+      <button class="nav-button" @click="navigateToFoodInput">Kaubarea sisestus</button>
+      <button class="nav-button" @click="navigateToStock">Laoseis</button>
+      <button class="nav-button" @click="navigateToOrders">Tellimused</button>
     </div>
     <div class="shop">
       <h3>Vali pood</h3>

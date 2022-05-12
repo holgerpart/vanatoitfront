@@ -3,8 +3,7 @@
 
   <div id="app">
     <div id="header">
-      Vali VanaToit
-      {{roleId}}
+      <header> Vali VanaToit</header>
     </div>
     <nav>
       <button class="small-button" @click="navigateToLogin">Login</button>

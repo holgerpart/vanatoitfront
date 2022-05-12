@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="navbar">
-      <button @click="navigateToShop">Poe vaade</button>
-      <button @click="navigateToUser">Kliendivaade</button>
-      <button @click="navigateToStockInput">Kaubarea sisestus</button>
-      <button class="active" @click="navigateToStock">Laoseis</button>
-      <button @click="navigateToOrders">Tellimused</button>
+    <div>
+      <button class="nav-button" @click="navigateToShop">Poe vaade</button>
+      <button class="nav-button" @click="navigateToUser">Kliendivaade</button>
+      <button class="nav-button" @click="navigateToStockInput">Kaubarea sisestus</button>
+      <button class="nav-button active" @click="navigateToStock">Laoseis</button>
+      <button class="nav-button" @click="navigateToOrders">Tellimused</button>
     </div>
 
       <div class="shop">
@@ -21,7 +21,7 @@
     </div>
 
     <div v-if="displayUpdate === false">
-      <table style="width:100%">
+      <table style="width:75%">
         <thead>
         <tr>
           <th scope="col">#</th>

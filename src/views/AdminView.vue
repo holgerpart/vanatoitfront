@@ -1,12 +1,12 @@
 <template>
   <div>
     <div class="navbar">
-      <button class="active">Admin</button>
-      <button @click="navigateToShop">Poe vaade</button>
-      <button @click="navigateToUser">Kliendivaade</button>
-      <button @click="navigateToFoodInput">Kaubarea sisestus</button>
-      <button @click="navigateToStock">Laoseis</button>
-      <button @click="navigateToOrders">Tellimused</button>
+      <button class="nav-button active">Admin</button>
+      <button class="nav-button" @click="navigateToShop">Poe vaade</button>
+      <button class="nav-button" @click="navigateToUser">Kliendivaade</button>
+      <button class="nav-button" @click="navigateToFoodInput">Kaubarea sisestus</button>
+      <button class="nav-button" @click="navigateToStock">Laoseis</button>
+      <button class="nav-button" @click="navigateToOrders">Tellimused</button>
     </div>
     <h1>AdminView</h1>
     <div v-if="displayUpdate === false" class="input">

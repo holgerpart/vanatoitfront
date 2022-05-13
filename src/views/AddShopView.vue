@@ -88,7 +88,7 @@ export default {
       displayUpdate: false,
       userId: sessionStorage.getItem('userId'),
       shopId: sessionStorage.getItem('shopId'),
-      shopName: null
+      shopName: sessionStorage.getItem('shopName')
 
     }
   },

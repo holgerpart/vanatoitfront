@@ -10,36 +10,16 @@
       <button class="nav-button" @click="navigateToAddShop">Poe lisamine</button>
       <button class="nav-button" @click="navigateToLogin">Logi välja</button>
     </div>
-    <div>
-      <br>
-      <div id="example-table">
-      <table>
-        <caption class="caption">Poodide nimekiri</caption>
-        <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Poe nimi</th>
-          <th scope="col">Aadress</th>
-          <th scope="col">Telefoninumber</th>
-          <th scope="col">Linn</th>
-          <th scope="col"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="shop in shops">
-          <th scope="row">{{ shop.id }}</th>
-          <td>{{ shop.name }}</td>
-          <td>{{ shop.aadress }}</td>
-          <td>{{ shop.telNumber }}</td>
-          <td>{{ shop.cityName }}</td>
-          <td>
-            <button class="small-button" v-on:click="selectShopId(shop.id)">Muuda poe andmeid</button>
-          </td>
-
-        </tr>
-        </tbody>
-      </table>
-      </div>
+    <div class="shop">
+      <h3>Vali pood</h3>
+    </div>
+    <div v-if="true">
+      <ul>
+        <li class="radio" v-for="shop in shops">
+          <input v-on:change="selectName(shop.shopName)" type="radio" v-model="shopId"
+                 :value="shop.shopId">{{ shop.shopName }}
+        </li>
+      </ul>
     </div>
     <div v-if="displayUpdate">
       <input  type="text" placeholder="Uus poe nimi" v-model="shopName">
@@ -59,7 +39,7 @@ export default {
   name: "AdminView",
   data: function () {
     return {
-      shopName: null,
+      shopName: '',
       aadress: null,
       telNumber: null,
       longitude: null,
@@ -67,7 +47,8 @@ export default {
       cityName: null,
       shops: {},
       displayUpdate: false,
-      userId: sessionStorage.getItem('userId')
+      userId: sessionStorage.getItem('userId'),
+      shopId: sessionStorage.getItem('shopId'),
 
     }
   },
@@ -122,6 +103,21 @@ export default {
         console.log(error)
       })
     },
+    getAuthorizedShops: function () {
+      this.$http.get("/stock/shops", {
+            params: {
+              userId: this.userId
+            }
+          }
+      ).then(response => {
+        this.shops = response.data
+        this.shopId = response.data[0].shopId
+        this.shopName = response.data[0].shopName
+        console.log(response.data)
+      }).catch(error => {
+        console.log(error)
+      })
+    },
     navigateToFoodInput: function () {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
@@ -153,12 +149,19 @@ export default {
       this.$router.push({name: 'loginRoute'})
     },
     navigateToAddShop: function () {
-      this.$router.push({name:'addShopRoute'})
-    }
+      sessionStorage.setItem('shopId', this.shopId)
+      sessionStorage.setItem('userId', this.userId)
+      sessionStorage.setItem('shopName', this.shopName)
+
+      this.$router.push({name: 'addShopRoute'})
+    },
+    selectName: function (name) {
+      this.shopName = name
+    },
 
   },
   mounted() {
-    this.getShops()
+    this.getAuthorizedShops()
   }
 
 

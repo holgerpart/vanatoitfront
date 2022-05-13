@@ -6,6 +6,7 @@
       <button class="nav-button" @click="navigateToFoodInput">Kaubarea sisestus</button>
       <button class="nav-button" @click="navigateToStock">Laoseis</button>
       <button class="nav-button" @click="navigateToOrders">Tellimused</button>
+      <button class="nav-button" @click="navigateToLogin">Logi välja</button>
     </div>
     <div class="shop">
       <h3>Vali pood</h3>
@@ -82,6 +83,9 @@ export default {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
       this.$router.push({name: 'ordersRoute'})
+    },
+    navigateToLogin: function () {
+      this.$router.push({name: 'loginRoute'})
     },
   }
   , mounted() {

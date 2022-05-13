@@ -82,7 +82,7 @@
       <button class="small-button" v-if="displayUpdate" v-on:click="confirmUpdate">Kinnita</button>
 
       <select class="select" v-if="displayUpdate" v-model="statusName">
-        <option disabled value="">Valige roll</option>
+        <option disabled selected hidden value="">Valige roll</option>
         <option>Completed</option>
         <option>Cancelled</option>
         <option>Open</option>

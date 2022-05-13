@@ -14,7 +14,7 @@
   </div>
   <div class="input">
     <select class="select" v-model="foodId">
-      <option  value="0" disabled selected>Vali toiduaine</option>
+      <option  value="" disabled selected hidden>Vali toiduaine</option>
       <option v-for="article in articles" :value="article.id">{{ article.name }}</option>
     </select>
     <input class="select" type="text" placeholder="Kogus" v-model="quantity">

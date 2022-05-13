@@ -54,7 +54,7 @@
             <td>{{ shop.telNumber }}</td>
             <td>{{ shop.cityName }}</td>
             <td>
-              <button v-on:click="selectShopId(shop.id)">Muuda poe andmeid</button>
+              <button class="small-button" v-on:click="selectShopId(shop.id)">Muuda poe andmeid</button>
             </td>
 
           </tr>
@@ -67,8 +67,8 @@
       <input type="text" placeholder="Uus aadress" v-model="aadress">
       <input type="text" placeholder="Uus telefoninumber" v-model="telNumber">
       <input type="text" placeholder="Uus linn" v-model="cityName">
-      <button v-on:click="updateShop">Kinnita</button>
-      <button v-on:click="cancelUpdate">Tühista</button>
+      <button class="small-button" v-on:click="updateShop">Kinnita</button>
+      <button class="small-button" v-on:click="cancelUpdate">Tühista</button>
     </div>
 
   </div>
@@ -166,6 +166,8 @@ export default {
       this.$router.push({name: 'ordersRoute'})
     },
     navigateToShops: function () {
+      sessionStorage.setItem('shopId', this.shopId)
+      sessionStorage.setItem('shopName', this.shopName)
       this.$router.push({name: 'shopsRoute'})
     },
     navigateToLogin: function () {

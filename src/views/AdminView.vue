@@ -10,7 +10,6 @@
       <button class="nav-button" @click="navigateToAddShop">Poe lisamine</button>
       <button class="nav-button" @click="navigateToLogin">Logi välja</button>
     </div>
-    <h1>AdminView</h1>
     <div>
       <br>
       <div id="example-table">

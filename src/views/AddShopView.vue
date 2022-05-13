@@ -2,11 +2,11 @@
   <div>
     <div>
       <button class="active">Poe lisamine</button>
+      <button class="nav-button" @click="navigateToShop">Poe vaade</button>
       <button class="nav-button" @click="navigateToUser">Kliendivaade</button>
       <button class="nav-button" @click="navigateToFoodInput">Kaubarea sisestus</button>
       <button class="nav-button" @click="navigateToStock">Laoseis</button>
       <button class="nav-button" @click="navigateToOrders">Tellimused</button>
-      <button class="nav-button" @click="navigateToShops">Poe vaade</button>
       <button class="nav-button" @click="navigateToLogin">Logi välja</button>
 
 
@@ -166,10 +166,10 @@ export default {
       sessionStorage.setItem('shopName', this.shopName)
       this.$router.push({name: 'ordersRoute'})
     },
-    navigateToShops: function () {
+    navigateToShop: function () {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
-      this.$router.push({name: 'shopsRoute'})
+      this.$router.push({name: 'shopRoute'})
     },
     navigateToLogin: function () {
       this.$router.push({name: 'loginRoute'})

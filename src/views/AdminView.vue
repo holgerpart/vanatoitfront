@@ -152,7 +152,6 @@ export default {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('userId', this.userId)
       sessionStorage.setItem('shopName', this.shopName)
-
       this.$router.push({name: 'addShopRoute'})
     },
     selectName: function (name) {

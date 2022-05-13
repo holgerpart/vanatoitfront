@@ -6,14 +6,14 @@
       <header> Vali VanaToit</header>
     </div>
     <nav>
-      <button class="small-button" @click="navigateToLogin">Login</button>
-      <button class="small-button" v-if="getRoleId() > 1" @click="navigateToRegister">Register</button>
-      <button class="small-button" v-if="getRoleId() > 1" @click="navigateToShop">Pood</button>
-      <button class="small-button" v-if="getRoleId() > 0" @click="navigateToUser">Kasutaja</button>
-      <button class="small-button" v-if="getRoleId() > 1" @click="navigateToStockInput">Kaubarea sisestus</button>
-      <button class="small-button" v-if="getRoleId() > 1" @click="navigateToStock">Laoseis</button>
-      <button class="small-button" v-if="getRoleId() > 1 " @click="navigateToLogin">Tellimused</button>
-      <button class="small-button" v-if="getRoleId() === 3 " @click="navigateToAdmin">Admin</button>
+<!--      <button class="small-button" @click="navigateToLogin">Login</button>-->
+<!--      <button class="small-button" v-if="getRoleId() > 1" @click="navigateToRegister">Register</button>-->
+<!--      <button class="small-button" v-if="getRoleId() > 1" @click="navigateToShop">Pood</button>-->
+<!--      <button class="small-button" v-if="getRoleId() > 0" @click="navigateToUser">Kasutaja</button>-->
+<!--      <button class="small-button" v-if="getRoleId() > 1" @click="navigateToStockInput">Kaubarea sisestus</button>-->
+<!--      <button class="small-button" v-if="getRoleId() > 1" @click="navigateToStock">Laoseis</button>-->
+<!--      <button class="small-button" v-if="getRoleId() > 1 " @click="navigateToLogin">Tellimused</button>-->
+<!--      <button class="small-button" v-if="getRoleId() === 3 " @click="navigateToAdmin">Admin</button>-->
 <!--      <button class="small-button" v-if="getRolesAmount() > 1" @click="showChoice">Vali roll</button>-->
 <!--      <ul class="list-group" v-if="roleChoice">-->
 <!--        <li class="list-group-item" v-for="role in userRoles">-->

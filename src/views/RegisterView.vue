@@ -1,12 +1,6 @@
 <template>
 <div>
-  <div class="navbar">
-    <button>Poe vaade</button>
-    <button>Kliendivaade</button>
-    <button>Kaubarea sisestus</button>
-    <button>Laoseis</button>
-    <button>Tellimused</button>
-  </div>
+
   <div>
   <input class="select" type="text" placeholder="Eesnimi" v-model="firstName">
   <br>

@@ -7,9 +7,9 @@
       <input class="select" type="text" placeholder="Salasõna" v-model="password">
       <br>
     </div>
-    <div v-if="valiKontoDivDisplay">
+    <div class="radio" v-if="valiKontoDivDisplay">
       <section>
-        <h3>vali konto</h3>
+        <h3>VALI KONTO</h3>
         <ul class="list-group">
           <li class="list-group-item" v-for="role in userRoles">
             <input  class="select" v-on:click="navigateToSelectedRole(role.roleId)" type="radio" v-model="roleId" :value="role.roleId">{{
@@ -19,10 +19,12 @@
         </ul>
       </section>
     </div>
+    <div v-if="loginInputDivDisplay">
     <br>
     <button class="small-button" v-on:click="login">Sisene</button>
     <br>
     <button class="small-button" v-on:click="navigateToRegister">Registreeri kasutaja</button>
+    </div>
   </div>
 </template>
 

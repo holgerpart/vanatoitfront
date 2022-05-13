@@ -153,7 +153,9 @@ export default {
     navigateToLogin: function () {
       this.$router.push({name: 'loginRoute'})
     },
-    // navigateTo
+    navigateToAddShop: function () {
+      this.$router.push({name:'addShopRoute'})
+    }
 
   },
   mounted() {

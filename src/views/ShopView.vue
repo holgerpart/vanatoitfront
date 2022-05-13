@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <button class="nav-button active">Poe vaade</button>
+      <button class="active">Poe vaade</button>
       <button class="nav-button" @click="navigateToUser">Kliendivaade</button>
       <button class="nav-button" @click="navigateToFoodInput">Kaubarea sisestus</button>
       <button class="nav-button" @click="navigateToStock">Laoseis</button>

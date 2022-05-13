@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <button class="nav-button active">Admin</button>
+      <button class="active">Admin</button>
       <button class="nav-button" @click="navigateToShop">Poe vaade</button>
       <button class="nav-button" @click="navigateToUser">Kliendivaade</button>
       <button class="nav-button" @click="navigateToFoodInput">Kaubarea sisestus</button>

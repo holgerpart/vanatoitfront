@@ -1,12 +1,12 @@
 <template>
   <div class="flex-container">
-      <div>
+    <div>
       <button class="nav-button" @click="navigateToShop">Poe vaade</button>
       <button class="nav-button" @click="navigateToUser">Kliendivaade</button>
       <button class="nav-button" @click="navigateToStockInput">Kaubarea sisestus</button>
       <button class="nav-button" @click="navigateToStock">Laoseis</button>
-      <button class="nav-button active" @click="navigateToOrders">Tellimused</button>
-        <button class="nav-button" @click="navigateToLogin">Logi välja</button>
+      <button class="active">Tellimused</button>
+      <button class="nav-button" @click="navigateToLogin">Logi välja</button>
 
     </div>
     <div class="shop">
@@ -15,7 +15,7 @@
       </h3>
     </div>
     <div class="table">
-      <table v-if="displayUpdate === false" style="width: 75%" >
+      <table v-if="displayUpdate === false" style="width: 75%">
         <thead>
         <tr>
           <th style="width:1%">#</th>
@@ -53,31 +53,31 @@
         </tbody>
       </table>
       <div class="table">
-      <table v-if="displayUpdate" style="width: 75%;">
-        <thead>
-        <tr>
-          <th style="width:1%">#</th>
-          <th>Eesnimi</th>
-          <th>Perekonnanimi</th>
-          <th>Pood</th>
-          <th>Toiduartikkel</th>
-          <th>Kogus</th>
-          <th>Staatus</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td>{{ orderId }}</td>
-          <td>{{ firstName }}</td>
-          <td>{{ lastName }}</td>
-          <td>{{ shopName }}</td>
-          <td>{{ foodName }}</td>
-          <td>{{ quantity }}</td>
-          <td>{{ status }}</td>
-        </tr>
-        </tbody>
-      </table>
-        </div>
+        <table v-if="displayUpdate" style="width: 75%;">
+          <thead>
+          <tr>
+            <th style="width:1%">#</th>
+            <th>Eesnimi</th>
+            <th>Perekonnanimi</th>
+            <th>Pood</th>
+            <th>Toiduartikkel</th>
+            <th>Kogus</th>
+            <th>Staatus</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>{{ orderId }}</td>
+            <td>{{ firstName }}</td>
+            <td>{{ lastName }}</td>
+            <td>{{ shopName }}</td>
+            <td>{{ foodName }}</td>
+            <td>{{ quantity }}</td>
+            <td>{{ status }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
       <input class="select" v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">
       <button class="small-button" v-if="displayUpdate" v-on:click="confirmUpdate">Kinnita</button>
 
@@ -87,8 +87,8 @@
         <option>Cancelled</option>
         <option>Open</option>
       </select>
-      <button class="small-button"  v-if="displayUpdate" v-on:click="confirmStatus">Kinnita</button>
-      <button class="small-button"  v-if="displayUpdate" v-on:click="reverseDisplay">Tühista</button>
+      <button class="small-button" v-if="displayUpdate" v-on:click="confirmStatus">Kinnita</button>
+      <button class="small-button" v-if="displayUpdate" v-on:click="reverseDisplay">Tühista</button>
     </div>
   </div>
 </template>

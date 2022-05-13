@@ -2,7 +2,7 @@
 <div>
   <div>
     <button class="nav-button" @click="navigateToUser">Kliendivaade</button>
-    <button class="nav-button active" @click="navigateToStockInput">Kaubarea sisestus</button>
+    <button class="active">Kaubarea sisestus</button>
     <button class="nav-button" @click="navigateToStock">Laoseis</button>
     <button class="nav-button"  @click="navigateToOrders">Tellimused</button>
     <button class="nav-button" @click="navigateToLogin">Logi välja</button>

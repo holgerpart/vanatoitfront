@@ -2,32 +2,30 @@
   <div>
     <div>
       <button class="active">Poe lisamine</button>
-      <button @click="navigateToUser">Kliendivaade</button>
-      <button @click="navigateToFoodInput">Kaubarea sisestus</button>
-      <button @click="navigateToStock">Laoseis</button>
-      <button @click="navigateToOrders">Tellimused</button>
-      <button @click="navigateToShops">Poe vaade</button>
+      <button class="nav-button" @click="navigateToUser">Kliendivaade</button>
+      <button class="nav-button" @click="navigateToFoodInput">Kaubarea sisestus</button>
+      <button class="nav-button" @click="navigateToStock">Laoseis</button>
+      <button class="nav-button" @click="navigateToOrders">Tellimused</button>
+      <button class="nav-button" @click="navigateToShops">Poe vaade</button>
+      <button class="nav-button" @click="navigateToLogin">Logi välja</button>
+
 
     </div>
     <h1></h1>
     <div>
-      <input type="text" placeholder="Poe nimi" v-model="shopName">
+      <input class="select" type="text" placeholder="Poe nimi" v-model="shopName">
       <br>
+      <input class="select" type="text" placeholder="Aadress" v-model="aadress">
       <br>
-      <input type="text" placeholder="Aadress" v-model="aadress">
+      <input class="select" type="text" placeholder="Telefoni number" v-model="telNumber">
       <br>
+      <input class="select"  type="text" placeholder="Pikkuskraad" v-model="longitude">
       <br>
-      <input type="text" placeholder="Telefoni number" v-model="telNumber">
+      <input class="select" type="text" placeholder="Laiuskraad" v-model="latitude">
       <br>
-      <br>
-      <input type="text" placeholder="Pikkuskraad" v-model="longitude">
-      <br>
-      <input type="text" placeholder="Laiuskraad" v-model="latitude">
-      <br>
-      <input type="text" placeholder="Linn" v-model="cityName">
-      <br>
+      <input class="select" type="text" placeholder="Linn" v-model="cityName">
       <div>
-        <button @click="inputShop">Sisesta</button>
+        <button class="small-button" @click="inputShop">Sisesta</button>
       </div>
     </div>
 
@@ -35,7 +33,7 @@
     <div>
       <br>
       <div id="example-table">
-        <table style="width:100%">
+        <table style="width:75%">
           <caption>Poodide nimekiri</caption>
           <thead>
           <tr>
@@ -65,10 +63,10 @@
       </div>
     </div>
     <div v-if="displayUpdate">
-      <input  type="text" placeholder="Uus poe nimi" v-model="shopName">
-      <input  type="text" placeholder="Uus aadress" v-model="aadress">
-      <input  type="text" placeholder="Uus telefoninumber" v-model="telNumber">
-      <input  type="text" placeholder="Uus linn" v-model="cityName">
+      <input type="text" placeholder="Uus poe nimi" v-model="shopName">
+      <input type="text" placeholder="Uus aadress" v-model="aadress">
+      <input type="text" placeholder="Uus telefoninumber" v-model="telNumber">
+      <input type="text" placeholder="Uus linn" v-model="cityName">
       <button v-on:click="updateShop">Kinnita</button>
       <button v-on:click="cancelUpdate">Tühista</button>
     </div>
@@ -79,15 +77,22 @@
 <script>
 export default {
   name: "AddShopView",
-  data: function(){
-    return{
-
-
-
+  data: function () {
+    return {
+      aadress: null,
+      telNumber: null,
+      longitude: null,
+      latitude: null,
+      cityName: null,
+      shops: {},
+      displayUpdate: false,
+      userId: sessionStorage.getItem('userId'),
+      shopId: sessionStorage.getItem('shopId'),
+      shopName: null
 
     }
   },
-  methods:{
+  methods: {
     cancelUpdate: function (id) {
       this.displayUpdate = false;
     },
@@ -162,6 +167,9 @@ export default {
     },
     navigateToShops: function () {
       this.$router.push({name: 'shopsRoute'})
+    },
+    navigateToLogin: function () {
+      this.$router.push({name: 'loginRoute'})
     },
 
   },

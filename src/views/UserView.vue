@@ -2,7 +2,7 @@
   <div>
     <div>
 <!--      <button class="nav-button" @click="navigateToShop">Poe vaade</button>-->
-      <button class="nav-button active" @click="navigateToUser">Kliendivaade</button>
+      <button class="active">Kliendivaade</button>
       <button class="nav-button" @click="navigateToLogin">Logi välja</button>
 <!--      <button @click="navigateToStockInput">Kaubarea sisestus</button>-->
 <!--      <button @click="navigateToStock">Laoseis</button>-->

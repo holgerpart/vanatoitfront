@@ -4,7 +4,7 @@
       <button class="nav-button" @click="navigateToShop">Poe vaade</button>
       <button class="nav-button" @click="navigateToUser">Kliendivaade</button>
       <button class="nav-button" @click="navigateToStockInput">Kaubarea sisestus</button>
-      <button class="nav-button active" @click="navigateToStock">Laoseis</button>
+      <button class="active">Laoseis</button>
       <button class="nav-button" @click="navigateToOrders">Tellimused</button>
       <button class="nav-button" @click="navigateToLogin">Logi välja</button>
 

@@ -39,14 +39,6 @@
           <td>{{ order.status }}</td>
           <td>
             <button class="small-button" v-on:click="selectOrder(order)">Muuda</button>
-            <!--            <input v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">-->
-            <!--            <select v-if="displayUpdate" v-model="statusName">-->
-            <!--              <option disabled value="">Valige roll</option>-->
-            <!--              <option>Completed</option>-->
-            <!--              <option>Cancelled</option>-->
-            <!--              <option>Open</option>-->
-            <!--            </select>-->
-            <!--            <button v-if="displayUpdate" v-on:click="confirmUpdate">Kinnita</button>-->
           </td>
 
         </tr>
@@ -177,6 +169,7 @@ export default {
         this.displayUpdate = false
       }).catch(error => {
         console.log(error)
+        alert(error.response.data.detail)
       })
     },
     reverseDisplay: function () {

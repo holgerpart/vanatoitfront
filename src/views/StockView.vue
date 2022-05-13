@@ -15,13 +15,7 @@
           Pood: {{ shopName }}
         </h3>
       </div>
-
-    <div>
-      <h3>
-
-      </h3>
-    </div>
-
+    <br>
     <div v-if="displayUpdate === false">
       <table style="width:75%">
         <thead>

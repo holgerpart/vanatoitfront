@@ -7,36 +7,15 @@
       <button class="nav-button" @click="navigateToFoodInput">Kaubarea sisestus</button>
       <button class="nav-button" @click="navigateToStock">Laoseis</button>
       <button class="nav-button" @click="navigateToOrders">Tellimused</button>
+      <button class="nav-button" @click="navigateToAddShop">Poe lisamine</button>
       <button class="nav-button" @click="navigateToLogin">Logi välja</button>
     </div>
     <h1>AdminView</h1>
-    <div v-if="displayUpdate === false" class="input">
-      <input type="text" placeholder="Poe nimi" v-model="shopName">
-      <br>
-      <br>
-      <input type="text" placeholder="Aadress" v-model="aadress">
-      <br>
-      <br>
-      <input type="text" placeholder="Telefoni number" v-model="telNumber">
-      <br>
-      <br>
-      <input type="text" placeholder="Pikkuskraad" v-model="longitude">
-      <br>
-      <input type="text" placeholder="Laiuskraad" v-model="latitude">
-      <br>
-      <input type="text" placeholder="Linn" v-model="cityName">
-      <br>
-      <div>
-        <button class="small-button" @click="inputShop">Sisesta</button>
-      </div>
-    </div>
-
-
     <div>
       <br>
       <div id="example-table">
-      <table style="width:100%">
-        <caption>Poodide nimekiri</caption>
+      <table>
+        <caption class="caption">Poodide nimekiri</caption>
         <thead>
         <tr>
           <th scope="col">#</th>
@@ -49,7 +28,6 @@
         </thead>
         <tbody>
         <tr v-for="shop in shops">
-
           <th scope="row">{{ shop.id }}</th>
           <td>{{ shop.name }}</td>
           <td>{{ shop.aadress }}</td>
@@ -175,6 +153,7 @@ export default {
     navigateToLogin: function () {
       this.$router.push({name: 'loginRoute'})
     },
+    // navigateTo
 
   },
   mounted() {

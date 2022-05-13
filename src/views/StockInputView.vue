@@ -1,7 +1,6 @@
 <template>
 <div>
   <div>
-    <button class="nav-button" >Koduleht</button>
     <button class="nav-button" @click="navigateToUser">Kliendivaade</button>
     <button class="nav-button active" @click="navigateToStockInput">Kaubarea sisestus</button>
     <button class="nav-button" @click="navigateToStock">Laoseis</button>

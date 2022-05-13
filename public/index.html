@@ -23,6 +23,14 @@
         opacity: 0.9;
     }
 
+    .caption {
+        border-bottom-style: ridge;
+        width: 100%;
+        background-color: #efefef;
+        padding: 10px;
+        font-size: 20px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
     .radio {
         position: relative;
         left: 35%;
@@ -69,17 +77,29 @@
     table, th, td {
         position: relative;
         left: 10%;
-
         /*border: 1px solid black;*/
         border-collapse: collapse;
         background-color: #efefef;
         opacity: 0.95;
-        /*border-radius: 10px;*/
         border-bottom-style: ridge;
         padding: 15px;
         /*border-spacing: 30px;*/
     }
 
+    /*th, td {*/
+    /*    position: relative;*/
+    /*    left: 10%;*/
+    /*    !*border: 1px solid black;*!*/
+    /*    border-collapse: collapse;*/
+    /*    background-color: #efefef;*/
+    /*    opacity: 0.95;*/
+    /*    border-bottom-style: ridge;*/
+    /*    padding: 15px;*/
+    /*}*/
+    .table {
+        border-radius: 10px;
+
+    }
     header {
         position: absolute;
         top: 0%;
@@ -178,7 +198,7 @@
     .nav-button:hover {
         background-color: #4b5860;
         color: white;
-        animation: flare 1000ms ease-out forwards;
+        /*animation: flare 1000ms ease-out forwards;*/
     }
     /*.small-button::before {*/
     /*     content: '';*/
@@ -202,13 +222,13 @@
     /*     animation: flare 1000ms ease-out forwards;*/
     /* }*/
 
-    @keyframes flare {
-        100% {
-            transform: translateY(-20px) scale(1.5);
-            filter: blur(10px);
-            opacity: 0;
-        }
-    }
+    /*@keyframes flare {*/
+    /*    100% {*/
+    /*        transform: translateY(-20px) scale(1.5);*/
+    /*        filter: blur(10px);*/
+    /*        opacity: 0;*/
+    /*    }*/
+    /*}*/
 
     /*@keyframes burn {*/
     /*    0% {*/

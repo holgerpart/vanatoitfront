@@ -53,7 +53,7 @@
         </tbody>
       </table>
       <div class="table">
-      <table v-if="displayUpdate">
+      <table v-if="displayUpdate" style="width: 75%;">
         <thead>
         <tr>
           <th style="width:1%">#</th>

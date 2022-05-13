@@ -6,6 +6,8 @@
       <button class="nav-button" @click="navigateToStockInput">Kaubarea sisestus</button>
       <button class="nav-button active" @click="navigateToStock">Laoseis</button>
       <button class="nav-button" @click="navigateToOrders">Tellimused</button>
+      <button class="nav-button" @click="navigateToLogin">Logi välja</button>
+
     </div>
 
       <div class="shop">
@@ -53,7 +55,7 @@
       <button class="small-button" v-on:click="navigateToStockInput">Sisesta uus kaubarida
       </button>
       <button class="small-button" v-on:click="navigateToOrders">Vaata tellimusi</button>
-      <table v-if="displayUpdate" style="width:100%">
+      <table v-if="displayUpdate" style="width:75%">
         <thead>
         <tr>
           <th scope="col">#</th>
@@ -170,7 +172,9 @@ export default {
       this.$router.push({name: 'shopRoute'})
 
     },
-
+    navigateToLogin: function () {
+      this.$router.push({name: 'loginRoute'})
+    },
   },
   mounted() {
     this.getStockById()

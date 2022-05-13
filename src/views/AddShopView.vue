@@ -1,12 +1,12 @@
 <template>
   <div>
     <div>
-      <button class="active">Poe vaade</button>
+      <button class="active">Poe lisamine</button>
       <button @click="navigateToUser">Kliendivaade</button>
       <button @click="navigateToFoodInput">Kaubarea sisestus</button>
       <button @click="navigateToStock">Laoseis</button>
       <button @click="navigateToOrders">Tellimused</button>
-      <button @click="navigateToShops">Uue poe lisamine</button>
+      <button @click="navigateToShops">Poe vaade</button>
 
     </div>
     <h1></h1>

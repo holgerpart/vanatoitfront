@@ -22,6 +22,8 @@
   <button class="small-button" v-on:click="register">Salvesta andmed</button>
   <br>
   <br>
+    <button class="nav-button" @click="navigateToLogin">Tühista</button>
+
   </div>
 </div>
 </template>
@@ -58,7 +60,10 @@ export default {
           }).catch(error => {
             alert("Error")
       })
-    }
+    },
+    navigateToLogin: function () {
+      this.$router.push({name: 'loginRoute'})
+    },
   }
 }
 </script>

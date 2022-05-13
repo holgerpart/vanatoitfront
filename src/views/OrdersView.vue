@@ -6,6 +6,8 @@
       <button class="nav-button" @click="navigateToStockInput">Kaubarea sisestus</button>
       <button class="nav-button" @click="navigateToStock">Laoseis</button>
       <button class="nav-button active" @click="navigateToOrders">Tellimused</button>
+        <button class="nav-button" @click="navigateToLogin">Logi välja</button>
+
     </div>
     <div class="shop">
       <h3>
@@ -13,7 +15,7 @@
       </h3>
     </div>
     <div class="table">
-      <table v-if="displayUpdate === false" >
+      <table v-if="displayUpdate === false" style="width: 75%" >
         <thead>
         <tr>
           <th style="width:1%">#</th>
@@ -204,6 +206,9 @@ export default {
       sessionStorage.setItem('shopName', this.shopName)
       this.$router.push({name: 'shopRoute'})
 
+    },
+    navigateToLogin: function () {
+      this.$router.push({name: 'loginRoute'})
     },
   },
   mounted() {

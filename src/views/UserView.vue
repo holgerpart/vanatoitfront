@@ -3,6 +3,7 @@
     <div>
 <!--      <button class="nav-button" @click="navigateToShop">Poe vaade</button>-->
       <button class="nav-button active" @click="navigateToUser">Kliendivaade</button>
+      <button class="nav-button" @click="navigateToLogin">Logi välja</button>
 <!--      <button @click="navigateToStockInput">Kaubarea sisestus</button>-->
 <!--      <button @click="navigateToStock">Laoseis</button>-->
 <!--      <button @click="navigateToOrders">Tellimused</button>-->
@@ -10,7 +11,6 @@
     <div>
       <div class="shop">
         <h3>Kaupade otsing</h3>
-        <h3>{{ shopId }}</h3>
       </div>
 
       <div>
@@ -35,7 +35,7 @@
 
       <div>
         <div v-if="tableDisplay">
-          <table v-if="displayUpdate === false" style="width:100%">
+          <table v-if="displayUpdate === false" style="width:75%">
             <thead>
             <tr>
               <th scope="col">#</th>
@@ -64,7 +64,7 @@
             </tbody>
           </table>
         </div>
-        <table v-if="displayUpdate" style="width:100%">
+        <table v-if="displayUpdate" style="width:75%">
           <thead>
           <tr>
             <th scope="col">#</th>
@@ -94,7 +94,7 @@
         <button class="small-button" v-on:click="showOrders">Näita tellimusi</button>
       </div>
       <div v-if="orderDisplay">
-        <table style="width:100%">
+        <table style="width:75%">
           <thead>
           <tr>
             <th>#</th>
@@ -414,7 +414,9 @@ export default {
         sessionStorage.setItem('shopName', this.shopName)
         this.$router.push({name: 'shopRoute'})
       }
-
+    },
+    navigateToLogin: function () {
+      this.$router.push({name: 'loginRoute'})
     },
   },
   mounted() {

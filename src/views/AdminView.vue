@@ -1,12 +1,13 @@
 <template>
   <div>
-    <div class="navbar">
+    <div>
       <button class="nav-button active">Admin</button>
       <button class="nav-button" @click="navigateToShop">Poe vaade</button>
       <button class="nav-button" @click="navigateToUser">Kliendivaade</button>
       <button class="nav-button" @click="navigateToFoodInput">Kaubarea sisestus</button>
       <button class="nav-button" @click="navigateToStock">Laoseis</button>
       <button class="nav-button" @click="navigateToOrders">Tellimused</button>
+      <button class="nav-button" @click="navigateToLogin">Logi välja</button>
     </div>
     <h1>AdminView</h1>
     <div v-if="displayUpdate === false" class="input">
@@ -170,6 +171,11 @@ export default {
         sessionStorage.setItem('userId', this.userId)
         this.$router.push({name: 'userRoute'})
       },
+
+    navigateToLogin: function () {
+      this.$router.push({name: 'loginRoute'})
+    },
+
   },
   mounted() {
     this.getShops()

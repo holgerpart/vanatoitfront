@@ -6,19 +6,20 @@
     <button class="nav-button active" @click="navigateToStockInput">Kaubarea sisestus</button>
     <button class="nav-button" @click="navigateToStock">Laoseis</button>
     <button class="nav-button"  @click="navigateToOrders">Tellimused</button>
+    <button class="nav-button" @click="navigateToLogin">Logi välja</button>
   </div>
   <div class="shop">
     <h3>
       Pood: {{ shopName }}
     </h3>
   </div>
-  <div>
+  <div class="input">
     <select class="select" v-model="foodId">
       <option  value="0" disabled selected>Vali toiduaine</option>
       <option v-for="article in articles" :value="article.id">{{ article.name }}</option>
     </select>
     <input class="select" type="text" placeholder="Kogus" v-model="quantity">
-    <input class="select" type="date" placeholder="Kõlblik kuni" v-model="expirationDate">Kõlblik kuni
+    <input class="date" type="date" placeholder="Kõlblik kuni" v-model="expirationDate">Kõlblik kuni
     <input class="select" type="text" placeholder="Kommentaarid" v-model="comments">
     <select class="select" v-model="unit">
       <option value="0" disabled selected>Vali ühik</option>
@@ -99,11 +100,14 @@ export default {
       this.$router.push({name: 'stockRoute'})
 
     },
-
+    navigateToLogin: function () {
+      this.$router.push({name: 'loginRoute'})
     },
+  },
+
   mounted() {
     this.getArticles()
-  }
+  },
 
 
 }

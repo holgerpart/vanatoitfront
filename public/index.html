@@ -23,12 +23,45 @@
         opacity: 0.9;
     }
 
+    .radio {
+        position: relative;
+        left: 35%;
+        border-bottom-style: ridge;
+        width: 30%;
+        background-color: #efefef;
+        padding: 10px;
+        font-size: 20px;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 8px;
+        box-sizing: border-box;
+        flex-direction: column;
+
+    }
+    .input {
+        position: relative;
+        left: 35%;
+        border-bottom-style: ridge;
+        width: 30%;
+        background-color: #efefef;
+        padding: 10px;
+        font-size: 20px;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 8px;
+        box-sizing: border-box;
+        flex-direction: column;
+
+    }
+
     .list-group {
 
     }
     .list-group-item {
-
+        margin: 10px;
+        justify-content: space-between;
+        position: relative;
+        right: 10px;
     }
+
     /*.navbar {*/
     /*  display: flex;*/
     /*  background-color: grey;*/
@@ -68,19 +101,7 @@
 
     }
 
-    .radio {
-        position: relative;
-        /*left: 40%;*/
-        border-bottom-style: ridge;
-        /*width: 30%;*/
-        background-color: #efefef;
-        padding: 10px;
-        font-size: 20px;
-        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        border-radius: 4px;
-        box-sizing: border-box;
 
-    }
     /*.radio {*/
     /*    background-color: white;*/
     /*    padding: 15px 32px;*/
@@ -94,10 +115,23 @@
 
     .select {
         background-color: white;
-        padding: 15px 32px;
+        margin: 10px;
+        padding: 15px ;
         border: dodgerblue;
         border-radius: 4px;
-        font-size: 17px
+        font-size: 17px;
+        position: relative;
+    }
+
+    .date {
+        background-color: white;
+        margin: 10px;
+        padding: 15px ;
+        border: dodgerblue;
+        border-radius: 4px;
+        font-size: 17px;
+        position: relative;
+        right: 15%;
     }
     tr:hover {
         background-color: bisque;

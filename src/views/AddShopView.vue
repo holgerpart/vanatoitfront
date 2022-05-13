@@ -13,7 +13,7 @@
     </div>
     <h1></h1>
     <div>
-      <input class="select" type="text" placeholder="Poe nimi" v-model="shopName">
+      <input class="select" type="text" placeholder="Poe nimi" v-model="newShopName">
       <br>
       <input class="select" type="text" placeholder="Aadress" v-model="aadress">
       <br>
@@ -63,7 +63,7 @@
       </div>
     </div>
     <div v-if="displayUpdate">
-      <input type="text" placeholder="Uus poe nimi" v-model="shopName">
+      <input type="text" placeholder="Uus poe nimi" v-model="newShopName">
       <input type="text" placeholder="Uus aadress" v-model="aadress">
       <input type="text" placeholder="Uus telefoninumber" v-model="telNumber">
       <input type="text" placeholder="Uus linn" v-model="cityName">
@@ -88,7 +88,8 @@ export default {
       displayUpdate: false,
       userId: sessionStorage.getItem('userId'),
       shopId: sessionStorage.getItem('shopId'),
-      shopName: sessionStorage.getItem('shopName')
+      shopName: sessionStorage.getItem('shopName'),
+      newShopName: ''
 
     }
   },
@@ -105,7 +106,7 @@ export default {
     updateShop: function () {
       let updateRequest = {
         id: this.shopId,
-        shopName: this.shopName,
+        shopName: this.newShopName,
         aadress: this.aadress,
         telNumber: this.telNumber,
         cityName: this.cityName
@@ -121,7 +122,7 @@ export default {
 
     inputShop: function () {
       let shopRequest = {
-        shopName: this.shopName,
+        shopName: this.newShopName,
         aadress: this.aadress,
         telNumber: this.telNumber,
         longitude: this.longitude,

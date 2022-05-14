@@ -74,7 +74,7 @@ export default {
           } else if (this.userRoles[0].roleId === 2) {
             this.navigateToShop()
           } else {
-            sessionStorage.setItem('roleId', this.)
+            sessionStorage.setItem('roleId', '2')
             this.navigateToAdmin()
           }
         }
@@ -90,13 +90,13 @@ export default {
         alert(error.response.data.detail)
       })
     },
-    clearSessionStorage: function () {
-      sessionStorage.setItem('userId', null)
-      sessionStorage.setItem('shopId', null)
-      sessionStorage.setItem('roleId', null)
-      sessionStorage.setItem('shopName', '')
-
-    },
+    // clearSessionStorage: function () {
+    //   sessionStorage.setItem('userId', null)
+    //   sessionStorage.setItem('shopId', null)
+    //   sessionStorage.setItem('roleId', null)
+    //   sessionStorage.setItem('shopName', '')
+    //
+    // },
 
     navigateToSelectedRole: function (id) {
 

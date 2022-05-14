@@ -49,6 +49,8 @@ export default {
       displayUpdate: false,
       userId: sessionStorage.getItem('userId'),
       shopId: sessionStorage.getItem('shopId'),
+      roleId: sessionStorage.getItem('roleId')
+
 
     }
   },
@@ -121,27 +123,32 @@ export default {
     navigateToFoodInput: function () {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
+      sessionStorage.setItem('roleId', this.roleId)
       this.$router.push({name: 'StockInputRoute'})
     },
     navigateToStock: function () {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
+      sessionStorage.setItem('roleId', this.roleId)
       this.$router.push({name: 'stockRoute'})
 
     },
     navigateToOrders: function () {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
+      sessionStorage.setItem('roleId', this.roleId)
       this.$router.push({name: 'ordersRoute'})
     },
     navigateToShop: function () {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
+      sessionStorage.setItem('roleId', this.roleId)
       this.$router.push({name: 'shopRoute'})
     },
       navigateToUser: function () {
         sessionStorage.setItem('shopId', this.shopId)
         sessionStorage.setItem('userId', this.userId)
+        sessionStorage.setItem('roleId', this.roleId)
         this.$router.push({name: 'userRoute'})
       },
 
@@ -152,6 +159,7 @@ export default {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('userId', this.userId)
       sessionStorage.setItem('shopName', this.shopName)
+      sessionStorage.setItem('roleId', this.roleId)
       this.$router.push({name: 'addShopRoute'})
     },
     selectName: function (name) {

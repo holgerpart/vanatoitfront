@@ -1,6 +1,7 @@
 <template>
 <div>
   <div>
+    <button v-if="roleId === '3'" class="nav-button" @click="navigateToAdmin">Admin</button>
     <button class="nav-button" @click="navigateToShop">Poe vaade</button>
     <button class="nav-button" @click="navigateToUser">Kliendivaade</button>
     <button class="active">Kaubarea sisestus</button>
@@ -51,6 +52,8 @@ export default {
       unit:null,
       articles:{},
       shops:{},
+      roleId: sessionStorage.getItem('roleId')
+
 
     }
   },
@@ -84,30 +87,41 @@ export default {
           alert(error.response.data.detail)
         })
       },
-    navigateToStockInput: function () {
+    navigateToAdmin: function () {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
-      this.$router.push({name: 'StockInputRoute'})
+      sessionStorage.setItem('roleId', this.roleId)
+      this.$router.push({name: 'adminRoute'})
     },
     navigateToOrders: function () {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
+      sessionStorage.setItem('roleId', this.roleId)
       this.$router.push({name: 'ordersRoute'})
     },
     navigateToUser: function () {
+      sessionStorage.setItem('roleId', this.roleId)
       this.$router.push({name: 'userRoute'})
     },
     navigateToStock: function () {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
+      sessionStorage.setItem('roleId', this.roleId)
       this.$router.push({name: 'stockRoute'})
 
     },
     navigateToShop: function () {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
+      sessionStorage.setItem('roleId', this.roleId)
       this.$router.push({name: 'shopRoute'})
-
+    },
+    navigateToAddShop: function () {
+      sessionStorage.setItem('shopId', this.shopId)
+      sessionStorage.setItem('userId', this.userId)
+      sessionStorage.setItem('shopName', this.shopName)
+      sessionStorage.setItem('roleId', this.roleId)
+      this.$router.push({name: 'addShopRoute'})
     },
     selectName: function (name) {
       this.shopName = name

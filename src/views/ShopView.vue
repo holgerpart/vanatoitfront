@@ -22,7 +22,7 @@
     </div>
 
 
-    <button class="small-button" v-on:click="navigateToFoodInput">Sisesta uus kaubarida
+    <button class="small-button" v-on:click="navigateToStockInput">Sisesta uus kaubarida
     </button>
     <br>
     <br>

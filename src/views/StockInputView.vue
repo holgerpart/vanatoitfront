@@ -21,7 +21,7 @@
       <option v-for="article in articles" :value="article.id">{{ article.name }}</option>
     </select>
     <input class="select" type="text" placeholder="Kogus" v-model="quantity">
-    <input class="date" type="date" placeholder="Kõlblik kuni" v-model="expirationDate">Kõlblik kuni
+<!--    <input class="date" type="date" placeholder="Kõlblik kuni" v-model="expirationDate">Kõlblik kuni-->
     <input class="select" type="text" placeholder="Kommentaarid" v-model="comments">
     <select class="select" v-model="unit">
       <option value="0" disabled selected>Vali ühik</option>

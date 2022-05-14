@@ -26,7 +26,7 @@
           <th scope="col">Toit</th>
           <th scope="col">Kogus</th>
           <th scope="col">Ühik</th>
-          <th scope="col">Kuupäev</th>
+<!--          <th scope="col">Kuupäev</th>-->
           <th scope="col">Kommentaarid</th>
           <th scope="col">Valik</th>
         </tr>
@@ -37,7 +37,7 @@
           <td>{{ shopFood.foodName }}</td>
           <td>{{ shopFood.quantity }}</td>
           <td>{{ shopFood.unitName }}</td>
-          <td>{{ shopFood.dateTime }}</td>
+<!--          <td>{{ shopFood.dateTime }}</td>-->
           <td>{{ shopFood.comments }}</td>
           <td>
             <button class="small-button" v-if="displayUpdate === false" v-on:click="selectFoodId(shopFood)">Muuda kogust</button>

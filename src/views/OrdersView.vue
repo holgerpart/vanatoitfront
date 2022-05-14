@@ -12,6 +12,7 @@
     <div class="shop">
       <h3>
         Pood: {{ shopName }}
+        <button class="nav-button" @click="navigateToShop">Vaheta kauplus</button>
       </h3>
     </div>
     <div class="table">

@@ -1,6 +1,7 @@
 <template>
 <div>
   <div>
+    <button class="nav-button" @click="navigateToShop">Poe vaade</button>
     <button class="nav-button" @click="navigateToUser">Kliendivaade</button>
     <button class="active">Kaubarea sisestus</button>
     <button class="nav-button" @click="navigateToStock">Laoseis</button>
@@ -10,6 +11,7 @@
   <div class="shop">
     <h3>
       Pood: {{ shopName }}
+      <button class="nav-button" @click="navigateToShop">Vaheta kauplus</button>
     </h3>
   </div>
   <div class="input">
@@ -47,7 +49,9 @@ export default {
       expirationDate:null,
       comments:null,
       unit:null,
-      articles:{}
+      articles:{},
+      shops:{},
+
     }
   },
   methods:{
@@ -98,6 +102,15 @@ export default {
       sessionStorage.setItem('shopName', this.shopName)
       this.$router.push({name: 'stockRoute'})
 
+    },
+    navigateToShop: function () {
+      sessionStorage.setItem('shopId', this.shopId)
+      sessionStorage.setItem('shopName', this.shopName)
+      this.$router.push({name: 'shopRoute'})
+
+    },
+    selectName: function (name) {
+      this.shopName = name
     },
     navigateToLogin: function () {
       this.$router.push({name: 'loginRoute'})

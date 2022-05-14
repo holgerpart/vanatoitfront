@@ -74,6 +74,7 @@ export default {
           } else if (this.userRoles[0].roleId === 2) {
             this.navigateToShop()
           } else {
+            sessionStorage.setItem('roleId', this.)
             this.navigateToAdmin()
           }
         }

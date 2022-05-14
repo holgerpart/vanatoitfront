@@ -70,9 +70,8 @@
           </tbody>
         </table>
       </div>
-      <input class="select" v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">
+      <input id="myInput" class="select" v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">
       <button class="small-button" v-if="displayUpdate" v-on:click="confirmUpdate">Kinnita</button>
-
       <select class="select" v-if="displayUpdate" v-model="statusName">
         <option disabled selected value="">Valige roll</option>
         <option>Completed</option>

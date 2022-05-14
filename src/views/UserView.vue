@@ -29,9 +29,9 @@
         <input class="select" type="text" placeholder="Pood" v-model="shop">
         <button class="small-button" v-on:click="getByShop">Otsi</button>
 
-        <form autocomplete="off">
+        <form autocomplete="off" action="/action_page.php">
           <div class="autocomplete" style="width:300px">
-            <input class="select" type="text" placeholder="Linn" v-model="city">
+            <input id="myInput" class="select" type="text" name="myCountry" placeholder="Linn" v-model="city">
             <button class="small-button" v-on:click="getByCity">Otsi</button>
           </div>
         </form>

@@ -1,6 +1,6 @@
 <template>
   <div>
-
+  
     <div>
       <button v-if="roleId === '3'" class="nav-button" @click="navigateToAdmin">Admin</button>
       <button class="active">Poe vaade</button>

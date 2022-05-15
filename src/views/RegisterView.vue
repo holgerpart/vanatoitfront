@@ -58,7 +58,7 @@ export default {
           this.$router.push({name: 'shopRoute'})
         }
           }).catch(error => {
-            alert("Error")
+            alert(error.response.data.detail)
       })
     },
     navigateToLogin: function () {

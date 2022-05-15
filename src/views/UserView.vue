@@ -85,7 +85,7 @@
           </tr>
           </tbody>
         </table>
-        <input v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">
+        <input class="select" v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">
         <button class="small-button" v-if="displayUpdate" v-on:click="newBooking">Kinnita</button>
         <button class="small-button" v-if="displayUpdate" v-on:click="reverseDisplay">Tühista</button>
       </div>

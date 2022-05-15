@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="roleId === '3'">
     <div>
       <button class="active">Admin</button>
       <button class="nav-button" @click="navigateToShop">Poe vaade</button>

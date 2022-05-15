@@ -20,10 +20,10 @@
       <br>
       <input class="select" type="text" placeholder="Telefoni number" v-model="telNumber">
       <br>
-      <input class="select" type="text" placeholder="Pikkuskraad" v-model="longitude">
-      <br>
-      <input class="select" type="text" placeholder="Laiuskraad" v-model="latitude">
-      <br>
+<!--      <input class="select" type="text" placeholder="Pikkuskraad" v-model="longitude">-->
+<!--      <br>-->
+<!--      <input class="select" type="text" placeholder="Laiuskraad" v-model="latitude">-->
+<!--      <br>-->
       <input class="select" type="text" placeholder="Linn" v-model="cityName">
       <div>
         <button class="small-button" @click="inputShop">Sisesta</button>
@@ -33,9 +33,10 @@
 
     <div>
       <br>
+      <div class="shop"><h3>Poodide nimekiri</h3></div>
+
       <div id="example-table">
         <table style="width:75%">
-          <caption>Poodide nimekiri</caption>
           <thead>
           <tr>
             <th scope="col">#</th>

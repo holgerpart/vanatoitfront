@@ -1,12 +1,6 @@
 <template>
 <div>
-  <div class="navbar">
-    <button>Poe vaade</button>
-    <button>Kliendivaade</button>
-    <button>Kaubarea sisestus</button>
-    <button>Laoseis</button>
-    <button>Tellimused</button>
-  </div>
+
   <div>
   <input class="select" type="text" placeholder="Eesnimi" v-model="firstName">
   <br>
@@ -28,6 +22,8 @@
   <button class="small-button" v-on:click="register">Salvesta andmed</button>
   <br>
   <br>
+    <button class="nav-button" @click="navigateToLogin">Tühista</button>
+
   </div>
 </div>
 </template>
@@ -56,14 +52,17 @@ export default {
       this.$http.post("/log-in/user", registryRequest
       ).then(response => {
         if (this.role === 'user') {
-          this.$router.push({name: 'userRoute'});
+          this.$router.push({name: 'loginRoute'});
         } else {
-          this.$router.push({name: 'shopRoute'})
+          this.$router.push({name: 'loginRoute'})
         }
           }).catch(error => {
-            alert("Error")
+            alert(error.response.data.detail)
       })
-    }
+    },
+    navigateToLogin: function () {
+      this.$router.push({name: 'loginRoute'})
+    },
   }
 }
 </script>

@@ -1,67 +1,25 @@
 <template>
-  <div>
-    <div class="navbar">
-      <button class="active">Admin</button>
-      <button @click="navigateToShop">Poe vaade</button>
-      <button @click="navigateToUser">Kliendivaade</button>
-      <button @click="navigateToFoodInput">Kaubarea sisestus</button>
-      <button @click="navigateToStock">Laoseis</button>
-      <button @click="navigateToOrders">Tellimused</button>
-    </div>
-    <h1>AdminView</h1>
-    <div v-if="displayUpdate === false" class="input">
-      <input type="text" placeholder="Poe nimi" v-model="shopName">
-      <br>
-      <br>
-      <input type="text" placeholder="Aadress" v-model="aadress">
-      <br>
-      <br>
-      <input type="text" placeholder="Telefoni number" v-model="telNumber">
-      <br>
-      <br>
-      <input type="text" placeholder="Pikkuskraad" v-model="longitude">
-      <br>
-      <input type="text" placeholder="Laiuskraad" v-model="latitude">
-      <br>
-      <input type="text" placeholder="Linn" v-model="cityName">
-      <br>
-      <div>
-        <button class="small-button" @click="inputShop">Sisesta</button>
-      </div>
-    </div>
-
-
+  <div v-if="roleId === '3'">
     <div>
-      <br>
-      <div id="example-table">
-      <table style="width:100%">
-        <caption>Poodide nimekiri</caption>
-        <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Poe nimi</th>
-          <th scope="col">Aadress</th>
-          <th scope="col">Telefoninumber</th>
-          <th scope="col">Linn</th>
-          <th scope="col"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="shop in shops">
-
-          <th scope="row">{{ shop.id }}</th>
-          <td>{{ shop.name }}</td>
-          <td>{{ shop.aadress }}</td>
-          <td>{{ shop.telNumber }}</td>
-          <td>{{ shop.cityName }}</td>
-          <td>
-            <button class="small-button" v-on:click="selectShopId(shop.id)">Muuda poe andmeid</button>
-          </td>
-
-        </tr>
-        </tbody>
-      </table>
-      </div>
+      <button class="active">Admin</button>
+      <button class="nav-button" @click="navigateToShop">Poe vaade</button>
+      <button class="nav-button" @click="navigateToUser">Kliendivaade</button>
+      <button class="nav-button" @click="navigateToFoodInput">Kaubarea sisestus</button>
+      <button class="nav-button" @click="navigateToStock">Laoseis</button>
+      <button class="nav-button" @click="navigateToOrders">Tellimused</button>
+      <button class="nav-button" @click="navigateToAddShop">Poe lisamine</button>
+      <button class="nav-button" @click="navigateToLogin">Logi välja</button>
+    </div>
+    <div class="shop">
+      <h3>Vali pood</h3>
+    </div>
+    <div v-if="true">
+      <ul>
+        <li class="radio" v-for="shop in shops">
+          <input v-on:change="selectName(shop.shopName)" type="radio" v-model="shopId"
+                 :value="shop.shopId">{{ shop.shopName }}
+        </li>
+      </ul>
     </div>
     <div v-if="displayUpdate">
       <input  type="text" placeholder="Uus poe nimi" v-model="shopName">
@@ -81,7 +39,7 @@ export default {
   name: "AdminView",
   data: function () {
     return {
-      shopName: null,
+      shopName: '',
       aadress: null,
       telNumber: null,
       longitude: null,
@@ -89,7 +47,10 @@ export default {
       cityName: null,
       shops: {},
       displayUpdate: false,
-      userId: sessionStorage.getItem('userId')
+      userId: sessionStorage.getItem('userId'),
+      shopId: sessionStorage.getItem('shopId'),
+      roleId: sessionStorage.getItem('roleId')
+
 
     }
   },
@@ -144,35 +105,70 @@ export default {
         console.log(error)
       })
     },
+    getAuthorizedShops: function () {
+      this.$http.get("/stock/shops", {
+            params: {
+              userId: this.userId
+            }
+          }
+      ).then(response => {
+        this.shops = response.data
+        this.shopId = response.data[0].shopId
+        this.shopName = response.data[0].shopName
+        console.log(response.data)
+      }).catch(error => {
+        console.log(error)
+      })
+    },
     navigateToFoodInput: function () {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
+      sessionStorage.setItem('roleId', this.roleId)
       this.$router.push({name: 'StockInputRoute'})
     },
     navigateToStock: function () {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
+      sessionStorage.setItem('roleId', this.roleId)
       this.$router.push({name: 'stockRoute'})
 
     },
     navigateToOrders: function () {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
+      sessionStorage.setItem('roleId', this.roleId)
       this.$router.push({name: 'ordersRoute'})
     },
     navigateToShop: function () {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
+      sessionStorage.setItem('roleId', this.roleId)
       this.$router.push({name: 'shopRoute'})
     },
       navigateToUser: function () {
         sessionStorage.setItem('shopId', this.shopId)
         sessionStorage.setItem('userId', this.userId)
+        sessionStorage.setItem('roleId', this.roleId)
         this.$router.push({name: 'userRoute'})
       },
+
+    navigateToLogin: function () {
+      this.$router.push({name: 'loginRoute'})
+    },
+    navigateToAddShop: function () {
+      sessionStorage.setItem('shopId', this.shopId)
+      sessionStorage.setItem('userId', this.userId)
+      sessionStorage.setItem('shopName', this.shopName)
+      sessionStorage.setItem('roleId', this.roleId)
+      this.$router.push({name: 'addShopRoute'})
+    },
+    selectName: function (name) {
+      this.shopName = name
+    },
+
   },
   mounted() {
-    this.getShops()
+    this.getAuthorizedShops()
   }
 
 

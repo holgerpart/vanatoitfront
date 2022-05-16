@@ -1,24 +1,27 @@
 <template>
 <div>
-  <div class="navbar">
-    <button  href="#">Koduleht</button>
-    <button @click="navigateToUser">Kliendivaade</button>
-    <button class="active" @click="navigateToStockInput">Kaubarea sisestus</button>
-    <button @click="navigateToStock">Laoseis</button>
-    <button  @click="navigateToOrders">Tellimused</button>
+  <div>
+    <button v-if="roleId === '3'" class="nav-button" @click="navigateToAdmin">Admin</button>
+    <button class="nav-button" @click="navigateToShop">Poe vaade</button>
+    <button class="nav-button" @click="navigateToUser">Kliendivaade</button>
+    <button class="active">Kaubarea sisestus</button>
+    <button class="nav-button" @click="navigateToStock">Laoseis</button>
+    <button class="nav-button"  @click="navigateToOrders">Tellimused</button>
+    <button class="nav-button" @click="navigateToLogin">Logi välja</button>
   </div>
   <div class="shop">
     <h3>
       Pood: {{ shopName }}
+      <button class="nav-button" @click="navigateToShop">Vaheta kauplus</button>
     </h3>
   </div>
-  <div>
+  <div class="input">
     <select class="select" v-model="foodId">
-      <option value="0" disabled selected>Vali toiduaine</option>
+      <option  value="" disabled selected hidden>Vali toiduaine</option>
       <option v-for="article in articles" :value="article.id">{{ article.name }}</option>
     </select>
     <input class="select" type="text" placeholder="Kogus" v-model="quantity">
-    <input class="select" type="date" placeholder="Kõlblik kuni" v-model="expirationDate">Kõlblik kuni
+<!--    <input class="date" type="date" placeholder="Kõlblik kuni" v-model="expirationDate">Kõlblik kuni-->
     <input class="select" type="text" placeholder="Kommentaarid" v-model="comments">
     <select class="select" v-model="unit">
       <option value="0" disabled selected>Vali ühik</option>
@@ -47,7 +50,11 @@ export default {
       expirationDate:null,
       comments:null,
       unit:null,
-      articles:{}
+      articles:{},
+      shops:{},
+      roleId: sessionStorage.getItem('roleId')
+
+
     }
   },
   methods:{
@@ -80,30 +87,53 @@ export default {
           alert(error.response.data.detail)
         })
       },
-    navigateToStockInput: function () {
+    navigateToAdmin: function () {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
-      this.$router.push({name: 'StockInputRoute'})
+      sessionStorage.setItem('roleId', this.roleId)
+      this.$router.push({name: 'adminRoute'})
     },
     navigateToOrders: function () {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
+      sessionStorage.setItem('roleId', this.roleId)
       this.$router.push({name: 'ordersRoute'})
     },
     navigateToUser: function () {
+      sessionStorage.setItem('roleId', this.roleId)
       this.$router.push({name: 'userRoute'})
     },
     navigateToStock: function () {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
+      sessionStorage.setItem('roleId', this.roleId)
       this.$router.push({name: 'stockRoute'})
 
     },
-
+    navigateToShop: function () {
+      sessionStorage.setItem('shopId', this.shopId)
+      sessionStorage.setItem('shopName', this.shopName)
+      sessionStorage.setItem('roleId', this.roleId)
+      this.$router.push({name: 'shopRoute'})
     },
+    navigateToAddShop: function () {
+      sessionStorage.setItem('shopId', this.shopId)
+      sessionStorage.setItem('userId', this.userId)
+      sessionStorage.setItem('shopName', this.shopName)
+      sessionStorage.setItem('roleId', this.roleId)
+      this.$router.push({name: 'addShopRoute'})
+    },
+    selectName: function (name) {
+      this.shopName = name
+    },
+    navigateToLogin: function () {
+      this.$router.push({name: 'loginRoute'})
+    },
+  },
+
   mounted() {
     this.getArticles()
-  }
+  },
 
 
 }

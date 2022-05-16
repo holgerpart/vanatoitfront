@@ -1,19 +1,23 @@
 <template>
   <div class="flex-container">
-    <div class="navbar">
-      <button @click="navigateToShop">Poe vaade</button>
-      <button @click="navigateToUser">Kliendivaade</button>
-      <button @click="navigateToStockInput">Kaubarea sisestus</button>
-      <button @click="navigateToStock">Laoseis</button>
-      <button class="active" @click="navigateToOrders">Tellimused</button>
+    <div>
+      <button v-if="roleId === '3'" class="nav-button" @click="navigateToAdmin">Admin</button>
+      <button class="nav-button" @click="navigateToShop">Poe vaade</button>
+      <button class="nav-button" @click="navigateToUser">Kliendivaade</button>
+      <button class="nav-button" @click="navigateToStockInput">Kaubarea sisestus</button>
+      <button class="nav-button" @click="navigateToStock">Laoseis</button>
+      <button class="active">Tellimused</button>
+      <button class="nav-button" @click="navigateToLogin">Logi välja</button>
+
     </div>
     <div class="shop">
       <h3>
         Pood: {{ shopName }}
+        <button class="nav-button" @click="navigateToShop">Vaheta kauplus</button>
       </h3>
     </div>
     <div class="table">
-      <table v-if="displayUpdate === false" >
+      <table v-if="displayUpdate === false" style="width: 75%">
         <thead>
         <tr>
           <th style="width:1%">#</th>
@@ -37,56 +41,48 @@
           <td>{{ order.status }}</td>
           <td>
             <button class="small-button" v-on:click="selectOrder(order)">Muuda</button>
-            <!--            <input v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">-->
-            <!--            <select v-if="displayUpdate" v-model="statusName">-->
-            <!--              <option disabled value="">Valige roll</option>-->
-            <!--              <option>Completed</option>-->
-            <!--              <option>Cancelled</option>-->
-            <!--              <option>Open</option>-->
-            <!--            </select>-->
-            <!--            <button v-if="displayUpdate" v-on:click="confirmUpdate">Kinnita</button>-->
           </td>
 
         </tr>
         </tbody>
       </table>
       <div class="table">
-      <table v-if="displayUpdate">
-        <thead>
-        <tr>
-          <th style="width:1%">#</th>
-          <th>Eesnimi</th>
-          <th>Perekonnanimi</th>
-          <th>Pood</th>
-          <th>Toiduartikkel</th>
-          <th>Kogus</th>
-          <th>Staatus</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td>{{ orderId }}</td>
-          <td>{{ firstName }}</td>
-          <td>{{ lastName }}</td>
-          <td>{{ shopName }}</td>
-          <td>{{ foodName }}</td>
-          <td>{{ quantity }}</td>
-          <td>{{ status }}</td>
-        </tr>
-        </tbody>
-      </table>
-        </div>
+        <table v-if="displayUpdate" style="width: 75%;">
+          <thead>
+          <tr>
+            <th style="width:1%">#</th>
+            <th>Eesnimi</th>
+            <th>Perekonnanimi</th>
+            <th>Pood</th>
+            <th>Toiduartikkel</th>
+            <th>Kogus</th>
+            <th>Staatus</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>{{ orderId }}</td>
+            <td>{{ firstName }}</td>
+            <td>{{ lastName }}</td>
+            <td>{{ shopName }}</td>
+            <td>{{ foodName }}</td>
+            <td>{{ quantity }}</td>
+            <td>{{ status }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
       <input class="select" v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">
       <button class="small-button" v-if="displayUpdate" v-on:click="confirmUpdate">Kinnita</button>
 
       <select class="select" v-if="displayUpdate" v-model="statusName">
-        <option disabled value="">Valige roll</option>
+        <option disabled selected value="">Valige roll</option>
         <option>Completed</option>
         <option>Cancelled</option>
         <option>Open</option>
       </select>
-      <button class="small-button"  v-if="displayUpdate" v-on:click="confirmStatus">Kinnita</button>
-      <button class="small-button"  v-if="displayUpdate" v-on:click="reverseDisplay">Tühista</button>
+      <button class="small-button" v-if="displayUpdate" v-on:click="confirmStatus">Kinnita</button>
+      <button class="small-button" v-if="displayUpdate" v-on:click="reverseDisplay">Tühista</button>
     </div>
   </div>
 </template>
@@ -111,7 +107,9 @@ export default {
       foodName: '',
       quantity: '',
       status: '',
-      stockId: null
+      stockId: null,
+      roleId: sessionStorage.getItem('roleId')
+
     }
   },
 
@@ -175,35 +173,56 @@ export default {
         this.displayUpdate = false
       }).catch(error => {
         console.log(error)
+        alert(error.response.data.detail)
       })
     },
     reverseDisplay: function () {
       this.displayUpdate = !this.displayUpdate
     },
+    navigateToAdmin: function () {
+      sessionStorage.setItem('shopId', this.shopId)
+      sessionStorage.setItem('shopName', this.shopName)
+      sessionStorage.setItem('roleId', this.roleId)
+      this.$router.push({name: 'adminRoute'})
+    },
     navigateToStockInput: function () {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
+      sessionStorage.setItem('roleId', this.roleId)
       this.$router.push({name: 'StockInputRoute'})
     },
     navigateToOrders: function () {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
+      sessionStorage.setItem('roleId', this.roleId)
       this.$router.push({name: 'ordersRoute'})
     },
     navigateToUser: function () {
+      sessionStorage.setItem('roleId', this.roleId)
       this.$router.push({name: 'userRoute'})
     },
     navigateToStock: function () {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
+      sessionStorage.setItem('roleId', this.roleId)
       this.$router.push({name: 'stockRoute'})
 
     },
     navigateToShop: function () {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
+      sessionStorage.setItem('roleId', this.roleId)
       this.$router.push({name: 'shopRoute'})
-
+    },
+    navigateToAddShop: function () {
+      sessionStorage.setItem('shopId', this.shopId)
+      sessionStorage.setItem('userId', this.userId)
+      sessionStorage.setItem('shopName', this.shopName)
+      sessionStorage.setItem('roleId', this.roleId)
+      this.$router.push({name: 'addShopRoute'})
+    },
+    navigateToLogin: function () {
+      this.$router.push({name: 'loginRoute'})
     },
   },
   mounted() {

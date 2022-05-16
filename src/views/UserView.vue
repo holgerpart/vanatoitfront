@@ -1,11 +1,13 @@
 <template>
   <div>
-    <div class="navbar">
-      <button @click="navigateToShop">Poe vaade</button>
-      <button class="active" @click="navigateToUser">Kliendivaade</button>
-      <button @click="navigateToStockInput">Kaubarea sisestus</button>
-      <button @click="navigateToStock">Laoseis</button>
-      <button @click="navigateToOrders">Tellimused</button>
+    <div>
+      <button v-if="roleId === '3'" class="nav-button" @click="navigateToAdmin">Admin</button>
+<!--      <button class="nav-button" @click="navigateToShop">Poe vaade</button>-->
+      <button class="active">Kliendivaade</button>
+      <button class="nav-button" @click="navigateToLogin">Logi välja</button>
+<!--      <button @click="navigateToStockInput">Kaubarea sisestus</button>-->
+<!--      <button @click="navigateToStock">Laoseis</button>-->
+<!--      <button @click="navigateToOrders">Tellimused</button>-->
     </div>
     <div>
       <div class="shop">
@@ -34,7 +36,7 @@
 
       <div>
         <div v-if="tableDisplay">
-          <table v-if="displayUpdate === false" style="width:100%">
+          <table v-if="displayUpdate === false" style="width:75%">
             <thead>
             <tr>
               <th scope="col">#</th>
@@ -42,7 +44,7 @@
               <th scope="col">Toit</th>
               <th scope="col">Kogus</th>
               <th scope="col">Ühik</th>
-              <th scope="col">Kuupäev</th>
+<!--              <th scope="col">Kuupäev</th>-->
               <th scope="col">Kommentaarid</th>
               <th scope="col">Valik</th>
             </tr>
@@ -54,7 +56,7 @@
               <td>{{ shopFood.foodName }}</td>
               <td>{{ shopFood.quantity }}</td>
               <td>{{ shopFood.unitName }}</td>
-              <td>{{ shopFood.dateTime }}</td>
+<!--              <td>{{ shopFood.dateTime }}</td>-->
               <td>{{ shopFood.comments }}</td>
               <td>
                 <button class="small-button" v-if="displayUpdate === false" v-on:click="selectFoodId(shopFood)">Broneeri</button>
@@ -63,7 +65,7 @@
             </tbody>
           </table>
         </div>
-        <table v-if="displayUpdate" style="width:100%">
+        <table v-if="displayUpdate" style="width:75%">
           <thead>
           <tr>
             <th scope="col">#</th>
@@ -83,7 +85,7 @@
           </tr>
           </tbody>
         </table>
-        <input v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">
+        <input class="select" v-if="displayUpdate" type="text" placeholder="Uus kogus" v-model="newQuantity">
         <button class="small-button" v-if="displayUpdate" v-on:click="newBooking">Kinnita</button>
         <button class="small-button" v-if="displayUpdate" v-on:click="reverseDisplay">Tühista</button>
       </div>
@@ -93,7 +95,7 @@
         <button class="small-button" v-on:click="showOrders">Näita tellimusi</button>
       </div>
       <div v-if="orderDisplay">
-        <table style="width:100%">
+        <table style="width:75%">
           <thead>
           <tr>
             <th>#</th>
@@ -123,7 +125,7 @@
         </table>
       </div>
       <div v-if="orderDisplayUpdate">
-        <table style="width:100%">
+        <table style="width:75%">
           <thead>
           <tr>
             <th>#</th>
@@ -147,7 +149,7 @@
           </tr>
           </tbody>
         </table>
-        <input type="text" placeholder="Uus kogus" v-model="newQuantity">
+        <input class="select" type="text" placeholder="Uus kogus" v-model="newQuantity">
         <button class="small-button" v-on:click="confirmUpdate">Kinnita</button>
 
         <select class="select" v-model="statusName">
@@ -192,7 +194,9 @@ export default {
       lastName: '',
       id: '',
       articles: {},
-      types: {}
+      types: {},
+      roleId: sessionStorage.getItem('roleId')
+
     }
   },
   methods: {
@@ -203,6 +207,7 @@ export default {
             console.log(response.data)
           }).catch(error => {
         console.log(error)
+        alert(error.response.data.detail)
       })
     },
     getTypes: function () {
@@ -212,6 +217,7 @@ export default {
             this.types = response.data
           }).catch(error => {
         console.log(error)
+        alert(error.response.data.detail)
       })
     },
     getByName: function () {
@@ -226,7 +232,7 @@ export default {
             this.shopFoods = response.data
             sessionStorage.setItem('usedMethod', 'getByName')
           }).catch(error => {
-        alert(error)
+        alert(error.response.data.detail)
       })
     },
     getByFoodType: function () {
@@ -243,6 +249,7 @@ export default {
 
       }).catch(error => {
         console.log(error)
+        alert(error.response.data.detail)
       })
     },
     getByShop: function () {
@@ -258,6 +265,7 @@ export default {
         sessionStorage.setItem('usedMethod', 'getByShop')
       }).catch(error => {
         console.log(error)
+        alert(error.response.data.detail)
       })
     },
     getByCity: function () {
@@ -274,6 +282,7 @@ export default {
 
       }).catch(error => {
         console.log(error)
+        alert(error.response.data.detail)
       })
     },
     selectFoodId: function (id) {
@@ -315,6 +324,7 @@ export default {
         console.log(response.data)
       }).catch(error => {
         console.log(error)
+        alert(error.response.data.detail)
       })
 
     },
@@ -360,6 +370,7 @@ export default {
         this.displayUpdate = false
       }).catch(error => {
         console.log(error)
+        alert(error.response.data.detail)
       })
     },
     getOrderList: function () {
@@ -373,6 +384,7 @@ export default {
             this.orders = response.data
           }).catch(error => {
         console.log(error)
+        alert(error.response.data.detail)
       })
     },
     reverseDisplay: function () {
@@ -382,8 +394,15 @@ export default {
       this.orderDisplayUpdate = false
       this.orderDisplay = true
     },
+    navigateToAdmin: function () {
+      sessionStorage.setItem('shopId', this.shopId)
+      sessionStorage.setItem('shopName', this.shopName)
+      sessionStorage.setItem('roleId', this.roleId)
+      this.$router.push({name: 'adminRoute'})
+    },
     navigateToStockInput: function () {
-      if (this.shopId != null) {
+      if (this.shopId === null) {
+        sessionStorage.setItem('roleId', this.roleId)
         sessionStorage.setItem('shopId', this.shopId);
         sessionStorage.setItem('shopName', this.shopName)
         this.$router.push({name: 'StockInputRoute'})
@@ -391,9 +410,10 @@ export default {
 
     },
     navigateToOrders: function () {
-      if (this.shopId != null) {
+      if (this.shopId === null) {
         sessionStorage.setItem('shopId', this.shopId)
         sessionStorage.setItem('shopName', this.shopName)
+        sessionStorage.setItem('roleId', this.roleId)
         this.$router.push({name: 'ordersRoute'})
       }
     },
@@ -401,19 +421,30 @@ export default {
       this.$router.push({name: 'userRoute'})
     },
     navigateToStock: function () {
-      if (this.shopId != null) {
+      if (this.shopId !== null) {
         sessionStorage.setItem('shopId', this.shopId)
         sessionStorage.setItem('shopName', this.shopName)
+        sessionStorage.setItem('roleId', this.roleId)
         this.$router.push({name: 'stockRoute'})
       }
     },
     navigateToShop: function () {
-      if (this.shopId != null) {
+      if (this.shopId == null) {
         sessionStorage.setItem('shopId', this.shopId)
         sessionStorage.setItem('shopName', this.shopName)
+        sessionStorage.setItem('roleId', this.roleId)
         this.$router.push({name: 'shopRoute'})
       }
-
+    },
+    navigateToAddShop: function () {
+      sessionStorage.setItem('shopId', this.shopId)
+      sessionStorage.setItem('userId', this.userId)
+      sessionStorage.setItem('shopName', this.shopName)
+      sessionStorage.setItem('roleId', this.roleId)
+      this.$router.push({name: 'addShopRoute'})
+    },
+    navigateToLogin: function () {
+      this.$router.push({name: 'loginRoute'})
     },
   },
   mounted() {

@@ -17,24 +17,99 @@
 </html>
 <style>
     body {
-        background-image: url("https://files.123freevectors.com/wp-content/original/156164-light-blue-background-vector-image.jpg");
+        background-image: url("https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F9%2F2021%2F12%2F28%2Fcalifornia-new-composting-law-FT-BLOG1221.jpg");
         background-repeat: no-repeat;
         background-size: cover;
     }
 
+    .caption {
+        border-bottom-style: ridge;
+        width: 100%;
+        background-color: #efefef;
+        padding: 10px;
+        font-size: 20px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+    .radio {
+        position: relative;
+        left: 35%;
+        border-bottom-style: ridge;
+        width: 30%;
+        background-color: #efefef;
+        padding: 10px;
+        font-size: 20px;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 8px;
+        box-sizing: border-box;
+        flex-direction: column;
+
+    }
+    .input {
+        position: relative;
+        left: 35%;
+        border-bottom-style: ridge;
+        width: 30%;
+        background-color: #efefef;
+        padding: 10px;
+        font-size: 20px;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 8px;
+        box-sizing: border-box;
+        flex-direction: column;
+
+    }
+
+    .list-group {
+
+    }
+    .list-group-item {
+        margin: 10px;
+        justify-content: space-between;
+        position: relative;
+        right: 10px;
+    }
 
     /*.navbar {*/
     /*  display: flex;*/
     /*  background-color: grey;*/
     /*}*/
     table, th, td {
+        margin-left: auto;
+        margin-right: auto;
         /*border: 1px solid black;*/
         border-collapse: collapse;
-        /*background-color: beige;*/
-        /*border-radius: 10px;*/
+        background-color: #efefef;
+        opacity: 0.95;
         border-bottom-style: ridge;
         padding: 15px;
         /*border-spacing: 30px;*/
+    }
+
+    /*th, td {*/
+    /*    position: relative;*/
+    /*    left: 10%;*/
+    /*    !*border: 1px solid black;*!*/
+    /*    border-collapse: collapse;*/
+    /*    background-color: #efefef;*/
+    /*    opacity: 0.95;*/
+    /*    border-bottom-style: ridge;*/
+    /*    padding: 15px;*/
+    /*}*/
+    .table {
+        border-radius: 10px;
+
+    }
+    header {
+        position: absolute;
+        display: block;
+        top: 0%;
+        width: 50%;
+        left: 25%;
+        background-color: #efefef;
+        font-size: 100px;
+        border-radius: 8px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        margin-bottom: 200px;
     }
 
     .shop {
@@ -46,42 +121,59 @@
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 
     }
-    .radio {
-        justify-content: center;
-        background-color: white;
-        padding: 15px 32px;
-        border: dodgerblue;
-        border-radius: 4px;
-        font-size: 17px;
-        width: 200px;
-        position: relative;
-    }
+
+
+    /*.radio {*/
+    /*    background-color: white;*/
+    /*    padding: 15px 32px;*/
+    /*    border: dodgerblue;*/
+    /*    border-radius: 4px;*/
+    /*    font-size: 17px;*/
+    /*    width: 200px;*/
+    /*    !*position: relative;*!*/
+    /*    !*left: 775px;*!*/
+    /*}*/
 
     .select {
         background-color: white;
-        padding: 15px 32px;
+        margin: 10px;
+        padding: 15px ;
         border: dodgerblue;
         border-radius: 4px;
         font-size: 17px;
+        position: relative;
+    }
+
+    .date {
+        background-color: white;
+        margin: 10px;
+        padding: 15px ;
+        border: dodgerblue;
+        border-radius: 4px;
+        font-size: 17px;
+        position: relative;
+        right: 15%;
     }
     tr:hover {
         background-color: bisque;
+
     }
 
     /*caption {*/
     /*  font:;*/
     /*}*/
-    input {
-        position: center;
-        text-align: center;
-        width: 200px;
-    }
+    /*input {*/
+    /*    position: center;*/
+    /*    text-align: center;*/
+    /*    width: 200px;*/
+    /*}*/
 
     ul {
         list-style-type: none;
+
     }
     .small-button {
-        background-color: dodgerblue;
+        background-color: #a8cff6;
         padding: 15px 32px;
         border: dodgerblue;
         border-radius: 4px;
@@ -93,56 +185,83 @@
     .small-button:hover {
         background-color: #4b5860;
         color: white;
-        animation: flare 1000ms ease-out forwards;
+        /*animation: flare 1000ms ease-out forwards;*/
     }
-    .small-button::before {
-         content: '';
-         position: absolute;
-         left: 40px;
-         width: 100px;
-         height: 40px;
-         background: rgba(255, 230, 110, 1);
-         border-radius: 100%;
-         animation: flare 1000ms ease-out forwards;
-     }
+    .nav-button {
+        background-color: #a8cff6;
+        padding: 15px 32px;
+        border: dodgerblue;
+        border-radius: 4px;
+        font-size: 17px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        margin: 10px;
 
-    .small-button::after {
-         content: '';
-         position: absolute;
-         right: 40px;
-         width: 100px;
-         height: 40px;
-         background: rgba(255, 230, 110, 1);
-         border-radius: 100%;
-         animation: flare 1000ms ease-out forwards;
-     }
-
-    @keyframes flare {
-        100% {
-            transform: translateY(-20px) scale(1.5);
-            filter: blur(10px);
-            opacity: 0;
-        }
+    }
+    .nav-button:hover {
+        background-color: #4b5860;
+        color: white;
+        /*animation: flare 1000ms ease-out forwards;*/
     }
 
-    @keyframes burn {
-        0% {
-            color: rgba(255, 130, 110, 1);
-            background: rgba(255, 230, 110, 1);
-            box-shadow:
-                    0 0 5px 0 rgba(200, 0, 10, 1),
-                    0 0 5px 0 rgba(230, 30, 10, 0.8),
-                    0 0 5px 0 rgba(230, 230, 10, 0.6);
-        }
+    .active {
+        background-color: #303c48;
+        color: #efefef;
+        padding: 15px 32px;
+        border: dodgerblue;
+        border-radius: 4px;
+        font-size: 17px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        margin: 10px;
+    }
+    /*.small-button::before {*/
+    /*     content: '';*/
+    /*     position: absolute;*/
+    /*     left: 40px;*/
+    /*     width: 100px;*/
+    /*     height: 40px;*/
+    /*     background: rgba(255, 230, 110, 1);*/
+    /*     border-radius: 100%;*/
+    /*     animation: flare 1000ms ease-out forwards;*/
+    /* }*/
 
-        100% {
-            color: rgba(0, 0, 0, 1);
-            background: rgba(255, 255, 255, 1);
-            box-shadow:
-                    0 -35px 40px 30px rgba(255, 130, 10, 0),
-                    0 -30px 30px 10px rgba(230, 30, 10, 0),
-                    0 -20px 10px 0 rgba(255, 255, 10, 0);
-        }}
+    /*.small-button::after {*/
+    /*     content: '';*/
+    /*     position: absolute;*/
+    /*     right: 40px;*/
+    /*     width: 100px;*/
+    /*     height: 40px;*/
+    /*     background: rgba(255, 230, 110, 1);*/
+    /*     border-radius: 100%;*/
+    /*     animation: flare 1000ms ease-out forwards;*/
+    /* }*/
+
+    /*@keyframes flare {*/
+    /*    100% {*/
+    /*        transform: translateY(-20px) scale(10.5);*/
+    /*        filter: blur(10px);*/
+    /*        opacity: 0;*/
+    /*    }*/
+    /*}*/
+
+    /*@keyframes burn {*/
+    /*    0% {*/
+    /*        color: rgba(255, 130, 110, 1);*/
+    /*        background: rgba(255, 230, 110, 1);*/
+    /*        box-shadow:*/
+    /*                0 0 5px 0 rgba(200, 0, 10, 1),*/
+    /*                0 0 5px 0 rgba(230, 30, 10, 0.8),*/
+    /*                0 0 5px 0 rgba(230, 230, 10, 0.6);*/
+    /*    }*/
+
+    /*    100% {*/
+    /*        color: rgba(0, 0, 0, 1);*/
+    /*        background: rgba(255, 255, 255, 1);*/
+    /*        box-shadow:*/
+    /*                0 -35px 40px 30px rgba(255, 130, 10, 0),*/
+    /*                0 -30px 30px 10px rgba(230, 30, 10, 0),*/
+    /*                0 -20px 10px 0 rgba(255, 255, 10, 0);*/
+    /*    }}    */
+
     .navbar {
         width: 100%;
         background-color: #231818;
@@ -155,7 +274,7 @@
     .navbar button {
         float: left;
         color: black;
-        padding: 18px;
+        padding: 30px;
         text-decoration: none;
         font-size: 17px;
         width: 20%; /* Four equal-width links. If you have two links, use 50%, and 33.33% for three links, etc.. */

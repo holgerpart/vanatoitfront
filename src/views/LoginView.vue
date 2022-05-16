@@ -7,22 +7,24 @@
       <input class="select" type="text" placeholder="Salasõna" v-model="password">
       <br>
     </div>
-    <div v-if="valiKontoDivDisplay">
+    <div class="radio" v-if="valiKontoDivDisplay">
       <section>
-        <h3>vali konto</h3>
+        <h3>VALI KONTO</h3>
         <ul class="list-group">
           <li class="list-group-item" v-for="role in userRoles">
-            <input  class="select" v-on:click="navigateToSelectedRole(role.roleId)" type="radio" v-model="roleId" :value="role.roleId">{{
+            <input v-on:click="navigateToSelectedRole(role.roleId)" type="radio" v-model="roleId" :value="role.roleId"> {{
               role.roleName
             }}
           </li>
         </ul>
       </section>
     </div>
+    <div v-if="loginInputDivDisplay">
     <br>
     <button class="small-button" v-on:click="login">Sisene</button>
     <br>
     <button class="small-button" v-on:click="navigateToRegister">Registreeri kasutaja</button>
+    </div>
   </div>
 </template>
 
@@ -64,12 +66,15 @@ export default {
       ).then(response => {
         this.userRoles = response.data.userRoles
         sessionStorage.setItem('userId', response.data.userId)
+        sessionStorage.setItem('userRolesAmount', this.userRoles.length)
+        sessionStorage.setItem('userRoles', this.userRoles)
         if (this.userRoles.length === 1) {
           if (this.userRoles[0].roleId === 1) {
             this.navigateToUser()
           } else if (this.userRoles[0].roleId === 2) {
             this.navigateToShop()
           } else {
+            sessionStorage.setItem('roleId', '2')
             this.navigateToAdmin()
           }
         }
@@ -82,8 +87,17 @@ export default {
         console.log(response.data)
       }).catch(error => {
         console.log(error)
+        alert(error.response.data.detail)
       })
     },
+    // clearSessionStorage: function () {
+    //   sessionStorage.setItem('userId', null)
+    //   sessionStorage.setItem('shopId', null)
+    //   sessionStorage.setItem('roleId', null)
+    //   sessionStorage.setItem('shopName', '')
+    //
+    // },
+
     navigateToSelectedRole: function (id) {
 
       sessionStorage.setItem('roleId', id)
@@ -108,6 +122,9 @@ export default {
     navigateToRegister: function () {
       this.$router.push({name: 'registerRoute'})
     },
+  },
+  mounted() {
+    sessionStorage.clear()
   }
 }
 

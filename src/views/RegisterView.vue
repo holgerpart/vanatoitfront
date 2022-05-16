@@ -53,9 +53,9 @@ export default {
       ).then(response => {
         alert("Success")
         if (this.role === 'user') {
-          this.$router.push({name: 'userRoute'});
+          this.$router.push({name: 'loginRoute'});
         } else {
-          this.$router.push({name: 'shopRoute'})
+          this.$router.push({name: 'loginRoute'})
         }
           }).catch(error => {
             alert(error.response.data.detail)

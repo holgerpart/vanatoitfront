@@ -207,6 +207,7 @@ export default {
             console.log(response.data)
           }).catch(error => {
         console.log(error)
+        alert(error.response.data.detail)
       })
     },
     getTypes: function () {
@@ -216,6 +217,7 @@ export default {
             this.types = response.data
           }).catch(error => {
         console.log(error)
+        alert(error.response.data.detail)
       })
     },
     getByName: function () {
@@ -230,7 +232,7 @@ export default {
             this.shopFoods = response.data
             sessionStorage.setItem('usedMethod', 'getByName')
           }).catch(error => {
-        alert(error)
+        alert(error.response.data.detail)
       })
     },
     getByFoodType: function () {
@@ -247,6 +249,7 @@ export default {
 
       }).catch(error => {
         console.log(error)
+        alert(error.response.data.detail)
       })
     },
     getByShop: function () {
@@ -262,6 +265,7 @@ export default {
         sessionStorage.setItem('usedMethod', 'getByShop')
       }).catch(error => {
         console.log(error)
+        alert(error.response.data.detail)
       })
     },
     getByCity: function () {
@@ -278,6 +282,7 @@ export default {
 
       }).catch(error => {
         console.log(error)
+        alert(error.response.data.detail)
       })
     },
     selectFoodId: function (id) {
@@ -319,6 +324,7 @@ export default {
         console.log(response.data)
       }).catch(error => {
         console.log(error)
+        alert(error.response.data.detail)
       })
 
     },
@@ -364,6 +370,7 @@ export default {
         this.displayUpdate = false
       }).catch(error => {
         console.log(error)
+        alert(error.response.data.detail)
       })
     },
     getOrderList: function () {
@@ -377,6 +384,7 @@ export default {
             this.orders = response.data
           }).catch(error => {
         console.log(error)
+        alert(error.response.data.detail)
       })
     },
     reverseDisplay: function () {

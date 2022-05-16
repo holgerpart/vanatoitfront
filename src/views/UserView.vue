@@ -2,12 +2,13 @@
   <div>
     <div>
       <button v-if="roleId === '3'" class="nav-button" @click="navigateToAdmin">Admin</button>
-<!--      <button class="nav-button" @click="navigateToShop">Poe vaade</button>-->
+      <button v-if="roleId === '3'" class="nav-button" @click="navigateToShop">Poe vaade</button>
       <button class="active">Kliendivaade</button>
+      <button v-if="roleId === '3'" class="nav-button" @click="navigateToStockInput">Kaubarea sisestus</button>
+      <button v-if="roleId === '3'" class="nav-button" @click="navigateToStock">Laoseis</button>
+      <button v-if="roleId === '3'" class="nav-button" @click="navigateToOrders">Tellimused</button>
+      <button v-if="roleId === '3'" class="nav-button" @click="navigateToAddShop">Poe lisamine</button>
       <button class="nav-button" @click="navigateToLogin">Logi välja</button>
-<!--      <button @click="navigateToStockInput">Kaubarea sisestus</button>-->
-<!--      <button @click="navigateToStock">Laoseis</button>-->
-<!--      <button @click="navigateToOrders">Tellimused</button>-->
     </div>
     <div>
       <div class="shop">
@@ -16,7 +17,7 @@
 
       <div>
         <select class="select" v-model="foodName">
-          <option value="0" disabled selected>Vali toode</option>
+          <option value="" disabled selected hidden>Vali toode</option>
           <option v-for="article in articles" :value="article.name">{{ article.name }}</option>
         </select>
         <button class="small-button" v-on:click="getByName">Otsi</button>
@@ -205,6 +206,10 @@ export default {
           .then(response => {
             this.articles = response.data
             console.log(response.data)
+            if (this.foodName !== null) {
+              this.foodName = response.data.name
+            }
+
           }).catch(error => {
         console.log(error)
         alert(error.response.data.detail)
@@ -401,40 +406,31 @@ export default {
       this.$router.push({name: 'adminRoute'})
     },
     navigateToStockInput: function () {
-      if (this.shopId === null) {
         sessionStorage.setItem('roleId', this.roleId)
         sessionStorage.setItem('shopId', this.shopId);
         sessionStorage.setItem('shopName', this.shopName)
         this.$router.push({name: 'StockInputRoute'})
-      }
-
     },
     navigateToOrders: function () {
-      if (this.shopId === null) {
         sessionStorage.setItem('shopId', this.shopId)
         sessionStorage.setItem('shopName', this.shopName)
         sessionStorage.setItem('roleId', this.roleId)
         this.$router.push({name: 'ordersRoute'})
-      }
     },
     navigateToUser: function () {
       this.$router.push({name: 'userRoute'})
     },
     navigateToStock: function () {
-      if (this.shopId !== null) {
         sessionStorage.setItem('shopId', this.shopId)
         sessionStorage.setItem('shopName', this.shopName)
         sessionStorage.setItem('roleId', this.roleId)
         this.$router.push({name: 'stockRoute'})
-      }
     },
     navigateToShop: function () {
-      if (this.shopId == null) {
         sessionStorage.setItem('shopId', this.shopId)
         sessionStorage.setItem('shopName', this.shopName)
         sessionStorage.setItem('roleId', this.roleId)
         this.$router.push({name: 'shopRoute'})
-      }
     },
     navigateToAddShop: function () {
       sessionStorage.setItem('shopId', this.shopId)

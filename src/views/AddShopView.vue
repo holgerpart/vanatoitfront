@@ -2,12 +2,12 @@
   <div>
     <div>
       <button v-if="roleId === '3'" class="nav-button" @click="navigateToAdmin">Admin</button>
-      <button class="active">Poe lisamine</button>
       <button class="nav-button" @click="navigateToShop">Poe vaade</button>
       <button class="nav-button" @click="navigateToUser">Kliendivaade</button>
       <button class="nav-button" @click="navigateToFoodInput">Kaubarea sisestus</button>
       <button class="nav-button" @click="navigateToStock">Laoseis</button>
       <button class="nav-button" @click="navigateToOrders">Tellimused</button>
+      <button class="active">Poe lisamine</button>
       <button class="nav-button" @click="navigateToLogin">Logi välja</button>
 
 

@@ -4,7 +4,7 @@
       <button class="active">Admin</button>
       <button class="nav-button" @click="navigateToShop">Poe vaade</button>
       <button class="nav-button" @click="navigateToUser">Kliendivaade</button>
-      <button class="nav-button" @click="navigateToFoodInput">Kaubarea sisestus</button>
+      <button class="nav-button" @click="navigateToStockInput">Kaubarea sisestus</button>
       <button class="nav-button" @click="navigateToStock">Laoseis</button>
       <button class="nav-button" @click="navigateToOrders">Tellimused</button>
       <button class="nav-button" @click="navigateToAddShop">Poe lisamine</button>
@@ -120,7 +120,7 @@ export default {
         console.log(error)
       })
     },
-    navigateToFoodInput: function () {
+    navigateToStockInput: function () {
       sessionStorage.setItem('shopId', this.shopId)
       sessionStorage.setItem('shopName', this.shopName)
       sessionStorage.setItem('roleId', this.roleId)
